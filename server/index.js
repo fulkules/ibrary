@@ -3,6 +3,9 @@ const express = require('express');
 const session = require('express-session');
 const massive = require('massive');
 
+const pg = require('pg');
+const pgSession = require('connect-pg-simple')(session)
+
 // CONTROLLERS
 const ac = require('./controllers/auth_controller');
 const tc = require('./controllers/task_controller');
@@ -18,15 +21,21 @@ const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 // MIDDLEWARE
 const app = express();
 
+const pgPool = new pg.Pool({
+    connectionString: CONNECTION_STRING
+})
+
 app.use(express.json());
 
 app.use(session({
+    store: new pgSession({
+        pool: pgPool,
+        pruneSessionInterval: 60 * 60 * 24
+    }),
     secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 48
-    }
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 48 }
 }))
 
 massive(CONNECTION_STRING).then(db => {
@@ -38,7 +47,7 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 //// AUTH ENDPOINTS ////
-app.get('/api/current', ac.getUser);
+// app.get('/api/current', ac.getUser);
 app.post('/auth/register', ac.register);
-app.post('/api/login', ac.login);
-app.post('/api/logout', ac.logout);
+// app.post('/api/login', ac.login);
+// app.post('/api/logout', ac.logout);
