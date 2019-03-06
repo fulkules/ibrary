@@ -10,10 +10,10 @@ const pgSession = require('connect-pg-simple')(session)
 const ac = require('./controllers/auth_controller');
 const tc = require('./controllers/task_controller');
 const gc = require('./controllers/goal_controller');
-const thxc = require('./controllers/thanks_controller');
-const ec = require ('./controllers/excite_controller');
 const stc = require('./controllers/sub_task_controller');
 const sgc = require('./controllers/sub_goal_controller');
+const thxc = require('./controllers/thanks_controller');
+const ec = require ('./controllers/excite_controller');
 
 // .ENV
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
@@ -63,3 +63,9 @@ app.post('/api/goal', gc.addGoal);
 app.get('/api/goals', gc.getGoals);
 app.put('/api/goal/:id', gc.updateGoal);
 app.delete('/api/goal/:id', gc.deleteGoal); 
+
+//// SUB_TASK ENDPOINTS ////
+app.post('/api/s_task', stc.addSubTask);
+app.get('/api/s_tasks', stc.getSubTasks);
+// app.put('/api/s_task/:id', stc.updateSubTask);
+// app.delete('/api/s_task/:id', stc.deleteSubTask);
