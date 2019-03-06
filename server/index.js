@@ -57,3 +57,9 @@ app.post('/api/task', tc.addTask);
 app.get('/api/tasks', tc.getTasks);
 app.put('/api/task/:id', tc.updateTask);
 app.delete('/api/task/:id', tc.deleteTask);
+
+//// GOAL ENDPOINTS ////
+app.post('/api/goal', gc.addGoal);
+app.get('/api/goals', gc.getGoals);
+app.put('/api/goal/:id', gc.updateGoal);
+app.delete('/api/goal/:id', gc.deleteGoal); 
