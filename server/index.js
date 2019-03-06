@@ -56,4 +56,4 @@ app.post('/auth/logout', ac.logout);
 app.post('/api/task', tc.addTask);
 app.get('/api/tasks', tc.getTasks);
 app.put('/api/task/:id', tc.updateTask);
-//
+app.delete('/api/task/:id', tc.deleteTask);
