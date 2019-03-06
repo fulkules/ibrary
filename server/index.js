@@ -53,7 +53,7 @@ app.post('/auth/login', ac.login);
 app.post('/auth/logout', ac.logout);
 
 //// TASK ENDPOINTS ////
-app.post('/api/task', tc.addTask)
-app.get('/api/tasks', tc.getTasks)
-//
+app.post('/api/task', tc.addTask);
+app.get('/api/tasks', tc.getTasks);
+app.put('/api/task/:id', tc.updateTask);
 //

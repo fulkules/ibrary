@@ -23,5 +23,18 @@ module.exports = {
             console.log(err)
             res.status(500).send(err)
         })
+    },
+
+    updateTask: (req, res) => {
+        const db = req.app.get('db');
+        const { id } = req.params;
+        const { name, time } = req.body;
+
+        db.task.update_task({id, name, time}).then(resp => {
+            res.status(200).send(resp)
+        }).catch(err => {
+            console.log(err)
+            res.status(500).send(err)
+        })
     }
 }
