@@ -14,55 +14,43 @@ CREATE TABLE users (
 )
 
 CREATE TABLE task (
-    id int NOT NULL,
-    u_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (u_id) REFERENCES users (id),
+    id serial primary key,
+    u_id int REFERENCES users(id),
     name varchar(255),
     time varchar(50),
     date varchar(50)
 )
 
 CREATE TABLE goal (
-    id int NOT NULL,
-    u_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (u_id) REFERENCES users (id),
+    id serial primary key,
+    u_id int REFERENCES users(id),
     name varchar(255),
     time varchar(50),
     date varchar(50)
 )
 
 CREATE TABLE sub_task (
-    id int NOT NULL,
-    t_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (t_id) REFERENCES task (id),
+    id serial primary key,
+    t_id int REFERENCES task(id),
     name varchar(255),
     complete boolean
 )
 
 CREATE TABLE sub_goal (
-    id int NOT NULL,
-    g_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (g_id) REFERENCES goal (id),
+    id serial primary key,
+    g_id int REFERENCES goal(id),
     name varchar(255),
     complete boolean
 )
 
 CREATE TABLE excite (
-    id int NOT NULL,
-    u_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (u_id) REFERENCES users (id),
+    id serial primary key,
+    u_id int REFERENCES users(id),
     name varchar(255)
 )
 
 CREATE TABLE thanks (
-    id int NOT NULL,
-    u_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (u_id) REFERENCES users (id),
+    id serial primary key,
+    u_id int REFERENCES users(id),
     name varchar(255)
 )
