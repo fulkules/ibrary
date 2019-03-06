@@ -43,4 +43,18 @@ module.exports = {
             res.sendStatus(401);
         }
     },
+
+    getUser: (req, res) => {
+        const { user } = req.session;
+        if(user){
+            res.status(200).send(user)
+        } else {
+            res.sendStatus(401)
+        }
+    },
+
+    logout: async (req, res) => {
+        req.session.destroy();
+        res.sendStatus(200);
+    }
 }
