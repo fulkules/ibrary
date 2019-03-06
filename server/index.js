@@ -69,3 +69,9 @@ app.post('/api/s_task', stc.addSubTask);
 app.get('/api/s_tasks', stc.getSubTasks);
 app.put('/api/s_task/:id', stc.updateSubTask);
 app.delete('/api/s_task/:id', stc.deleteSubTask);
+
+//// SUB_GOAL ENDPOINTS ////
+app.post('/api/s_goal', sgc.addSubGoal);
+app.get('/api/s_goals', sgc.getSubGoals);
+// app.put('/api/s_goal/:id', sgc.updateSubGoal);
+// app.delete('/api/s_goal/:id', stc.deleteSubGoal);
