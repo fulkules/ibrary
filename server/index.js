@@ -49,5 +49,5 @@ massive(CONNECTION_STRING).then(db => {
 //// AUTH ENDPOINTS ////
 // app.get('/api/current', ac.getUser);
 app.post('/auth/register', ac.register);
-// app.post('/api/login', ac.login);
-// app.post('/api/logout', ac.logout);
+app.post('/auth/login', ac.login);
+// app.post('/auth/logout', ac.logout);
