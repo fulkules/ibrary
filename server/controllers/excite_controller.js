@@ -3,9 +3,9 @@ module.exports = {
         const db = req.app.get('db');
         const { id } = req.session.user;
         // console.log(req.body)
-        const { u_id, name } = req.body;
+        const { name } = req.body;
 
-        db.excite.add_excite({ u_id, name }).then(resp => {
+        db.excite.add_excite({ id, name }).then(resp => {
             // console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {
@@ -16,8 +16,9 @@ module.exports = {
 
     getExcites: (req, res) => {
         const db = req.app.get('db');
+        const { id } = req.session.user;
 
-        db.excite.get_all_excites().then(resp => {
+        db.excite.get_all_excites({ id }).then(resp => {
             res.status(200).send(resp)
         }).catch(err => {
             console.log(err)

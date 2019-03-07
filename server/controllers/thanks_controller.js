@@ -3,9 +3,9 @@ module.exports = {
         const db = req.app.get('db');
         const { id } = req.session.user;
         // console.log(req.body)
-        const { u_id, name } = req.body;
+        const { name } = req.body;
 
-        db.thanks.add_thank({ u_id, name }).then(resp => {
+        db.thanks.add_thank({ id, name }).then(resp => {
             // console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {
@@ -16,8 +16,9 @@ module.exports = {
 
     getThanks: (req, res) => {
         const db = req.app.get('db');
+        const { id } = req.session.user;
 
-        db.thanks.get_all_thanks().then(resp => {
+        db.thanks.get_all_thanks({ id }).then(resp => {
             res.status(200).send(resp)
         }).catch(err => {
             console.log(err)

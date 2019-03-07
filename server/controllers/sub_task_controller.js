@@ -2,9 +2,10 @@ module.exports = {
     addSubTask: (req, res) => {
         const db = req.app.get('db');
         const { t_id, name, complete } = req.body;
+        const { id } = req.session.user;
         //console.log(req.body)
 
-        db.sub_task.add_sub_task({t_id, name, complete}).then(resp => {
+        db.sub_task.add_sub_task({ id, t_id, name, complete }).then(resp => {
             // console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {
@@ -15,8 +16,9 @@ module.exports = {
 
     getSubTasks: (req, res) => {
         const db = req.app.get('db');
+        const { id } = req.session.user;
 
-        db.sub_task.get_sub_tasks().then(resp => {
+        db.sub_task.get_sub_tasks({ id }).then(resp => {
             // console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {

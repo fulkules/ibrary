@@ -2,9 +2,10 @@ module.exports = {
     addSubGoal: (req, res) => {
         const db = req.app.get('db');
         const { g_id, name, complete } = req.body;
+        const { id } = req.session.user;
         //console.log(req.body)
 
-        db.sub_goal.add_sub_goal({g_id, name, complete}).then(resp => {
+        db.sub_goal.add_sub_goal({ id, g_id, name, complete }).then(resp => {
             // console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {
@@ -15,8 +16,9 @@ module.exports = {
 
     getSubGoals: (req, res) => {
         const db = req.app.get('db');
+        const { id } = req.session.user;
 
-        db.sub_goal.get_sub_goals().then(resp => {
+        db.sub_goal.get_sub_goals({ id }).then(resp => {
             // console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {

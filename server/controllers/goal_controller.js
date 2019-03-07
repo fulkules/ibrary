@@ -3,9 +3,9 @@ module.exports = {
         const db = req.app.get('db');
         const { id } = req.session.user;
         // console.log(req.body)
-        const { u_id, name, date } = req.body;
+        const { name, date } = req.body;
 
-        db.goal.add_goal({u_id, name, date}).then(resp => {
+        db.goal.add_goal({ id, name, date }).then(resp => {
             // console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {
@@ -16,8 +16,9 @@ module.exports = {
 
     getGoals: (req, res) => {
         const db = req.app.get('db');
+        const { id } = req.session.user;
 
-        db.goal.get_all_goals().then(resp => {
+        db.goal.get_all_goals({ id }).then(resp => {
             res.status(200).send(resp)
         }).catch(err => {
             console.log(err)
