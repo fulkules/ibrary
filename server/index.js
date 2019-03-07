@@ -75,3 +75,15 @@ app.post('/api/s_goal', sgc.addSubGoal);
 app.get('/api/s_goals', sgc.getSubGoals);
 app.put('/api/s_goal/:id', sgc.updateSubGoal);
 app.delete('/api/s_goal/:id', sgc.deleteSubGoal);
+
+//// THANKS ENDPOINTS ////
+app.post('/api/thank', thxc.addThank);
+app.get('/api/thanks', thxc.getThanks);
+// app.put('/api/thank/:id', thxc.updateThank);
+// app.delete('/api/thank/:id', thxc.deleteThank);
+
+//// EXCITE ENDPOINTS ////
+// app.post('/api/excite', ec.addExcite);
+// app.get('/api/excites', ec.getExcites);
+// app.put('/api/excite/:id', ec.updateExcite);
+// app.delete('/api/excite/:id', ec.deleteExcite);
