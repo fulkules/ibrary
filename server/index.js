@@ -83,7 +83,7 @@ app.put('/api/thank/:id', thxc.updateThank);
 app.delete('/api/thank/:id', thxc.deleteThank);
 
 //// EXCITE ENDPOINTS ////
-// app.post('/api/excite', ec.addExcite);
-// app.get('/api/excites', ec.getExcites);
+app.post('/api/excite', ec.addExcite);
+app.get('/api/excites', ec.getExcites);
 // app.put('/api/excite/:id', ec.updateExcite);
 // app.delete('/api/excite/:id', ec.deleteExcite);
