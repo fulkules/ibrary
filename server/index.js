@@ -79,8 +79,8 @@ app.delete('/api/s_goal/:id', sgc.deleteSubGoal);
 //// THANKS ENDPOINTS ////
 app.post('/api/thank', thxc.addThank);
 app.get('/api/thanks', thxc.getThanks);
-// app.put('/api/thank/:id', thxc.updateThank);
-// app.delete('/api/thank/:id', thxc.deleteThank);
+app.put('/api/thank/:id', thxc.updateThank);
+app.delete('/api/thank/:id', thxc.deleteThank);
 
 //// EXCITE ENDPOINTS ////
 // app.post('/api/excite', ec.addExcite);
