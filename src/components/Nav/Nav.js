@@ -2,139 +2,157 @@ import React, { Component } from 'react';
 import { Motion, StaggeredMotion, spring } from 'react-motion';
 import range from 'lodash.range';
 
-// CONSTANTS
+// Components 
 
-// Diameter of the main button in px
-const MAIN_BUBBLE_DIAM = 50;
-const CHILD_BUBBLE_DIAM = 45;
+//Constants 
 
-// Number of bubbles that fly out from main bubble
-const NUM_CHILDREN = 7;
+// Diameter of the main button in pixels
+var MAIN_BUTTON_DIAM = 50;
+var CHILD_BUTTON_DIAM = 45;
+// The number of child buttons that fly out from the main button
+var NUM_CHILDREN = 5;
+// Hard code the position values of the mainButton
+var M_X = 40;
+var M_Y = 40;
 
-// Hard code the position values of the mainBubble
-const M_X = 10;
-const M_Y = 10;
+//should be between 0 and 0.5 (its maximum value is difference between scale in finalChildButtonStyles a
+// nd initialChildButtonStyles)
+var OFFSET = 0.05;
 
-// This should be between 0 and 0.5 (its max val is the diff between scale in finalChildBubbleStyles and startChildBubbleStyles)
-const OFFSET = 0.05;
+var SPRING_CONFIG = { stiffness: 400, damping: 28 };
 
-const SPRING_CONFIG = { stiffness: 400, damping: 28 };
+// How far away from the main button do the child buttons go
+var FLY_OUT_RADIUS = 120,
+    SEPARATION_ANGLE = 25,
+    //degrees
+FAN_ANGLE = (NUM_CHILDREN - 1) * SEPARATION_ANGLE,
+    //degrees
+BASE_ANGLE = (-90 - FAN_ANGLE) / 2; // degrees
 
-// How far away from main bubble do children bubbles go
-const FLY_OUT_RADIUS = 60,
-    SEPARATION_ANGLE = 15, //degrees
-    FAN_ANGLE = (NUM_CHILDREN - 1) * SEPARATION_ANGLE, //degrees
-    BASE_ANGLE = ((90 - FAN_ANGLE) / 2); //degrees
+// Names of icons for each button retreived from fontAwesome
+var childButtonIcons = ['bolt', 'camera', 'bell', 'tasks', 'home'];
 
-// Names of icons for each bubble from fontAwesome
-let childBubbleIcons = ['exclamation-circle', 'medal', 'tasks', 'sign-in-alt', 'bars', 'image', 'home'];
 
-// Utility Functions
+// Utility functions
 
 function toRadians(degrees) {
-    return degrees * (Math.PI / 90)
+    return degrees * (Math.PI / 180)
 }
 
 function finalChildDeltaPositions(index) {
     let angle = BASE_ANGLE + (index * SEPARATION_ANGLE);
     return {
-        deltaX: FLY_OUT_RADIUS * Math.cos(toRadians(angle)) - (CHILD_BUBBLE_DIAM / 2),
-        deltaY: FLY_OUT_RADIUS * Math.sin(toRadians(angle)) + (CHILD_BUBBLE_DIAM / 2)
-    }
+        deltaX: FLY_OUT_RADIUS * Math.cos(toRadians(angle)) - (CHILD_BUTTON_DIAM / 2),
+        deltaY: FLY_OUT_RADIUS * Math.sin(toRadians(angle)) + (CHILD_BUTTON_DIAM / 2)
+    };
 }
 
+
 class Nav extends Component {
-    constructor(props){
-        super(props)
+    constructor(props) {
+        super(props);
 
         this.state = {
-            isOpen: false,
-            childButtons: []
-        }
+        isOpen: false,
+        childButtons: []
+        };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         window.addEventListener('click', this.closeMenu);
-        let childBubbles = [];
+        let childButtons = [];
 
-        this.setState({ childBubbles: childBubbles.slice(0) })
+        this.setState({ childButtons: childButtons.slice(0) });
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         window.removeEventListener('click', this.closeMenu);
     }
 
-    mainBubbleStyles(){
+    mainButtonStyles() {
         return {
-            width: MAIN_BUBBLE_DIAM,
-            height: MAIN_BUBBLE_DIAM,
-            top: M_Y - (MAIN_BUBBLE_DIAM / 2),
-            right: M_X - (MAIN_BUBBLE_DIAM / 2)
-        }
+            width: MAIN_BUTTON_DIAM,
+            height: MAIN_BUTTON_DIAM,
+            top: M_Y - (MAIN_BUTTON_DIAM / 2),
+            left: M_X - (MAIN_BUTTON_DIAM / 2)
+        };
     }
 
-    initialChildBubbleStyles(){
+    initialChildButtonStyles() {
         return {
-            width: CHILD_BUBBLE_DIAM,
-            height: CHILD_BUBBLE_DIAM,
-            top: spring(M_Y - (CHILD_BUBBLE_DIAM / 2), SPRING_CONFIG),
-            right: spring(M_X - (CHILD_BUBBLE_DIAM / 2), SPRING_CONFIG),
-            rotate: spring(-90, SPRING_CONFIG),
+            width: CHILD_BUTTON_DIAM,
+            height: CHILD_BUTTON_DIAM,
+            top: spring(M_Y - (CHILD_BUTTON_DIAM / 2), SPRING_CONFIG),
+            left: spring(M_X - (CHILD_BUTTON_DIAM / 2), SPRING_CONFIG),
+            rotate: spring(-180, SPRING_CONFIG),
             scale: spring(0.5, SPRING_CONFIG)
-        }
+        };
     }
 
-    initialChildBubbleStylesInit(childIndex){
+    initialChildButtonStylesInit() {
+        return {
+            width: CHILD_BUTTON_DIAM,
+            height: CHILD_BUTTON_DIAM,
+            top: M_Y - (CHILD_BUTTON_DIAM / 2),
+            left: M_X - (CHILD_BUTTON_DIAM / 2),
+            rotate: -180,
+            scale: 0.5
+        };
+    }
+
+    finalChildButtonStylesInit(childIndex) {
         let { deltaX, deltaY } = finalChildDeltaPositions(childIndex);
         return {
-            width: CHILD_BUBBLE_DIAM,
-            height: CHILD_BUBBLE_DIAM,
+            width: CHILD_BUTTON_DIAM,
+            height: CHILD_BUTTON_DIAM,
             top: M_Y - deltaY,
-            right: M_X + deltaX,
+            left: M_X + deltaX,
             rotate: 0,
             scale: 1
-        }
+        };
     }
 
-    finalChildBubbleStyles(childIndex){
+    finalChildButtonStyles(childIndex) {
         let { deltaX, deltaY } = finalChildDeltaPositions(childIndex);
         return {
-            width: CHILD_BUBBLE_DIAM,
-            height: CHILD_BUBBLE_DIAM,
+            width: CHILD_BUTTON_DIAM,
+            height: CHILD_BUTTON_DIAM,
             top: spring(M_Y - deltaY, SPRING_CONFIG),
-            right: spring(M_X + deltaX, SPRING_CONFIG),
+            left: spring(M_X + deltaX, SPRING_CONFIG),
             rotate: spring(0, SPRING_CONFIG),
             scale: spring(1, SPRING_CONFIG)
-        }
+        };
     }
 
     toggleMenu = (e) => {
         e.stopPropagation();
         let { isOpen } = this.state;
-        this.setState({ isOpen: !isOpen })
+        this.setState({
+        isOpen: !isOpen
+        });
     }
 
     closeMenu = () => {
-        this.setState({ isOpen: false })
+        this.setState({ isOpen: false });
     }
 
-    renderChildBubbles(){
+    renderChildButtons() {
         const { isOpen } = this.state;
-        const targetBubbleStylesInitObject = range(NUM_CHILDREN).map( i => {
-            return isOpen ? this.finalChildBubbleStylesInit(i) : this.initialChildBubbleStylesInit();
-        })
-
-        // StaggeredMotion now takes an Array of Objects
-        const targetBubbleStylesInit = Object.keys(targetBubbleStylesInitObject).map( key => targetBubbleStylesInitObject[key] );
-
-        const targetBubbleStyles = range(NUM_CHILDREN).map( i => {
-            return isOpen ? this.finalChildBubbleStyles(i) : this.initialChildBubbleStyles();
+        const targetButtonStylesInitObject = range(NUM_CHILDREN).map(i => {
+            return isOpen ? this.finalChildButtonStylesInit(i) : this.initialChildButtonStylesInit();
         });
 
-        const scaleMin = this.initialChildBubbleStyles().scale.val;
-        const scaleMax = this.finalChildBubbleStyles(0).scale.val;
+    //StaggeredMotion now takes an array of objects
+        const targetButtonStylesInit = Object.keys(targetButtonStylesInitObject).map(key => targetButtonStylesInitObject[key]);
 
-        //This function returns target styles for each child button in current animation frame
+        const targetButtonStyles = range(NUM_CHILDREN).map(i => {
+            return isOpen ? this.finalChildButtonStyles(i) : this.initialChildButtonStyles();
+        });
+
+        const scaleMin = this.initialChildButtonStyles().scale.val;
+        const scaleMax = this.finalChildButtonStyles(0).scale.val;
+
+    //This function returns target styles for each child button in current animation frame
     //according to actual styles in previous animation frame.
     //Each button could have one of two target styles
     // - defined in initialChildButtonStyles (for collapsed buttons)
@@ -185,78 +203,80 @@ class Nav extends Component {
     // and this button starts to animate to its default state.
     // BUTTON NO 1    -----------------------------o-|---------------------------------------------
     // BUTTON NO 2    -------------------------------|------------------------------------O--------
-
-    let calculateStylesForNextFrame = prevFrameStyles => {
+        let calculateStylesForNextFrame = prevFrameStyles => {
         prevFrameStyles = isOpen ? prevFrameStyles : prevFrameStyles.reverse();
 
-        let nextFrameTargetStyles = prevFrameStyles.map( (bubbleStyleInPreviousFrame, i) => {
-            if ( i === 0 ){
-                return targetBubbleStyles[i];
-            }
-
-            const prevBubbleScale = prevFrameStyles[ i - 1 ].scale;
-            const shouldApplyTargetStyle = () => {
-                if (isOpen){
-                    return prevBubbleScale >= scaleMin + OFFSET;
-                } else {
-                    return prevBubbleScale <= scaleMax - OFFSET;
+            let nextFrameTargetStyles = prevFrameStyles.map((buttonStyleInPreviousFrame, i) => {
+            //animation always starts from first button
+                if (i === 0) {
+                    return targetButtonStyles[i];
                 }
-            }
 
-            return shouldApplyTargetStyle() ? targetBubbleStyles[i] : bubbleStyleInPreviousFrame;
-        })
+                const prevButtonScale = prevFrameStyles[i - 1].scale;
+                const shouldApplyTargetStyle = () => {
+                    if (isOpen) {
+                        return prevButtonScale >= scaleMin + OFFSET;
+                    } else {
+                        return prevButtonScale <= scaleMax - OFFSET;
+                    }
+                };
 
-        return(
-            <StaggeredMotion 
-                defaultStyles={targetBubbleStylesInit}
-                styles={calculateStylesForNextFrame}
-            >
-                {interpolateStyles =>
-                    <div>
-                        {interpolateStyles.map(({height, right, rotate, scale, top, width}, index) =>
-                            <div
-                                className="child-bubble"
-                                key={index}
-                                style={{
-                                    right,
-                                    height,
-                                    top,
-                                    transform: `rotate(${rotate}deg) scale(${scale})`,
-                                    width
-                                }}
-                            >
-                                <i className={"fa fa-" + childBubbleIcons[index] + "fa-lg"}></i>
-                            </div>
-                        )}
-                    </div>
-                }
-            </StaggeredMotion>
-        )
+                return shouldApplyTargetStyle() ? targetButtonStyles[i] : buttonStyleInPreviousFrame;
+            });
+
+            return isOpen ? nextFrameTargetStyles : nextFrameTargetStyles.reverse();
+        };
+
+        return (
+            <StaggeredMotion
+				defaultStyles={targetButtonStylesInit}
+				styles={calculateStylesForNextFrame}>
+				{interpolatedStyles =>
+					<div>
+						{interpolatedStyles.map(({height, left, rotate, scale, top, width}, index) =>
+							<div
+								className="child-button"
+								key={index}
+								style={{
+									left,
+									height,
+									top,
+									transform: `rotate(${rotate}deg) scale(${scale})`,
+									width
+								}}
+							>
+								<i className={"fa fa-" + childButtonIcons[index] + " fa-lg"}></i>
+							</div>
+						)}
+					</div>
+				}
+			</StaggeredMotion>
+        );
     }
-    }
-
 
     render() {
         let { isOpen } = this.state;
-        let mainButtonRotation = 
-            isOpen ? { rotate: spring(0, { stiffness: 500, damping: 30 }) } : { rotate: spring(-135, { stiffness: 500, damping: 30 }) }
+        let mainButtonRotation =
+            isOpen ? { rotate: spring(0, { stiffness: 500, damping: 30 }) } : { rotate: spring(-135, { stiffness: 500, damping: 30 }) };
         return (
-            <div className="Nav">
-                {this.renderChildBubbles()}
-                <Motion style={mainButtonRotation}>
+            <div>
+				{this.renderChildButtons()}
+				<Motion style={mainButtonRotation}>
 					{({rotate}) =>
 						<div
 							className="main-button"
-							style={{...this.mainBubbleStyles(), transform: `rotate(${rotate}deg)`}}
+							style={{...this.mainButtonStyles(), transform: `rotate(${rotate}deg)`}}
 							onClick={this.toggleMenu}>
 							{/*Using fa-close instead of fa-plus because fa-plus doesn't center properly*/}
 							<i className="fa fa-close fa-3x"/>
 						</div>
 					}
 				</Motion>
-            </div>
+                
+			</div>
         );
     }
-}
+};
+
 
 export default Nav;
