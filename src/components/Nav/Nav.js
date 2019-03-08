@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Motion, StaggeredMotion, spring } from 'react-motion';
 import range from 'lodash.range';
 import './Nav.css';
+import { WithRouter, Link } from 'react-router-dom';
 // Components 
 
 //Constants 
@@ -31,6 +32,7 @@ BASE_ANGLE = (-90 - FAN_ANGLE) / 2; // degrees
 
 // Names of icons for each button retreived from fontAwesome
 var childButtonIcons = ['bolt', 'image', 'bell', 'tasks', 'home'];
+let buttonRoutes = ['/excite', '/vision', '/task', '/goal', '/dashboard']
 
 
 // Utility functions
@@ -234,7 +236,7 @@ class Nav extends Component {
 				{interpolatedStyles =>
 					<div>
 						{interpolatedStyles.map(({height, left, rotate, scale, top, width}, index) =>
-							<div
+                            <div
 								className="child-button"
 								key={index}
 								style={{
@@ -245,7 +247,9 @@ class Nav extends Component {
 									width
 								}}
 							>
+                            <Link to={`${buttonRoutes[index]}`}>
 								<i className={"fa fa-" + childButtonIcons[index] + " fa-lg"}></i>
+                            </Link>
 							</div>
 						)}
 					</div>
