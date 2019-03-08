@@ -17,7 +17,9 @@
     "react-motion": "^0.5.2",
     "react-redux": "^6.0.1",
     "react-scripts": "2.1.5",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "request": "^2.88.0",
+    "yargs": "^13.2.2"
   },
   "scripts": {
     "start": "react-scripts start",

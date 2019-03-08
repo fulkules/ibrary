@@ -21492,7 +21492,7 @@
 
 	// Names of icons for each button retreived from fontAwesome, we'll add a little extra just in case 
 	// the NUM_CHILDREN is changed to a bigger value
-	var childButtonIcons = ['bolt', 'camera', 'bell', 'tasks', 'home'];
+	var childButtonIcons = ['bolt', 'image', 'bell', 'tasks', 'home'];
 
 	// Utility functions
 

@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const massive = require('massive');
+const request = require('request');
+const argv = require('yargs').argv;
 
 const pg = require('pg');
 const pgSession = require('connect-pg-simple')(session)
@@ -14,9 +16,10 @@ const stc = require('./controllers/sub_task_controller');
 const sgc = require('./controllers/sub_goal_controller');
 const thxc = require('./controllers/thanks_controller');
 const ec = require ('./controllers/excite_controller');
+const wc = require('./controllers/weather_controller');
 
 // .ENV
-const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
+const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, WEATHER_API_KEY } = process.env;
 
 // MIDDLEWARE
 const app = express();
@@ -45,6 +48,9 @@ massive(CONNECTION_STRING).then(db => {
         console.log(`${SERVER_PORT} birds flying high!`)
     })
 })
+
+// Weather API
+app.get('/api/weather', wc.getWeather);
 
 //// AUTH ENDPOINTS ////
 app.get('/api/current', ac.getUser);

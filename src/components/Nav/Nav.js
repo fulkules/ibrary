@@ -30,7 +30,7 @@ FAN_ANGLE = (NUM_CHILDREN - 1) * SEPARATION_ANGLE,
 BASE_ANGLE = (-90 - FAN_ANGLE) / 2; // degrees
 
 // Names of icons for each button retreived from fontAwesome
-var childButtonIcons = ['bolt', 'camera', 'bell', 'tasks', 'home'];
+var childButtonIcons = ['bolt', 'image', 'bell', 'tasks', 'home'];
 
 
 // Utility functions
@@ -272,7 +272,6 @@ class Nav extends Component {
 						</div>
 					}
 				</Motion>
-                
 			</div>
         );
     }
