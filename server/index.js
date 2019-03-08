@@ -49,7 +49,7 @@ massive(CONNECTION_STRING).then(db => {
     })
 })
 
-// Weather API
+//// WEATHER API ENDPOINT ////
 app.get('/api/weather', wc.getWeather);
 
 //// AUTH ENDPOINTS ////

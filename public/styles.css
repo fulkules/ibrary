@@ -4,11 +4,11 @@ html, body {
 
 #container {
 	width: 100vw;
-	height: 100vh;
+	height: 30vh;
 }
 
 .main-button {
-	position: absolute;
+	/* position: fixed; */
 	width: 80px;
 	height: 80px;
 	border-radius: 100%;
@@ -23,8 +23,9 @@ html, body {
 }
 
 .child-button {
-	position: absolute;
+	position: fixed;
 	display: flex;
+	margin: -5px;
 	justify-content: center;
 	align-items: center;
 	width: 50px;

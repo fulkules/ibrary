@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Motion, StaggeredMotion, spring } from 'react-motion';
 import range from 'lodash.range';
-
+import './Nav.css';
 // Components 
 
 //Constants 
