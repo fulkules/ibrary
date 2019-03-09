@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { updateUser } from '../../ducks/actions';
+import { updateUser, setUserData } from '../../ducks/actions';
+import getAllUserData from './../../common/utils.js';
 
 class Login extends Component {
     constructor(){
         super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
         }
     }
 
@@ -60,6 +61,8 @@ class Login extends Component {
             let res = await axios.post('/auth/login', user);
             // console.log(res)
             this.props.updateUser(res.data);
+            const allUserData = await getAllUserData()
+            this.props.setUserData(allUserData)
             this.props.history.push('/dashboard');
         } catch(err) {
             console.log(err)
@@ -97,7 +100,8 @@ const mapStateToProps = (reduxState) => {
 }
 
 const mapDispatchToProps = {
-    updateUser
+    updateUser,
+    setUserData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -13,7 +13,7 @@ class Weather extends Component {
         
     getWeather = async () => {
         await axios.get('/api/weather').then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             let temp = Math.floor(res.data.main.temp)
             let icon = res.data.weather[0].icon
             this.setState({ temperature: temp, icon: icon })
