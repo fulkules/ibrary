@@ -31,7 +31,6 @@ class Goal extends Component {
                 <h3>
                     {goalArr}
                 </h3>
-                <h5></h5>
             </div>
         );
     }

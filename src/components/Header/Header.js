@@ -20,7 +20,7 @@ class Header extends Component {
     logout = async () => {
         await axios.post('/auth/logout');
         this.props.clearUser();
-        this.props.history.push('/')
+        this.props.auth.history.push('/')
     }
 
     render() {

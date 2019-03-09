@@ -2,7 +2,8 @@ import { UPDATE_USER, CLEAR_USER } from './constants';
 
 const initialState = {
     id: 0,
-    username: ''
+    username: '',
+    history: {}
 }
 
 export default function reducer(state = initialState, action){

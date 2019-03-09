@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Motion, StaggeredMotion, spring } from 'react-motion';
 import range from 'lodash.range';
 import './Nav.css';
-import { WithRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // Components 
 
 //Constants 
