@@ -1,5 +1,5 @@
 import { UPDATE_USER, CLEAR_USER } from './constants';
-import { ADD_TASK, SET_USER_DATA, UPDATE_TASK, DELETE_TASK } from './constants';
+import { ADD_DATA, SET_USER_DATA, UPDATE_DATA, DELETE_DATA } from './constants';
 
 
 //// AUTH ACTIONS ////
@@ -16,15 +16,11 @@ export function clearUser(){
     }
 }
 
-//// DASH ACTIONS ////
-
-
-
-//// TASK ACTIONS ////
-export function addTask(){
+//// DATA ACTIONS ////
+export function addData(allUserData){
     return {
-        type: ADD_TASK,
-        payload: ''
+        type: ADD_DATA,
+        payload: allUserData
     }
 }
 
@@ -36,18 +32,16 @@ export function setUserData(allUserData){
     }
 }
 
-export function updateTask(){
+export function updateData(allUserData){
     return {
-        type: UPDATE_TASK,
-        payload: ''
+        type: UPDATE_DATA,
+        payload: allUserData
     }
 }
 
-export function deleteTask(){
+export function deleteData(id){
     return {
-        type: DELETE_TASK
+        type: DELETE_DATA,
+        payload: id
     }
 }
-
-
-//// GOAL ACTIONS ////

@@ -4,7 +4,7 @@ import routes from './routes';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { updateUser, clearUser, setUserData } from './ducks/actions';
-import getAllUserData from './common/utils';
+import getAllUserData from './common/getUtils';
 
 
 class App extends Component {

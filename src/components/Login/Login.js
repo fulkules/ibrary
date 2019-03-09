@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateUser, setUserData } from '../../ducks/actions';
-import getAllUserData from './../../common/utils.js';
+import getAllUserData from '../../common/getUtils';
 
 class Login extends Component {
     constructor(){
