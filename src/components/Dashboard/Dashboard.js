@@ -22,7 +22,6 @@ class Dashboard extends Component {
         return (
             <div className="Dashboard">
                 <Header />
-                <h3>Dashboard</h3>
                 <TaskList />
                 <GoalList />
             </div>

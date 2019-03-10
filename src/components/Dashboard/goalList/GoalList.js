@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './GoalList.css';
 
 
 class GoalList extends Component {
@@ -16,20 +17,18 @@ class GoalList extends Component {
         const { goals } = this.props;
         let goalArr = goals.map((goal, i) => {
             return(
-                <div className="goal-nail">
-                    <h3>{goals[i].name}</h3>
-                    <span>{goals[i].date}</span>
+                <div className="card">
+                        <h3>{goals[i].name}</h3>
+                        <span>{goals[i].date}</span>
                 </div>
             )
+            console.log(goalArr)
         })
-
         return (
-            <div className="goal-list">
-                <h1>GoalList</h1>
-                <h3>
-                    {goalArr}
-                </h3>
-                <h5></h5>
+            <div className="scrolling-wrapper">
+                    <h3>
+                        {goalArr}
+                    </h3>
             </div>
         );
     }
