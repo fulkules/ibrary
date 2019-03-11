@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import TaskList from './taskList/TaskList';
@@ -22,7 +21,7 @@ class Dashboard extends Component {
         return (
             <div className="Dashboard">
                 <Header />
-                <TaskList />
+                {/* <TaskList /> */}
                 <GoalList />
             </div>
         );

@@ -14,6 +14,7 @@ class TaskList extends Component {
 
     render() {
         const { tasks } = this.props;
+        console.log(this.props)
         let taskArr = tasks.map((task, i) => {
             return(
                 <div className="task-nail">

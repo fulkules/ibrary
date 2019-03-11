@@ -9,7 +9,8 @@ const initialState = {
     tasks: [],
     goals: [],
     subTasks: [],
-    subGoals: []
+    subGoals: [],
+    update: 1
 }
 
 export default function reducer(state = initialState, action){
@@ -37,7 +38,7 @@ export default function reducer(state = initialState, action){
                 tasks: payload.tasks, 
                 goals: payload.goals, 
                 subTasks: payload.subTasks,
-                subGoals: payload.subGoals
+                subGoals: payload.subGoals,
             }
         case DELETE_DATA:
             return {

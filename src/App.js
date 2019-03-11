@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter } from 'react-router-dom';
 import routes from './routes';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom'
 import axios from 'axios';
 import { updateUser, clearUser, setUserData } from './ducks/actions';
 import getAllUserData from './common/getUtils';
@@ -19,7 +20,6 @@ class App extends Component {
         let res = await axios.get('/api/current');
         this.props.updateUser(res.data)
         const allUserData = await getAllUserData()
-        console.log(allUserData)
         this.props.setUserData(allUserData)
         // console.log(res)
       } catch (err) {
@@ -49,4 +49,4 @@ const mapDispatchToProps = {
   setUserData
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

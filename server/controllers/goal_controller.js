@@ -5,7 +5,7 @@ module.exports = {
         // console.log(req.body)
         const { name, date } = req.body;
 
-        db.goal.add_goal({ id, name, date }).then(resp => {
+        db.goal.add_goal({ u_id: id, name, date }).then(resp => {
             // console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {

@@ -30,7 +30,7 @@ class Header extends Component {
                 <div className="Header">
                     <Nav />
                     <h1>Hello {username}!</h1>
-                    <Weather />
+                    {/* <Weather /> */}
                     <button onClick={this.logout}>Logout</button>
                 </div>
         

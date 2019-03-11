@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateUser, setUserData } from '../../ducks/actions';
 import getAllUserData from '../../common/getUtils';
+import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
     constructor(){
@@ -72,6 +73,7 @@ class Login extends Component {
 
     render() {
         const { username, password } = this.state;
+        console.log(this.props)
         return (
             <div className="Login">
                 <h2>Login Component</h2>
@@ -104,4 +106,4 @@ const mapDispatchToProps = {
     setUserData
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

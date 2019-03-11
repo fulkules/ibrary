@@ -1,3 +1,6 @@
+DELETE FROM sub_goal 
+WHERE g_id = ${id};
+
 DELETE FROM goal
 WHERE id = ${id};
 
