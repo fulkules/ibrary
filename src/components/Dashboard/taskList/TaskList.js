@@ -17,7 +17,7 @@ class TaskList extends Component {
         console.log(this.props)
         let taskArr = tasks.map((task, i) => {
             return(
-                <div className="task-nail">
+                <div className="task-nail" key={task.id}>
                     <span>{tasks[i].time}</span>
                     <h3>{tasks[i].name}</h3>
                 </div>

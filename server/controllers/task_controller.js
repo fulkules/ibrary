@@ -5,7 +5,7 @@ module.exports = {
         // console.log(req.body)
         const { name, time, date } = req.body;
 
-        db.task.add_task({ id, name, time, date }).then(resp => {
+        db.task.add_task({ u_id: id, name, time, date }).then(resp => {
             // console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {

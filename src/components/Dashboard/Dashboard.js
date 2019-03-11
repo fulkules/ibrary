@@ -21,7 +21,7 @@ class Dashboard extends Component {
         return (
             <div className="Dashboard">
                 <Header />
-                {/* <TaskList /> */}
+                <TaskList />
                 <GoalList />
             </div>
         );

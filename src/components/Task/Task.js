@@ -77,14 +77,15 @@ class Task extends Component {
     render() {
 // console.log(this.props)
         const { tasks } = this.props;
-        console.log(tasks)
+        // console.log(tasks)
         let taskArr = tasks.map((task, i) => {
             if(this.state.name[i] === undefined){
                 this.state.name[i] = task.name
                 this.state.time[i] = task.time
             }
             const { id, name, time } = task;
-            // console.log(goals[i].id)
+            let date = new Date();
+            // console.log(tasks[i].id)
             return(
                 <div key={id}>
                     { this.state.editing ? 
