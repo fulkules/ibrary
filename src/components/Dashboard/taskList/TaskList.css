@@ -3,17 +3,20 @@
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
+    margin: 3rem 0 3rem 1rem;
 }
-
+  
 .group div {
-    min-width: 30rem;
+    min-width: 25rem;
     border-radius: 2rem;
     margin-left: 3rem;
     align-items: center;
+    font-weight: bold;
 }
-
-/* Decorations */
-.col-xs-4 { color: #004E47; font-size: 2rem; padding: 2.5rem; }
+  
+  /* Decorations */
+.col-xs-4 {  color: #004E47; font-size: 2rem; padding: 2.5rem; }
 .col-xs-4:nth-child(3n+1) { background: #FFF0E7; }
 .col-xs-4:nth-child(3n+2) { background: #DBF6F4; }
 .col-xs-4:nth-child(3n+3) { background: #00D3C2; } 
+

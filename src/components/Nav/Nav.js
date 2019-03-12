@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 // Diameter of the main button in pixels
 var MAIN_BUTTON_DIAM = 50;
-var CHILD_BUTTON_DIAM = 45;
+var CHILD_BUTTON_DIAM = 40;
 // The number of child buttons that fly out from the main button
 var NUM_CHILDREN = 5;
 // Hard code the position values of the mainButton
@@ -107,8 +107,8 @@ class Nav extends Component {
         return {
             width: CHILD_BUTTON_DIAM,
             height: CHILD_BUTTON_DIAM,
-            top: M_Y - deltaY,
-            left: M_X + deltaX,
+            top: M_Y - (deltaY - 10),
+            left: M_X + (deltaX - 10),
             rotate: 0,
             scale: 1
         };

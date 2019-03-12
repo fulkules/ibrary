@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Nav from '../Nav/Nav';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { updateData } from '../../ducks/actions';
 import Calendar from 'react-calendar-mobile';
 import './Task.css';
-import CalendarHeader from '../CalendarHeader/CalendarHeader';
+import CalendarHeader from '../Calendar/Calendar';
 
 
 class Task extends Component {
@@ -123,11 +122,6 @@ class Task extends Component {
         return (
             <div className="Task">
                 <CalendarHeader />
-                <Calendar 
-                    onChange={this.onChange}
-                    value={this.state.date}
-                    className="calendar"
-                />
                 <input 
                     value={this.state.input}
                     onChange={ e => this.handleInput('input', e.target.value)}

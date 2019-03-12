@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './TaskList.css';
 
 
 class TaskList extends Component {
@@ -17,20 +18,17 @@ class TaskList extends Component {
         console.log(this.props)
         let taskArr = tasks.map((task, i) => {
             return(
-                <div className="card" key={task.id}>
-                    <h3>{tasks[i].name}</h3>
-                    <span>{tasks[i].time}</span>
+                <div key={[i]} className="col-xs-4">
+                    {tasks[i].name}<br/>
+                    {tasks[i].time}<br/>
                 </div>
             )
         })
 
         return (
-            <div className="scrolling-wrapper">
+            <div className="group">
                 <h2>Tasks</h2>
-                <h3>
-                    {taskArr}
-                </h3>
-                <h5></h5>
+                {taskArr}
             </div>
         );
     }

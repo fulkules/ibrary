@@ -1,5 +1,25 @@
-.Header {
-    color: #333;
-    background: #A0F0E4;
+html{
+    height: 10px;
+}
 
+.Header {
+    color: #FFF;
+    background: #00BCBF;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Header h1 {
+    display: flex;
+    align-items: center;
+}
+
+.Header Weather {
+    display: flex;
+    margin: 2rem;
+}
+
+.Header button {
+    display: flex;
+    
 }

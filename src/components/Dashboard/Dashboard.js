@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import TaskList from './taskList/TaskList';
 import GoalList from './goalList/GoalList';
+import './Dashboard.css';
 
 
 class Dashboard extends Component {
@@ -22,6 +23,7 @@ class Dashboard extends Component {
             <div className="Dashboard">
                 <Header />
                 <TaskList />
+                <br /> <br />
                 <GoalList />
             </div>
         );

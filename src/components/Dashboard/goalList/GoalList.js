@@ -17,18 +17,17 @@ class GoalList extends Component {
         const { goals } = this.props;
         let goalArr = goals.map((goal, i) => {
             return(
-                <div className="card" key={goal.id}>
-                        <h3>{goals[i].name}</h3>
-                        <span>{goals[i].date}</span>
+                <div key={[i]} className="col-xs-4">
+                    {goals[i].name}<br/>
+                    {goals[i].date}
                 </div>
             )
-            console.log(goalArr)
+            // console.log(goalArr)
         })
         return (
-            <div className="scrolling-wrapper">
-                    <h3>
-                        {goalArr}
-                    </h3>
+            <div className="group">
+            <h2>Goals</h2>
+                {goalArr}
             </div>
         );
     }
