@@ -13,6 +13,7 @@
     "massive": "^5.7.7",
     "pg": "^7.8.1",
     "react": "^16.8.3",
+    "react-calendar-mobile": "^0.1.6",
     "react-dom": "^16.8.3",
     "react-motion": "^0.5.2",
     "react-redux": "^6.0.1",

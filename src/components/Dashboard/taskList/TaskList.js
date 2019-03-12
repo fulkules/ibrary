@@ -17,15 +17,15 @@ class TaskList extends Component {
         console.log(this.props)
         let taskArr = tasks.map((task, i) => {
             return(
-                <div className="task-nail" key={task.id}>
-                    <span>{tasks[i].time}</span>
+                <div className="card" key={task.id}>
                     <h3>{tasks[i].name}</h3>
+                    <span>{tasks[i].time}</span>
                 </div>
             )
         })
 
         return (
-            <div className="task-list">
+            <div className="scrolling-wrapper">
                 <h2>Tasks</h2>
                 <h3>
                     {taskArr}

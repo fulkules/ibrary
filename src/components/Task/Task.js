@@ -3,6 +3,9 @@ import Nav from '../Nav/Nav';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { updateData } from '../../ducks/actions';
+import Calendar from 'react-calendar-mobile';
+import './Task.css';
+import CalendarHeader from '../CalendarHeader/CalendarHeader';
 
 
 class Task extends Component {
@@ -14,6 +17,7 @@ class Task extends Component {
             subTasks: [],
             name: [],
             time: [],
+            date: new Date(),
             input: '',
             taskTime: ''
         }
@@ -74,6 +78,8 @@ class Task extends Component {
         this.setState({ input: '', taskTime: '' })
     }
 
+    onChange = date => this.setState({ date })
+
     render() {
 // console.log(this.props)
         const { tasks } = this.props;
@@ -84,7 +90,6 @@ class Task extends Component {
                 this.state.time[i] = task.time
             }
             const { id, name, time } = task;
-            let date = new Date();
             // console.log(tasks[i].id)
             return(
                 <div key={id}>
@@ -117,7 +122,12 @@ class Task extends Component {
 
         return (
             <div className="Task">
-                <Nav />
+                <CalendarHeader />
+                <Calendar 
+                    onChange={this.onChange}
+                    value={this.state.date}
+                    className="calendar"
+                />
                 <input 
                     value={this.state.input}
                     onChange={ e => this.handleInput('input', e.target.value)}

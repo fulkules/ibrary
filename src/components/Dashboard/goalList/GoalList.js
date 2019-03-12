@@ -17,7 +17,7 @@ class GoalList extends Component {
         const { goals } = this.props;
         let goalArr = goals.map((goal, i) => {
             return(
-                <div className="goal-nail" key={goal.id}>
+                <div className="card" key={goal.id}>
                         <h3>{goals[i].name}</h3>
                         <span>{goals[i].date}</span>
                 </div>

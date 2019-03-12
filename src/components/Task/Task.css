@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+html {
+    /* font-size: 10px; */
+    scroll-behavior: smooth;
+}
+
+.calendar {
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    background: #ccc;
+    transition: height 0.7s;
+    z-index: 1;
+}
+
