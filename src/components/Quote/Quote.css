@@ -1,0 +1,19 @@
+.quote{
+    display: block;
+}
+
+.quote div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 0 2rem;
+    font-size: 2rem;
+    font-family: arial black;
+}
+
+.quote p {
+    padding: 0 3rem;
+    font-size: 1.4rem;
+    margin: auto;
+}

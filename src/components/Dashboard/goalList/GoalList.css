@@ -8,7 +8,8 @@
 .group div {
     min-width: 30rem;
     border-radius: 2rem;
-    margin-left: 3rem;
+    margin: auto;
+    margin-left: 2rem;
     align-items: center;
 }
 

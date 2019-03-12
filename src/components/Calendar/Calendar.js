@@ -48,7 +48,7 @@ class CalendarHeader extends Component {
         let startDate = dateFns.startOfWeek(this.state.currentWeek);
         let endDate = dateFns.endOfWeek(this.state.currentWeek);
         let daysInMonth = dateFns.getDaysInMonth(startDate.getDate())
-        console.log(dateFns.getDaysInMonth(startDate.getDate()));
+        // console.log(dateFns.getDaysInMonth(startDate.getDate()));
 
         let additionalDay = 0
         for (let i = 0; i < 7; i++){
@@ -74,7 +74,7 @@ class CalendarHeader extends Component {
     }
 
     toggle = () => {
-        console.log('hit')
+        // console.log('hit')
         const {toggleView} = this.state;
         this.setState({ toggleView: !toggleView })
     }

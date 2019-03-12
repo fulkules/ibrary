@@ -15,6 +15,7 @@ const sgc = require('./controllers/sub_goal_controller');
 const thxc = require('./controllers/thanks_controller');
 const ec = require ('./controllers/excite_controller');
 const wc = require('./controllers/weather_controller');
+const qc = require('./controllers/quote_controller');
 
 // .ENV
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, WEATHER_API_KEY } = process.env;
@@ -49,6 +50,9 @@ massive(CONNECTION_STRING).then(db => {
 
 //// WEATHER API ENDPOINT ////
 app.get('/api/weather', wc.getWeather);
+
+//// QUOTE API ENDPOINT ////
+app.get('/api/quote', qc.getQuote);
 
 //// AUTH ENDPOINTS ////
 app.get('/api/current', ac.getUser);
