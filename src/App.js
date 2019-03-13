@@ -6,6 +6,7 @@ import {withRouter} from 'react-router-dom'
 import axios from 'axios';
 import { updateUser, clearUser, setUserData } from './ducks/actions';
 import getAllUserData from './common/getUtils';
+import './App.css';
 
 
 class App extends Component {

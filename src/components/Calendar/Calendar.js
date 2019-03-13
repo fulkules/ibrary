@@ -15,7 +15,8 @@ class CalendarHeader extends Component {
             currentMonth: new Date(),
             currentWeek: new Date(),
             selectedDate: new Date(),
-            toggleView: false
+            toggleView: false,
+            height: 0
         }
     }
 
@@ -68,7 +69,7 @@ class CalendarHeader extends Component {
     renderCells(){ 
         return (
             <div>
-                <Calendar />
+                <Calendar className="calendar"/>
             </div>
         )
     }

@@ -1,0 +1,33 @@
+.goal {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    align-items: flex-end;
+    min-height: 75vh;
+    background: purple;
+}
+
+.goal div {
+    min-width: 30rem;
+    border-radius: 2rem;
+    margin: auto;
+    margin-left: 2rem;
+    justify-content: space-around;
+    height: calc(100vh - 28rem);
+    margin-bottom: 0;
+}
+
+.subGroup {
+
+}
+
+/* Decorations */
+.col-xs-4 { 
+    color: #004E47; 
+    font-size: 2rem; 
+    padding: 2.5rem; 
+}
+
+.col-xs-4:nth-child(3n+1) { background: #FFF0E7; }
+.col-xs-4:nth-child(3n+2) { background: #DBF6F4; }
+.col-xs-4:nth-child(3n+3) { background: #00D3C2; } 

@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import getAllUserData from '../../common/getUtils';
 import { updateData } from '../../ducks/actions';
+import CalendarHeader from '../Calendar/Calendar';
+import subGoal from './SubGoal';
+import './Goal.css';
 
 
 class Goal extends Component {
@@ -60,10 +63,14 @@ class Goal extends Component {
 
     handleSave = async (id, i) => {
         const { name, date } = this.state;
-        let allGoals = await axios.put(`/api/goal/${id}`, {name:name[i], date:date[i]});
-        allGoals = allGoals.data
-        this.props.updateData({goals: allGoals, subGoals: this.props.subGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
-        this.setState({ editing: false })
+        try{
+            let allGoals = await axios.put(`/api/goal/${id}`, {name:name[i], date:date[i]});
+            allGoals = allGoals.data
+            this.props.updateData({goals: allGoals, subGoals: this.props.subGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
+            this.setState({ editing: false })
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     addGoal = async () => {
@@ -78,18 +85,21 @@ class Goal extends Component {
     render() {
 // console.log(this.props)
         const { goals } = this.props;
+        
         // console.log(goals)
         let goalArr = goals.map((goal, i) => {
+            
             if(this.state.name[i] === undefined){
                 this.state.name[i] = goal.name
                 this.state.date[i] = goal.date
             }
+            
             const { id, name, date } = goal;
             // console.log(goals[i].id)
             return(
                 <div key={id}>
                     { this.state.editing ? 
-                        <div>
+                        <div className="col-xs-4">
                             <input 
                                 key={id}
                                 value={this.state.name[i]}
@@ -104,11 +114,15 @@ class Goal extends Component {
                             <button onClick={ this.handleCancel }>Cancel</button>
                         </div>
                         : 
-                        <div>
-                            <h3>{name}</h3>
-                            <h4>{date}</h4>
-                            <button onClick={ this.setEdit }>Edit</button>
-                            <button onClick={() => this.handleDelete(id) }>Delete</button>        
+                        <div className="col-xs-4">
+                            <div>
+                                {name}<br/>
+                                {date}<br/>
+                                <button onClick={ this.setEdit }>Edit</button>
+                                <button onClick={() => this.handleDelete(id) }>Delete</button> 
+                            
+                            </div>
+                            <div className="subGroup"></div>       
                         </div>
                     }
                 </div>
@@ -116,8 +130,8 @@ class Goal extends Component {
         })
 
         return (
-            <div className="Goal">
-                <Nav />
+            <div>
+                <CalendarHeader />
                 <input 
                     value={this.state.input}
                     onChange={ e => this.handleInput('input', e.target.value)}
@@ -130,8 +144,7 @@ class Goal extends Component {
                     placeholder="Goal Deadline"
                 />
                 <button onClick={ this.addGoal }>Add Goal</button>
-                <h1>Goal Component</h1>
-                <h3>{goalArr}</h3>
+                <div className="goal">{goalArr}</div>
             </div>
         );
     }
