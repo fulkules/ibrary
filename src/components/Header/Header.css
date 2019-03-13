@@ -7,7 +7,12 @@ html{
     background: #00BCBF;
     display: flex;
     justify-content: space-between;
-    height: 10rem;
+    height: 12rem;
+    background-image:
+    linear-gradient(
+      to top right, 
+      #00D6C1, #00B9BF
+    );
 }
 
 .Header h1 {
@@ -22,5 +27,6 @@ html{
 
 .Header button {
     display: flex;
-    
+    height: 1rem;
+    margin: 1rem;
 }

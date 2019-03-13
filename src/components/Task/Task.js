@@ -62,19 +62,27 @@ class Task extends Component {
 
     handleSave = async (id, i) => {
         const { name, time } = this.state;
-        let allTasks = await axios.put(`/api/task/${id}`, {name:name[i], time:time[i]});
-        allTasks = allTasks.data
-        this.props.updateData({goals: this.props.goals, subGoals: this.props.subGoals, tasks: allTasks, subTasks: this.props.subTasks})
-        this.setState({ editing: false })
+        try {
+            let allTasks = await axios.put(`/api/task/${id}`, {name:name[i], time:time[i]});
+            allTasks = allTasks.data
+            this.props.updateData({goals: this.props.goals, subGoals: this.props.subGoals, tasks: allTasks, subTasks: this.props.subTasks})
+            this.setState({ editing: false })
+        } catch(err){
+            console.log(err)
+        }
     }
 
     addTask = async () => {
         // const {name, date} = this.props.goals;
         const { input, taskTime } = this.state;
-        let allTasks = await axios.post('/api/task', {name: input, time: taskTime});
-        allTasks = allTasks.data
-        this.props.updateData({goals: this.props.goals, subGoals: this.props.subGoals, tasks: allTasks, subTasks: this.props.subTasks})
-        this.setState({ input: '', taskTime: '' })
+        try {
+            let allTasks = await axios.post('/api/task', {name: input, time: taskTime});
+            allTasks = allTasks.data
+            this.props.updateData({goals: this.props.goals, subGoals: this.props.subGoals, tasks: allTasks, subTasks: this.props.subTasks})
+            this.setState({ input: '', taskTime: '' })
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     onChange = date => this.setState({ date })
@@ -93,7 +101,7 @@ class Task extends Component {
             return(
                 <div key={id}>
                     { this.state.editing ? 
-                        <div>
+                        <div className="col-xs-4">
                             <input 
                                 key={id}
                                 value={this.state.name[i]}
@@ -108,7 +116,7 @@ class Task extends Component {
                             <button onClick={ this.handleCancel }>Cancel</button>
                         </div>
                         : 
-                        <div>
+                        <div className="col-xs-4">
                             <h3>{name}</h3>
                             <h4>{time}</h4>
                             <button onClick={ this.setEdit }>Edit</button>
@@ -120,7 +128,7 @@ class Task extends Component {
         })
 
         return (
-            <div className="Task">
+            <div>
                 <CalendarHeader />
                 <input 
                     value={this.state.input}
@@ -134,8 +142,7 @@ class Task extends Component {
                     placeholder="Task Time"
                 />
                 <button onClick={ this.addTask }>Add Task</button>
-                <h1>Task Component</h1>
-                <h3>{taskArr}</h3>
+                <div className="task">{taskArr}</div>
             </div>
         );
     }

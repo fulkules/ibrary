@@ -3,6 +3,7 @@ import { Motion, StaggeredMotion, spring } from 'react-motion';
 import range from 'lodash.range';
 import './Nav.css';
 import { Link } from 'react-router-dom';
+import { NONAME } from 'dns';
 // Components 
 
 //Constants 
@@ -84,8 +85,8 @@ class Nav extends Component {
         return {
             width: CHILD_BUTTON_DIAM,
             height: CHILD_BUTTON_DIAM,
-            top: spring(M_Y - (CHILD_BUTTON_DIAM / 2), SPRING_CONFIG),
-            left: spring(M_X - (CHILD_BUTTON_DIAM / 2), SPRING_CONFIG),
+            top: spring((M_Y-10) - (CHILD_BUTTON_DIAM / 2), SPRING_CONFIG),
+            left: spring((M_X-10) - (CHILD_BUTTON_DIAM / 2), SPRING_CONFIG),
             rotate: spring(-180, SPRING_CONFIG),
             scale: spring(0.5, SPRING_CONFIG)
         };
@@ -95,8 +96,8 @@ class Nav extends Component {
         return {
             width: CHILD_BUTTON_DIAM,
             height: CHILD_BUTTON_DIAM,
-            top: M_Y - (CHILD_BUTTON_DIAM / 2),
-            left: M_X - (CHILD_BUTTON_DIAM / 2),
+            top: (M_Y-10) - (CHILD_BUTTON_DIAM / 2),
+            left: (M_X-10) - (CHILD_BUTTON_DIAM / 2),
             rotate: -180,
             scale: 0.5
         };

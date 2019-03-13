@@ -95,7 +95,7 @@ main {
 }
 
 .row-middle {
-  align-items: center;
+  align-items: flex-start;
 }
 
 .col {
@@ -140,4 +140,16 @@ main {
   font-weight: bold;
   font-size: 1.4rem;
   height: 18rem;
+  background-image:
+    linear-gradient(
+      to top right, 
+      #00D6C1, #00B9BF
+    );
+}
+
+.logout {
+  float: right;
+  height: 1rem;
+  margin-top: -4rem;
+  margin-right: 2rem;
 }

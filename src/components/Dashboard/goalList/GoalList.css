@@ -3,14 +3,16 @@
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
+    margin: 3rem 0 3rem 1rem;
 }
 
 .group div {
-    min-width: 30rem;
+    min-width: 25rem;
     border-radius: 2rem;
     margin: auto;
     margin-left: 2rem;
     align-items: center;
+    font-weight: bold;
 }
 
 /* Decorations */

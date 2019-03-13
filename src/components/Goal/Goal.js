@@ -5,7 +5,7 @@ import axios from 'axios';
 import getAllUserData from '../../common/getUtils';
 import { updateData } from '../../ducks/actions';
 import CalendarHeader from '../Calendar/Calendar';
-import subGoal from './SubGoal';
+import SubGoal from './SubGoal';
 import './Goal.css';
 
 
@@ -15,7 +15,7 @@ class Goal extends Component {
         this.state = {
             editing: false,
             goals: [],
-            subGoals: [],
+            sub_goal: [],
             name: [],
             date: [],
             input: '',
@@ -63,7 +63,7 @@ class Goal extends Component {
 
     handleSave = async (id, i) => {
         const { name, date } = this.state;
-        try{
+        try {
             let allGoals = await axios.put(`/api/goal/${id}`, {name:name[i], date:date[i]});
             allGoals = allGoals.data
             this.props.updateData({goals: allGoals, subGoals: this.props.subGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
@@ -76,10 +76,14 @@ class Goal extends Component {
     addGoal = async () => {
         // const {name, date} = this.props.goals;
         const { input, goalDate } = this.state;
-        let allGoals = await axios.post('/api/goal', {name: input, date: goalDate});
-        allGoals = allGoals.data
-        this.props.updateData({goals: allGoals, subGoals: this.props.subGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
-        this.setState({ input: '', goalDate: '' })
+        try {
+            let allGoals = await axios.post('/api/goal', {name: input, date: goalDate});
+            allGoals = allGoals.data
+            this.props.updateData({goals: allGoals, subGoals: this.props.subGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
+            this.setState({ input: '', goalDate: '' })
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     render() {
@@ -88,10 +92,23 @@ class Goal extends Component {
         
         // console.log(goals)
         let goalArr = goals.map((goal, i) => {
-            
             if(this.state.name[i] === undefined){
                 this.state.name[i] = goal.name
                 this.state.date[i] = goal.date
+            }
+
+            console.log(goal.sub_goal)
+           
+            let mappedSubGoals
+            if(goal.sub_goal) {
+                mappedSubGoals = goal.sub_goal.map((subGoal, i) => {
+                    return (
+                        <SubGoal 
+                            subGoal={subGoal}
+                            key={i}
+                        />
+                    )
+                })
             }
             
             const { id, name, date } = goal;
@@ -120,9 +137,9 @@ class Goal extends Component {
                                 {date}<br/>
                                 <button onClick={ this.setEdit }>Edit</button>
                                 <button onClick={() => this.handleDelete(id) }>Delete</button> 
-                            
+                                <div>{mappedSubGoals}</div>
                             </div>
-                            <div className="subGroup"></div>       
+            
                         </div>
                     }
                 </div>

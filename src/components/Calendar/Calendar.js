@@ -92,7 +92,7 @@ class CalendarHeader extends Component {
         return (
                 <div className="main">
                     <Nav />
-                    <button onClick={this.logout}>Logout</button> <br/>
+                    <button className="logout" onClick={this.logout}>Logout</button> <br/>
                     {this.renderHeader()}
                     {this.renderDays()}
                     <button onClick={ this.toggle }>Calendar</button>

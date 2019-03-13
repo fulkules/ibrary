@@ -1,5 +1,10 @@
 .quote{
     display: block;
+    background-image:
+    linear-gradient(
+      to top right, 
+      #FFE0BA, #FFF
+    );
 }
 
 .quote div {
@@ -10,6 +15,7 @@
     padding: 0 2rem;
     font-size: 2rem;
     font-family: arial black;
+    
 }
 
 .quote p {

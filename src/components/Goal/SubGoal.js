@@ -4,8 +4,8 @@ import { updateData } from '../../ducks/actions';
 import axios from 'axios';
 
 class SubGoal extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
 
         this.state = {
             editing: false,
@@ -83,54 +83,50 @@ class SubGoal extends Component {
 
      render() {
 // console.log(this.props)
-        const { subGoals } = this.props;
-        // console.log(goals)
-        let subGoalArr = subGoals.map((subGoal, i) => {
-            if(this.state.name[i] === undefined){
-                this.state.name[i] = subGoal.name
-                this.state.complete[i] = subGoal.complete
-            }
-            const { id, name, complete } = subGoal;
-            // console.log(goals[i].id)
-            return(
-                <div key={id}>
-                    { this.state.editing ? 
-                        <div>
-                            <input 
-                                key={id}
-                                value={this.state.name[i]}
-                                onChange={ (e) => this.handleNameInput(e, i) }
-                            />
-                            <button onClick={ () => this.handleSave(id, i) }>Save</button>
-                            <button onClick={ this.handleCancel }>Cancel</button>
-                        </div>
-                        : 
-                        <div>
-                            <h3>{name}</h3>
-                            <input type="checkbox" value={this.state.complete[i]} />
-                            <button onClick={ this.setEdit }>Edit</button>
-                            <button onClick={() => this.handleDelete(id) }>Delete</button>        
-                        </div>
-                    }
-                </div>
-            )
-        })
+        const { subGoal } = this.props;
+        console.log(this.props.subGoal)
+        // let subGoalArr = subGoals.map((subGoal, i) => {
+        //     const { id, name, g_id, complete } = subGoal;
+        //     // console.log(goals[i].id)
+        //     return(
+        //         <div key={id}>
+        //             { this.state.editing ? 
+        //                 <div>
+        //                     <input 
+        //                         key={id}
+        //                         value={this.state.name[i]}
+        //                         onChange={ (e) => this.handleNameInput(e, i) }
+        //                     />
+        //                     <button onClick={ () => this.handleSave(id, i) }>Save</button>
+        //                     <button onClick={ this.handleCancel }>Cancel</button>
+        //                 </div>
+        //                 : 
+        //                 <div>
+        //                     <h3>{name}</h3>
+        //                     <p>Complete</p><input type="checkbox" key={id} value={this.state.complete[i]} />
+        //                     <button onClick={ this.setEdit }>Edit</button>
+        //                     <button onClick={() => this.handleDelete(id) }>Delete</button>        
+        //                 </div>
+        //             }
+        //         </div>
+        //     )
+        // })
 
         return (
             <div className="subGoal">
-                <input 
+                {/* <input 
                     value={this.state.input}
                     onChange={ e => this.handleNameInput('input', e.target.value)}
                     placeholder="Add new SubGoal"
                 />
                 <input 
                     type="checkbox"
-                    value={this.state.subGoal.complete}
+                    // value={this.state.subGoal.complete}
                     onChange={ e => this.handleBoxInput(e.target.value)}
                 />
                 <button onClick={ this.addGoal }>Add Goal</button>
-                <h1>Goal Component</h1>
-                <h3>{subGoalArr}</h3>
+                <p>{subGoalArr}</p> */}
+                <p>{subGoal.name}</p>
             </div>
         );
     }
@@ -139,9 +135,7 @@ class SubGoal extends Component {
 const mapStateToProps = (reduxState) => {
     return {
         goals: reduxState.data.goals,
-        subGoals: reduxState.data.subGoals,
         tasks: reduxState.data.tasks,
-        subTasks: reduxState.data.subTasks,
         update: reduxState.data.subTasks
     }    
 }

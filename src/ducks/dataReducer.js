@@ -9,8 +9,7 @@ const initialState = {
     tasks: [],
     goals: [],
     subTasks: [],
-    subGoals: [],
-    update: 1
+    subGoals: []
 }
 
 export default function reducer(state = initialState, action){

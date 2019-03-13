@@ -9,6 +9,35 @@ html {
     scroll-behavior: smooth;
 }
 
+.task {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    /* align-items: flex-end; */
+    min-height: 72vh;
+    background: #eee;
+}
+
+.task div {
+    min-width: 30rem;
+    border-radius: 2rem;
+    margin: auto;
+    margin-left: 2rem;
+    justify-content: space-evenly;
+    height: calc(100vh - 22rem);
+    margin-bottom: 0;
+}
+
+
+/* Decorations */
+.col-xs-4 { 
+    color: #222; 
+    font-size: 2rem; 
+    padding: 3rem 2rem 2rem 0; 
+}
+
+.col-xs-4:nth-child(3n+1) { background: FFF0E7; }
+
 .calendar {
     width: 100%;
     overflow: hidden;
