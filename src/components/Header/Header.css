@@ -23,10 +23,11 @@ html{
 .Header Weather {
     display: flex;
     margin: 2rem;
+    align-items: center;
 }
 
 .Header button {
     display: flex;
-    height: 1rem;
+    height: 2rem;
     margin: 1rem;
 }

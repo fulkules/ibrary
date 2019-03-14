@@ -47,6 +47,7 @@ class SubGoal extends Component {
                 let res = await axios.delete(`/api/s_goal/${id}`);
                 res = res.data;
                 this.props.updateData({goals: this.props.goals, subGoals: res, tasks: this.props.tasks, subTasks: this.props.subTasks});
+                
             } catch(err){
                 console.log(err)
             }

@@ -7,7 +7,7 @@ export default async function() {
         allUserData.tasks = values[0]
         allUserData.goals = values[1]
         // allUserData.subTasks = values[2]
-        // allUserData.subGoals = values[3]
+        allUserData.subGoals = values[3]
         return allUserData
     })
 } 

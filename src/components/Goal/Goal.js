@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { updateData } from '../../ducks/actions';
+import getAllUserData from '../../common/getUtils';
 import CalendarHeader from '../Calendar/Calendar';
 import SubGoal from './SubGoal';
 import './Goal.css';
@@ -81,6 +82,8 @@ class Goal extends Component {
             allGoals = allGoals.data
             this.props.updateData({goals: allGoals, subGoals: this.props.subGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
             this.setState({ input: '', goalDate: '' })
+            const allUserData = await getAllUserData()
+            this.props.setUserData(allUserData)
         } catch(err) {
             console.log(err)
         }
@@ -96,7 +99,10 @@ class Goal extends Component {
         let allSubGoals = await axios.post('/api/s_goal', {name: subGoalName, complete, g_id: id});
             allSubGoals = allSubGoals.data
             this.props.updateData({goals: this.props.goals, subGoals: allSubGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
+            // this.props.subGoals()
             this.setState({ subGoalName: '', complete: false })
+            const allUserData = await getAllUserData()
+            this.props.updateData(allUserData)
         } catch(err) {
             console.log(err)
         }
@@ -104,7 +110,7 @@ class Goal extends Component {
 
     render() {
 // console.log(this.props)
-console.log('subGoalName:', this.state.subGoalName)
+// console.log('subGoalName:', this.state.subGoalName)
 
         const { goals } = this.props;
         console.log('Goals:', this.props )
@@ -116,9 +122,11 @@ console.log('subGoalName:', this.state.subGoalName)
                 this.state.date[i] = goal.date
             }
 
-            // console.log(goal.sub_goal)           
+            // console.log(goal.sub_goal)  
             let mappedSubGoals;
             if(goal.sub_goal) {
+                console.log(this.props)
+                // const {subGoals} = this.props;
                 mappedSubGoals = goal.sub_goal.map((subGoal, i) => {
                     return (
                         <div key={i}>
