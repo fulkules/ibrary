@@ -18,12 +18,13 @@ class Goal extends Component {
             date: [],
             input: '',
             complete: false,
-            goalDate: ''
+            goalDate: '',
+            subGoalName: ''
         }
     }
 
-    handleInput(props, val){
-        this.setState({ [props]: val})
+    handleInput(prop, val){
+        this.setState({ [prop]: val })
     }
 
     handleNameInput(e, i){
@@ -88,14 +89,14 @@ class Goal extends Component {
     addSubGoal = async (id) => {
         // const {name, date} = this.props.goals;
         // console.log(this.props.goals)
-        const { input, complete} = this.state;
+        const { subGoalName, complete } = this.state;
         // const { id } = this.props.goals[i];
         // console.log(id) 
         try{
-        let allSubGoals = await axios.post('/api/s_goal', {name: input, complete, g_id: id});
+        let allSubGoals = await axios.post('/api/s_goal', {name: subGoalName, complete, g_id: id});
             allSubGoals = allSubGoals.data
             this.props.updateData({goals: this.props.goals, subGoals: allSubGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
-            this.setState({ input: '', complete: false })
+            this.setState({ subGoalName: '', complete: false })
         } catch(err) {
             console.log(err)
         }
@@ -103,7 +104,10 @@ class Goal extends Component {
 
     render() {
 // console.log(this.props)
+console.log('subGoalName:', this.state.subGoalName)
+
         const { goals } = this.props;
+        console.log('Goals:', this.props )
         
         // console.log(goals)
         let goalArr = goals.map((goal, i) => {
@@ -129,7 +133,7 @@ class Goal extends Component {
             }
             
             const { id, name, date } = goal;
-            // console.log(goals[i].id)
+            // console.log(goal)
             return(
                 <div key={id}>
                     { this.state.editing ? 
@@ -153,7 +157,12 @@ class Goal extends Component {
                                 {date}<br/>
                                 <button className="goalEdit" onClick={ this.setEdit }>Edit</button>
                                 <button className="goalDelete" onClick={() => this.handleDelete(id) }>Delete</button><br/>
-                                <input className="add-subGoal" key={id.toString()} placeholder="Add a step to your goal" onChange={(e) => this.handleInput(e)}/>
+                                <input 
+                                    className="add-subGoal" 
+                                    key={id.toString()} 
+                                    placeholder="Add a step to your goal" 
+                                    onChange={ e => this.handleInput('subGoalName', e.target.value) }
+                                />
                                 <button className="add-subGoal-button" onClick={() => this.addSubGoal(id)} >Add</button> 
                                 <div id="subList">{mappedSubGoals}</div>
                         </div>
