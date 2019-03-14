@@ -10,18 +10,25 @@ class Weather extends Component {
             icon: ``
         }
     }
-        
+    
+    componentDidMount(){
+        this._isMounted = true;
+        this.getWeather();
+    
+    }
     getWeather = async () => {
         await axios.get('/api/weather').then(res => {
             // console.log(res.data)
             let temp = Math.floor(res.data.main.temp)
             let icon = res.data.weather[0].icon
-            this.setState({ temperature: temp, icon: icon })
+            if(this._isMounted){
+                this.setState({ temperature: temp, icon: icon })
+            }
         })
     }
 
-    componentDidMount(){
-        this.getWeather();
+    componentWillUnmount(){
+        this._isMounted = false;
     }
 
     render() {

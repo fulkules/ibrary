@@ -43,11 +43,11 @@ class CalendarHeader extends Component {
 
     renderDays(){ 
         const dateFormat = "ddd";
-        const dayFormat = "d";
+        // const dayFormat = "d";
         const days = [];
 
         let startDate = dateFns.startOfWeek(this.state.currentWeek);
-        let endDate = dateFns.endOfWeek(this.state.currentWeek);
+        // let endDate = dateFns.endOfWeek(this.state.currentWeek);
         let daysInMonth = dateFns.getDaysInMonth(startDate.getDate())
         // console.log(dateFns.getDaysInMonth(startDate.getDate()));
 

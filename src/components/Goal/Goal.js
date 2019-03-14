@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import Nav from '../Nav/Nav';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import getAllUserData from '../../common/getUtils';
 import { updateData } from '../../ducks/actions';
 import CalendarHeader from '../Calendar/Calendar';
 import SubGoal from './SubGoal';
@@ -19,6 +17,7 @@ class Goal extends Component {
             name: [],
             date: [],
             input: '',
+            complete: false,
             goalDate: ''
         }
     }
@@ -86,6 +85,22 @@ class Goal extends Component {
         }
     }
 
+    addSubGoal = async (id) => {
+        // const {name, date} = this.props.goals;
+        // console.log(this.props.goals)
+        const { input, complete} = this.state;
+        // const { id } = this.props.goals[i];
+        // console.log(id) 
+        try{
+        let allSubGoals = await axios.post('/api/s_goal', {name: input, complete, g_id: id});
+            allSubGoals = allSubGoals.data
+            this.props.updateData({goals: this.props.goals, subGoals: allSubGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
+            this.setState({ input: '', complete: false })
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
     render() {
 // console.log(this.props)
         const { goals } = this.props;
@@ -102,7 +117,7 @@ class Goal extends Component {
             if(goal.sub_goal) {
                 mappedSubGoals = goal.sub_goal.map((subGoal, i) => {
                     return (
-                        <div>
+                        <div key={i}>
                             <SubGoal 
                                 subGoal={subGoal}
                                 key={i}
@@ -137,7 +152,9 @@ class Goal extends Component {
                                 {name}<br/>
                                 {date}<br/>
                                 <button className="goalEdit" onClick={ this.setEdit }>Edit</button>
-                                <button className="goalDelete" onClick={() => this.handleDelete(id) }>Delete</button> 
+                                <button className="goalDelete" onClick={() => this.handleDelete(id) }>Delete</button><br/>
+                                <input className="add-subGoal" key={id.toString()} placeholder="Add a step to your goal" onChange={(e) => this.handleInput(e)}/>
+                                <button className="add-subGoal-button" onClick={() => this.addSubGoal(id)} >Add</button> 
                                 <div id="subList">{mappedSubGoals}</div>
                         </div>
                     }

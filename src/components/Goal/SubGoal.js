@@ -21,14 +21,14 @@ class SubGoal extends Component {
         this.setState({ [props]: val})
     }
 
-    handleNameInput(e, i){
+    handleNameInput(e){
         let name = this.state.name
-        name[i] = e.target.value
+        name = e.target.value
         this.setState({ name })
     }
-    handleBoxInput(e, i){
+    handleBoxInput(e){
         let complete = this.state.complete;
-        complete[i] = e.target.value
+        complete = e.target.value
         this.setState({ complete: !complete })
     }
 
@@ -40,12 +40,11 @@ class SubGoal extends Component {
         this.setState({ editing: false })
     }
 
-    handleDelete = async (id, i) => {
-        const { name, complete } = this.state
+    handleDelete = async (id) => {
         // console.log(this.props)
         if(id) {
             try{
-                let res = await axios.delete(`/api/s_goal/${id}`, {name: name[i], complete:complete[i]});
+                let res = await axios.delete(`/api/s_goal/${id}`);
                 res = res.data;
                 this.props.updateData({goals: this.props.goals, subGoals: res, tasks: this.props.tasks, subTasks: this.props.subTasks});
             } catch(err){
@@ -55,78 +54,48 @@ class SubGoal extends Component {
        
     }
 
-    handleSave = async (id, i) => {
+    handleSave = async (id) => {
         const { name, complete } = this.state;
         try{
-            let allSubGoals = await axios.put(`/api/s_goal/${id}`, {name:name[i], complete:complete[i]});
+            let allSubGoals = await axios.put(`/api/s_goal/${id}`, {name, complete});
             allSubGoals = allSubGoals.data
             this.props.updateData({goals: this.props.goals, subGoals: allSubGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
-            this.setState({ editing: false })
+            this.setState({ editing: false, goals: [], subGoals: [], name: [], complete: false, input: ''})
         } catch(err){
             console.log(err)
         }
             
     }
 
-    addSubGoal = async () => {
-        // const {name, date} = this.props.goals;
-        const { input, complete } = this.state;
-        try{
-            let allSubGoals = await axios.post('/api/s_goal', {name: input, complete});
-            allSubGoals = allSubGoals.data
-            this.props.updateData({goals: this.props.goals, subGoals: allSubGoals, tasks: this.props.tasks, subTasks: this.props.subTasks})
-            this.setState({ input: '', complete: false })
-        } catch(err) {
-            console.log(err)
-        }
-    }
-
      render() {
 // console.log(this.props)
         const { subGoal } = this.props;
         // console.log(this.props.subGoal)
-        // let subGoalArr = subGoals.map((subGoal, i) => {
-        //     const { id, name, g_id, complete } = subGoal;
-        //     // console.log(goals[i].id)
-        //     return(
-        //         <div key={id}>
-        //             { this.state.editing ? 
-        //                 <div>
-        //                     <input 
-        //                         key={id}
-        //                         value={this.state.name[i]}
-        //                         onChange={ (e) => this.handleNameInput(e, i) }
-        //                     />
-        //                     <button onClick={ () => this.handleSave(id, i) }>Save</button>
-        //                     <button onClick={ this.handleCancel }>Cancel</button>
-        //                 </div>
-        //                 : 
-        //                 <div>
-        //                     <h3>{name}</h3>
-        //                     <p>Complete</p><input type="checkbox" key={id} value={this.state.complete[i]} />
-        //                     <button onClick={ this.setEdit }>Edit</button>
-        //                     <button onClick={() => this.handleDelete(id) }>Delete</button>        
-        //                 </div>
-        //             }
-        //         </div>
-        //     )
-        // })
-
         return (
             <div className="subGoal-container">
-                {/* <input 
-                    value={this.state.input}
-                    onChange={ e => this.handleNameInput('input', e.target.value)}
-                    placeholder="Add new SubGoal"
-                />
-                <input 
-                    type="checkbox"
-                    // value={this.state.subGoal.complete}
-                    onChange={ e => this.handleBoxInput(e.target.value)}
-                />
-                <button onClick={ this.addGoal }>Add Goal</button>
-                <p>{subGoalArr}</p> */}
-                <p>{subGoal.name}</p>
+                <div>
+                    { this.state.editing ? 
+                        <div>
+                            <input 
+                                key={subGoal.id}
+                                value={this.state.name}
+                                onChange={ (e) => this.handleNameInput(e) }
+                            />
+                            <button onClick={ () => this.handleSave(this.props.subGoal.id) }>Save</button>
+                            <button onClick={ this.handleCancel }>Cancel</button>
+                        </div>
+                        : 
+                        <div>
+                            <div className="subGoalArr-container">
+                                <input className="subGoal-complete-box" type="checkbox" key={subGoal.id} value={this.state.complete} onChange={ () => {} } />
+                                {subGoal.name}<br/>                                
+                                <button onClick={ this.setEdit }>Edit</button>
+                                <button onClick={() => this.handleDelete(subGoal.id) }>Delete</button> 
+                            </div>      
+                        </div>
+                    }
+                </div>
+                {/* <p>{subGoal.name}</p> */}
             </div>
         );
     }
