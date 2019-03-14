@@ -84,7 +84,7 @@ class SubGoal extends Component {
      render() {
 // console.log(this.props)
         const { subGoal } = this.props;
-        console.log(this.props.subGoal)
+        // console.log(this.props.subGoal)
         // let subGoalArr = subGoals.map((subGoal, i) => {
         //     const { id, name, g_id, complete } = subGoal;
         //     // console.log(goals[i].id)
@@ -113,7 +113,7 @@ class SubGoal extends Component {
         // })
 
         return (
-            <div className="subGoal">
+            <div className="subGoal-container">
                 {/* <input 
                     value={this.state.input}
                     onChange={ e => this.handleNameInput('input', e.target.value)}

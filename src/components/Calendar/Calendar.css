@@ -149,7 +149,8 @@ main {
 
 .logout {
   float: right;
-  height: 1rem;
+  border-radius: 1rem;
   margin-top: -4rem;
   margin-right: 2rem;
+  padding: 0.3rem;
 }

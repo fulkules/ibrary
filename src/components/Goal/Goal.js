@@ -97,16 +97,18 @@ class Goal extends Component {
                 this.state.date[i] = goal.date
             }
 
-            console.log(goal.sub_goal)
-           
-            let mappedSubGoals
+            // console.log(goal.sub_goal)           
+            let mappedSubGoals;
             if(goal.sub_goal) {
                 mappedSubGoals = goal.sub_goal.map((subGoal, i) => {
                     return (
-                        <SubGoal 
-                            subGoal={subGoal}
-                            key={i}
-                        />
+                        <div>
+                            <SubGoal 
+                                subGoal={subGoal}
+                                key={i}
+                            />
+                        </div>
+                            
                     )
                 })
             }
@@ -132,14 +134,11 @@ class Goal extends Component {
                         </div>
                         : 
                         <div className="col-xs-4">
-                            <div>
                                 {name}<br/>
                                 {date}<br/>
-                                <button onClick={ this.setEdit }>Edit</button>
-                                <button onClick={() => this.handleDelete(id) }>Delete</button> 
-                                <div>{mappedSubGoals}</div>
-                            </div>
-            
+                                <button className="goalEdit" onClick={ this.setEdit }>Edit</button>
+                                <button className="goalDelete" onClick={() => this.handleDelete(id) }>Delete</button> 
+                                <div id="subList">{mappedSubGoals}</div>
                         </div>
                     }
                 </div>
