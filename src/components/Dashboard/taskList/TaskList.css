@@ -1,4 +1,5 @@
 /* The heart of scroll behavior */
+
 .group {
     display: flex;
     flex-direction: row;
@@ -21,3 +22,6 @@
 .col-xs-4:nth-child(3n+2) { background: #DBF6F4; }
 .col-xs-4:nth-child(3n+3) { background: #00D3C2; } 
 
+.col-xs-4 link {
+  text-decoration: none;
+}

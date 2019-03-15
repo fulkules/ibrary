@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { updateUser, setUserData } from '../../ducks/actions';
 import getAllUserData from '../../common/getUtils';
 import { withRouter } from 'react-router-dom';
+import './Login.css';
 
 class Login extends Component {
     constructor(){
@@ -76,7 +77,7 @@ class Login extends Component {
         // console.log(this.props)
         return (
             <div className="Login">
-                <h2>Login Component</h2>
+                <h2>Login or Register Below</h2>
                 <input 
                     value={username}
                     onChange={ e => this.handleChange('username', e.target.value) }
@@ -88,8 +89,8 @@ class Login extends Component {
                     onChange={ e => this.handleChange('password', e.target.value) }
                     placeholder="password"
                 />
+                <button className="login-button" onClick={ this.login }>Login</button>
                 <button onClick={ this.register }>Register</button>
-                <button onClick={ this.login }>Login</button>
             </div>
         );
     }

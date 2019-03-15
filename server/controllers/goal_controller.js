@@ -20,10 +20,6 @@ module.exports = {
 
         db.goal.get_all_goals({ id }).then(resp => {
             console.log(resp)
-            for(let i=0; i<resp.length; i++){
-                resp[i] = resp[i].row_to_json
-            }
-            console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {
             console.log(err)

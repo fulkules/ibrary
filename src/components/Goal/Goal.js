@@ -74,7 +74,12 @@ class Goal extends Component {
         try {
             let allGoals = await axios.put(`/api/goal/${id}`, { name: name[i], date: date[i] });
             allGoals = allGoals.data
-            this.props.updateData({ goals: allGoals, subGoals: this.props.subGoals, tasks: this.props.tasks, subTasks: this.props.subTasks })
+            this.props.updateData({ 
+                goals: allGoals, 
+                subGoals: this.props.subGoals, 
+                tasks: this.props.tasks, 
+                subTasks: this.props.subTasks 
+            })
             this.setState({ editing: false })
             const allUserData = await getAllUserData()
             this.props.updateData(allUserData)
@@ -89,7 +94,12 @@ class Goal extends Component {
         try {
             let allGoals = await axios.post('/api/goal', { name: input, date: goalDate });
             allGoals = allGoals.data
-            this.props.updateData({ goals: allGoals, subGoals: this.props.subGoals, tasks: this.props.tasks, subTasks: this.props.subTasks })
+            this.props.updateData({ 
+                goals: allGoals, 
+                subGoals: this.props.subGoals, 
+                tasks: this.props.tasks, 
+                subTasks: this.props.subTasks 
+            })
             this.setState({ input: '', goalDate: '' })
             const allUserData = await getAllUserData()
             this.props.setUserData(allUserData)
@@ -107,7 +117,12 @@ class Goal extends Component {
         try {
             let allSubGoals = await axios.post('/api/s_goal', { name: subGoalName, complete, g_id: id });
             allSubGoals = allSubGoals.data
-            this.props.updateData({ goals: this.props.goals, subGoals: allSubGoals, tasks: this.props.tasks, subTasks: this.props.subTasks })
+            this.props.updateData({ 
+                goals: this.props.goals, 
+                subGoals: allSubGoals, 
+                tasks: this.props.tasks, 
+                subTasks: this.props.subTasks 
+            })
             // this.props.subGoals()
             this.setState({ subGoalName: '', complete: false })
             const allUserData = await getAllUserData()
@@ -118,7 +133,7 @@ class Goal extends Component {
     }
 
     render() {
-        // console.log(this.props)
+        console.log(this.props)
         const { goals } = this.props;
         // console.log(goals)
         let goalArr = goals.map((goal, i) => {
@@ -160,8 +175,8 @@ class Goal extends Component {
                                 value={this.state.date[i]}
                                 onChange={(e) => this.handleDateInput(e, i)}
                             />
-                            <button onClick={() => this.handleSave(id, i)}>Save</button>
-                            <button onClick={this.handleCancel}>Cancel</button>
+                            <button onClick={ () => this.handleSave(id, i) }>Save</button>
+                            <button onClick={ this.handleCancel }>Cancel</button>
                         </div>
                         :
                         <div className="col-xs-4">
@@ -175,7 +190,7 @@ class Goal extends Component {
                                 placeholder="Add a step to your goal"
                                 onChange={e => this.handleInput('subGoalName', e.target.value)}
                             />
-                            <button className="add-subGoal-button" onClick={() => this.addSubGoal(id)} >Add</button>
+                            <button className="add-subGoal-button" onClick={ () => this.addSubGoal(id) }>Add</button>
                             <div id="subList">{mappedSubGoals}</div>
                         </div>
                     }

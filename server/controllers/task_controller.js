@@ -17,7 +17,6 @@ module.exports = {
     getTasks: (req, res) => {
         const db = req.app.get('db');
         const { id } = req.session.user;
-        // console.log(req.body);
 
         db.task.get_all_tasks({ id }).then(resp => {
             res.status(200).send(resp)

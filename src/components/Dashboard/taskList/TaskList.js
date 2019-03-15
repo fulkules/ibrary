@@ -15,7 +15,7 @@ class TaskList extends Component {
 
     render() {
         const { tasks } = this.props;
-        // console.log(this.props)
+        console.log(this.props)
         let taskArr = tasks.map((task, i) => {
             return(
                 <div key={[i]} className="col-xs-4">

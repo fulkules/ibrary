@@ -22,7 +22,8 @@ export default function reducer(state = initialState, action){
                 tasks: payload.tasks, 
                 goals: payload.goals, 
                 subTasks: payload.subTasks,
-                subGoals: payload.subGoals
+                subGoals: payload.subGoals,
+                updated: state.updated ++
             }
         case SET_USER_DATA:
             return { 
@@ -30,7 +31,8 @@ export default function reducer(state = initialState, action){
                 tasks: payload.tasks, 
                 goals: payload.goals, 
                 subTasks: payload.subTasks,
-                subGoals: payload.subGoals 
+                subGoals: payload.subGoals,
+                updated: state.updated -- 
             }
         case UPDATE_DATA:
             return { 
@@ -47,7 +49,8 @@ export default function reducer(state = initialState, action){
                 tasks: payload.tasks, 
                 goals: payload.goals, 
                 subTasks: payload.subTasks,
-                subGoals: payload.subGoals
+                subGoals: payload.subGoals,
+                updated: state.updated --
             }
         default:
             return state;

@@ -20,11 +20,9 @@ html {
 .goal div {
     min-width: 30rem;
     border-radius: 2rem;
-    margin: auto;
-    margin-left: 2rem;
+    margin: 1rem 0 0 2rem;
     justify-content: space-evenly;
-    height: calc(100vh - 22rem);
-    margin-bottom: 0;
+    height: calc(100vh - 21rem);
     padding:none;
 }
 
@@ -72,7 +70,7 @@ html {
     /* justify-content: flex-start; */
     flex-direction: column;
     align-items: flex-start;
-    border-bottom: 2px solic #ccc;
+    border-bottom: 2px solid #ccc;
 }
 
 .subGoalArr-container {

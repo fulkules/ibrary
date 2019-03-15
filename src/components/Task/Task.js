@@ -14,12 +14,12 @@ class Task extends Component {
         this.state = {
             editing: false,
             tasks: [],
-            subTasks: [],
+            sub_task: [],
             name: [],
             time: [],
             date: new Date(),
             input: '',
-            taskTime: '',
+            complete: false,
             subTaskName: ''
         }
     }
@@ -58,7 +58,8 @@ class Task extends Component {
                     goals: this.props.goals, 
                     subGoals: this.props.subGoals, 
                     tasks: res, 
-                    subTasks: this.props.subTasks});
+                    subTasks: this.props.subTasks
+                });
                     const allUserData = await getAllUserData()
                     this.props.updateData(allUserData)
             } catch(err){
@@ -73,7 +74,12 @@ class Task extends Component {
         try {
             let allTasks = await axios.put(`/api/task/${id}`, {name:name[i], time:time[i]});
             allTasks = allTasks.data
-            this.props.updateData({goals: this.props.goals, subGoals: this.props.subGoals, tasks: allTasks, subTasks: this.props.subTasks})
+            this.props.updateData({
+                goals: this.props.goals, 
+                subGoals: this.props.subGoals, 
+                tasks: allTasks, subTasks: 
+                this.props.subTasks
+            })
             this.setState({ editing: false })
             const allUserData = await getAllUserData()
             this.props.updateData(allUserData)
@@ -83,19 +89,29 @@ class Task extends Component {
     }
 
     addTask = async () => {
-        // const {name, date} = this.props.goals;
-        const { input, taskTime } = this.state;
+        // const {name, date} = this.props.tasks;
+        const { input, taskTime, date } = this.state;
         try {
-            let allTasks = await axios.post('/api/task', {name: input, time: taskTime});
+            let allTasks = await axios.post('/api/task', {name: input, time: taskTime, date});
             allTasks = allTasks.data
-            this.props.updateData({goals: this.props.goals, subGoals: this.props.subGoals, tasks: allTasks, subTasks: this.props.subTasks})
+            this.props.updateData({
+                goals: this.props.goals, 
+                subGoals: this.props.subGoals, 
+                tasks: allTasks, 
+                subTasks: this.props.subTasks
+            })
             this.setState({ input: '', taskTime: '' })
         } catch(err) {
             console.log(err)
         }
     }
 
-    onChange = date => this.setState({ date })
+    componentDidMount(){
+        this.setDate();
+        // console.log(this.state.date)
+    }
+
+    setDate = date => this.setState({ date })
 
     addSubTask = async (id) => {
         const { subTaskName, complete } = this.state;
@@ -106,7 +122,8 @@ class Task extends Component {
                 goals: this.props.goals, 
                 subGoals: this.props.subGoals, 
                 tasks: this.props.tasks, 
-                subTasks: allSubTasks })
+                subTasks: allSubTasks 
+            })
             this.setState({ subTaskName: '', complete: false })
             const allUserData = await getAllUserData()
             this.props.updateData(allUserData)
@@ -116,11 +133,11 @@ class Task extends Component {
     }
 
     render() {
-// console.log(this.props)
+console.log(this.props)
         const { tasks } = this.props;
         // console.log(tasks)
         let taskArr = tasks.map((task, i) => {
-            if(this.state.name[i] === undefined){
+            if (this.state.name[i] === undefined){
                 this.state.name[i] = task.name
                 this.state.time[i] = task.time
             }
@@ -160,17 +177,18 @@ class Task extends Component {
                         </div>
                         : 
                         <div className="col-xs-4">
-                            <h3>{name}</h3>
-                            <h4>{time}</h4>
+                            <input className="subTask-complete-box" type="checkbox" key={task.id} value={this.state.complete} onChange={() => { }} />
+                            {name}<br />
+                            {time}<br />
                             <button className="taskEdit" onClick={ this.setEdit }>Edit</button>
                             <button className="taskDelete" onClick={() => this.handleDelete(id) }>Delete</button>
                             <input
                                 className="add-subTask"
                                 key={id.toString()}
-                                placeholder="Add a step to your goal"
-                                onChange={e => this.handleInput('subTaskName', e.target.value)}
+                                placeholder="Add a step to your task"
+                                onChange={ e => this.handleInput('subTaskName', e.target.value) }
                             />
-                            <button className="add-subTask-button" onClick={() => this.addSubTask(id)} >Add</button>
+                            <button className="add-subTask-button" onClick={ () => this.addSubTask(id) }>Add</button>
                             <div id="subList">{mappedSubTasks}</div>        
                         </div>
                     }
@@ -179,7 +197,7 @@ class Task extends Component {
         })
 
         return (
-            <div>
+            <React.Fragment>
                 <CalendarHeader />
                 <input 
                     value={this.state.input}
@@ -194,7 +212,7 @@ class Task extends Component {
                 />
                 <button onClick={ this.addTask }>Add Task</button>
                 <div className="task">{taskArr}</div>
-            </div>
+            </React.Fragment>
         );
     }
 }

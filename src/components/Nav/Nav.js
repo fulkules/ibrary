@@ -3,6 +3,7 @@ import { Motion, StaggeredMotion, spring } from 'react-motion';
 import range from 'lodash.range';
 import './Nav.css';
 import { Link } from 'react-router-dom';
+import { NONAME } from 'dns';
 
 // Components 
 
@@ -264,7 +265,7 @@ class Nav extends Component {
         let mainButtonRotation =
             isOpen ? { rotate: spring(0, { stiffness: 500, damping: 30 }) } : { rotate: spring(-135, { stiffness: 500, damping: 30 }) };
         return (
-            <div>
+            <div id="nav-bubble">
 				{this.renderChildButtons()}
 				<Motion style={mainButtonRotation}>
 					{({rotate}) =>

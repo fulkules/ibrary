@@ -20,7 +20,7 @@ class Header extends Component {
     logout = async () => {
         await axios.post('/auth/logout');
         this.props.clearUser();
-        this.props.auth.history.push('/')
+        this.props.history.push('/')
     }
 
     render() {
@@ -29,8 +29,8 @@ class Header extends Component {
         return (
                 <div className="Header">
                     <Nav />
+                    <div className="weather-api" ><Weather /></div>
                     <h1>Hello {username}!</h1>
-                    <Weather />
                     <button onClick={this.logout}>Logout</button>
                 </div>
         

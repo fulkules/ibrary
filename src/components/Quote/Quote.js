@@ -15,11 +15,14 @@ class Quote extends Component {
     getQuote = async () => {
         await axios.get('/api/quote').then(res => {
             // console.log(res.data.quoteText)
-            this.setState({ quote: res.data.quoteText, author: res.data.quoteAuthor })
+            if(this._isMounted){
+                this.setState({ quote: res.data.quoteText, author: res.data.quoteAuthor })
+            }
         })
     }
 
     componentDidMount(){
+        this._isMounted = true;
         this.getQuote();
     }
 

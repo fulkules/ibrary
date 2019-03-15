@@ -7,7 +7,7 @@ html{
     background: #00BCBF;
     display: flex;
     justify-content: space-between;
-    height: 12rem;
+    /* height: 12rem; */
     background-image:
     linear-gradient(
       to top right, 
@@ -20,14 +20,16 @@ html{
     align-items: center;
 }
 
-.Header Weather {
-    display: flex;
-    margin: 2rem;
-    align-items: center;
+.weather-api {
+    margin: 1rem;
+    margin-top: 6rem;
 }
 
 .Header button {
     display: flex;
-    height: 2rem;
-    margin: 1rem;
+    justify-content: center;
+    height: 2.4rem;
+    width: 7rem;
+    margin: 1.5rem;
+    border-radius: 1.5rem;
 }

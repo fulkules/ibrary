@@ -69,7 +69,7 @@ class CalendarHeader extends Component {
     renderCells(){ 
         return (
             <div>
-                <Calendar className="calendar"/>
+                <Calendar className="calendar" selectedDate={(date) => console.log(date)}/>
             </div>
         )
     }
@@ -82,7 +82,7 @@ class CalendarHeader extends Component {
 
     onDateClick = day => { 
         this.setState({ selectedDate: day })
-        console.log({selectedDate: day})
+        console.log({ selectedDate: day })
     }
 
 

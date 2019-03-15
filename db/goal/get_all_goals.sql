@@ -15,17 +15,14 @@
 --     from goal g
 -- )g
 
-select row_to_json(g)
-from(
-    select id, name,
-        (
-            select array_to_json(array_agg(row_to_json(sg)))
-            from (
-                select id, name, complete
-                from sub_goal
-                where g_id = goal.id
-            )sg
-        ) sub_goal
-    from goal
-    where u_id = 2
-)g
+select id, name, date,
+    (
+        select json_agg(sg)
+        from (
+            select id, name, complete
+            from sub_goal
+            where g_id = goal.id
+        )sg
+    ) sub_goal
+from goal
+where u_id = ${id}
