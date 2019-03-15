@@ -24,5 +24,6 @@ select id, name, date,
             where g_id = goal.id
         )sg
     ) sub_goal
-from goal
+from goal 
 where u_id = ${id}
+order by goal.date asc

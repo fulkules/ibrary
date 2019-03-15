@@ -26,7 +26,7 @@ html{
 }
 
 .Header button {
-    display: flex;
+    display: fixed;
     justify-content: center;
     height: 2.4rem;
     width: 7rem;

@@ -9,7 +9,7 @@ import SubTask from './SubTask';
 
 
 class Task extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             editing: false,
@@ -24,16 +24,16 @@ class Task extends Component {
         }
     }
 
-    handleInput(props, val){
-        this.setState({ [props]: val})
+    handleInput(props, val) {
+        this.setState({ [props]: val })
     }
 
-    handleNameInput(e, i){
+    handleNameInput(e, i) {
         let name = this.state.name
         name[i] = e.target.value
         this.setState({ name })
     }
-    handleTimeInput(e, i){
+    handleTimeInput(e, i) {
         let time = this.state.time
         time[i] = e.target.value
         this.setState({ time })
@@ -48,42 +48,42 @@ class Task extends Component {
     }
 
     handleDelete = async (id, i) => {
-        const {name, time} = this.state
+        const { name, time } = this.state
         // console.log(this.props)
-        if(id) {
-            try{
-                let res = await axios.delete(`/api/task/${id}`, {name:name[i], time:time[i]});
+        if (id) {
+            try {
+                let res = await axios.delete(`/api/task/${id}`, { name: name[i], time: time[i] });
                 res = res.data;
                 this.props.updateData({
-                    goals: this.props.goals, 
-                    subGoals: this.props.subGoals, 
-                    tasks: res, 
+                    goals: this.props.goals,
+                    subGoals: this.props.subGoals,
+                    tasks: res,
                     subTasks: this.props.subTasks
                 });
-                    const allUserData = await getAllUserData()
-                    this.props.updateData(allUserData)
-            } catch(err){
+                const allUserData = await getAllUserData()
+                this.props.updateData(allUserData)
+            } catch (err) {
                 console.log(err)
             }
         }
-       
+
     }
 
     handleSave = async (id, i) => {
         const { name, time } = this.state;
         try {
-            let allTasks = await axios.put(`/api/task/${id}`, {name:name[i], time:time[i]});
+            let allTasks = await axios.put(`/api/task/${id}`, { name: name[i], time: time[i] });
             allTasks = allTasks.data
             this.props.updateData({
-                goals: this.props.goals, 
-                subGoals: this.props.subGoals, 
-                tasks: allTasks, subTasks: 
-                this.props.subTasks
+                goals: this.props.goals,
+                subGoals: this.props.subGoals,
+                tasks: allTasks, subTasks:
+                    this.props.subTasks
             })
             this.setState({ editing: false })
             const allUserData = await getAllUserData()
             this.props.updateData(allUserData)
-        } catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -92,21 +92,21 @@ class Task extends Component {
         // const {name, date} = this.props.tasks;
         const { input, taskTime, date } = this.state;
         try {
-            let allTasks = await axios.post('/api/task', {name: input, time: taskTime, date});
+            let allTasks = await axios.post('/api/task', { name: input, time: taskTime, date });
             allTasks = allTasks.data
             this.props.updateData({
-                goals: this.props.goals, 
-                subGoals: this.props.subGoals, 
-                tasks: allTasks, 
+                goals: this.props.goals,
+                subGoals: this.props.subGoals,
+                tasks: allTasks,
                 subTasks: this.props.subTasks
             })
             this.setState({ input: '', taskTime: '' })
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.setDate();
         // console.log(this.state.date)
     }
@@ -118,11 +118,11 @@ class Task extends Component {
         try {
             let allSubTasks = await axios.post('/api/s_task', { name: subTaskName, complete, t_id: id });
             allSubTasks = allSubTasks.data
-            this.props.updateData({ 
-                goals: this.props.goals, 
-                subGoals: this.props.subGoals, 
-                tasks: this.props.tasks, 
-                subTasks: allSubTasks 
+            this.props.updateData({
+                goals: this.props.goals,
+                subGoals: this.props.subGoals,
+                tasks: this.props.tasks,
+                subTasks: allSubTasks
             })
             this.setState({ subTaskName: '', complete: false })
             const allUserData = await getAllUserData()
@@ -132,22 +132,27 @@ class Task extends Component {
         }
     }
 
+    toggleComplete = (id) => {
+        const { complete } = this.state;
+        this.setState({ complete: !complete })
+    }
+
     render() {
-console.log(this.props)
+        console.log(this.props)
         const { tasks } = this.props;
         // console.log(tasks)
         let taskArr = tasks.map((task, i) => {
-            if (this.state.name[i] === undefined){
+            if (this.state.name[i] === undefined) {
                 this.state.name[i] = task.name
                 this.state.time[i] = task.time
             }
 
             let mappedSubTasks;
-            if(task.sub_task){
+            if (task.sub_task) {
                 mappedSubTasks = task.sub_task.map((subTask, i) => {
                     return (
                         <div key={i}>
-                            <SubTask 
+                            <SubTask
                                 subTask={subTask}
                                 key={i}
                             />
@@ -158,38 +163,40 @@ console.log(this.props)
 
             const { id, name, time } = task;
             // console.log(tasks[i].id)
-            return(
+            return (
                 <div key={id}>
-                    { this.state.editing ? 
+                    {this.state.editing ?
                         <div className="col-xs-4">
-                            <input 
+                            <input
                                 key={id}
                                 value={this.state.name[i]}
-                                onChange={ (e) => this.handleNameInput(e, i) }
+                                onChange={(e) => this.handleNameInput(e, i)}
+                                type="text"
                             />
-                            <input 
+                            <input
                                 key={task[i]}
-                                value={this.state.time[i]} 
-                                onChange={ (e) => this.handleTimeInput(e, i) }
+                                type="time"
+                                value={this.state.time[i]}
+                                onChange={(e) => this.handleTimeInput(e, i)}
                             />
-                            <button onClick={ () => this.handleSave(id, i) }>Save</button>
-                            <button onClick={ this.handleCancel }>Cancel</button>
+                            <button onClick={() => this.handleSave(id, i)}>Save</button>
+                            <button onClick={this.handleCancel}>Cancel</button>
                         </div>
-                        : 
+                        :
                         <div className="col-xs-4">
                             <input className="subTask-complete-box" type="checkbox" key={task.id} value={this.state.complete} onChange={() => { }} />
                             {name}<br />
                             {time}<br />
-                            <button className="taskEdit" onClick={ this.setEdit }>Edit</button>
-                            <button className="taskDelete" onClick={() => this.handleDelete(id) }>Delete</button>
+                            <button className="taskEdit" onClick={this.setEdit}>Edit</button>
+                            <button className="taskDelete" onClick={() => this.handleDelete(id)}>Delete</button>
                             <input
                                 className="add-subTask"
                                 key={id.toString()}
                                 placeholder="Add a step to your task"
-                                onChange={ e => this.handleInput('subTaskName', e.target.value) }
+                                onChange={e => this.handleInput('subTaskName', e.target.value)}
                             />
-                            <button className="add-subTask-button" onClick={ () => this.addSubTask(id) }>Add</button>
-                            <div id="subList">{mappedSubTasks}</div>        
+                            <button className="add-subTask-button" onClick={() => this.addSubTask(id)}>Add</button>
+                            <div id="subList">{mappedSubTasks}</div>
                         </div>
                     }
                 </div>
@@ -199,18 +206,20 @@ console.log(this.props)
         return (
             <React.Fragment>
                 <CalendarHeader />
-                <input 
-                    value={this.state.input}
-                    onChange={ e => this.handleInput('input', e.target.value)}
+                <input
+                    value={this.state.input || ''}
+                    onChange={e => this.handleInput('input', e.target.value)}
                     placeholder="Add new Task"
+                    className="addTask-input"
                 />
-                <input 
+                <input
                     type="time"
-                    value={this.state.taskTime}
-                    onChange={ e => this.handleInput('taskTime', e.target.value)}
+                    value={this.state.taskTime || ''}
+                    onChange={e => this.handleInput('taskTime', e.target.value)}
                     placeholder="Task Time"
+                    className="addTime-input"
                 />
-                <button onClick={ this.addTask }>Add Task</button>
+                <button className="addTask-button" onClick={this.addTask}>Add Task</button>
                 <div className="task">{taskArr}</div>
             </React.Fragment>
         );
@@ -224,7 +233,7 @@ const mapStateToProps = (reduxState) => {
         tasks: reduxState.data.tasks,
         subTasks: reduxState.data.subTasks,
         update: reduxState.data.subTasks
-    }    
+    }
 }
 
 const mapDispatchToProps = {

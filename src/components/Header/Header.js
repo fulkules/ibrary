@@ -11,16 +11,24 @@ class Header extends Component {
         super(props)
 
         this.state = {
-            
+            tasks: 0
         }
     }
-
-    
 
     logout = async () => {
         await axios.post('/auth/logout');
         this.props.clearUser();
         this.props.history.push('/')
+    }
+
+    componentDidMount(){
+        if(this.props.auth){
+            this.getTaskCount();
+        }
+    }
+
+    getTaskCount = () => {
+        console.log(this.props)
     }
 
     render() {

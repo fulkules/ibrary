@@ -26,6 +26,25 @@ html {
     padding:none;
 }
 
+.addTask-input {
+    margin: 1rem 2rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+}
+
+.addTime-input {
+    margin: 1rem 2rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+}
+
+.addTask-button {
+    margin: 1rem 2rem;
+    height: 3rem;
+    width: 7rem;
+    border-radius: 1.5rem;
+}
+
 /* Decorations */
 .col-xs-4 { 
     color: #222; 
