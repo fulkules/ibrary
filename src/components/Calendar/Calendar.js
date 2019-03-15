@@ -82,6 +82,7 @@ class CalendarHeader extends Component {
 
     onDateClick = day => { 
         this.setState({ selectedDate: day })
+        console.log({selectedDate: day})
     }
 
 

@@ -47,7 +47,7 @@ html {
 
 body {
     font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    font-size: 1em;
+    font-size: 1.4rem;
     font-weight: 300;
     line-height: 1.5;
     color: var(--text-color);
@@ -59,8 +59,8 @@ header {
   display: block;
   width: 100%;
   padding: 1.75rem 0;
-  border-bottom: 1px solid var(--border-color);
-  background: var(--neutral-color);
+  border-bottom: 1px solid var(#333);
+  background: var(#ccc);
 }
 
 header #logo {

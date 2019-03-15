@@ -13,8 +13,7 @@ class Weather extends Component {
     
     componentDidMount(){
         this._isMounted = true;
-        this.getWeather();
-    
+        this.getWeather()
     }
     getWeather = async () => {
         await axios.get('/api/weather').then(res => {

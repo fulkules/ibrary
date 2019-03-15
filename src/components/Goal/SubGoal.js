@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateData } from '../../ducks/actions';
 import axios from 'axios';
+import './Goal.css';
 
 class SubGoal extends Component {
     constructor(props){
@@ -47,7 +48,7 @@ class SubGoal extends Component {
                 let res = await axios.delete(`/api/s_goal/${id}`);
                 res = res.data;
                 this.props.updateData({goals: this.props.goals, subGoals: res, tasks: this.props.tasks, subTasks: this.props.subTasks});
-                
+
             } catch(err){
                 console.log(err)
             }
@@ -92,7 +93,7 @@ class SubGoal extends Component {
                                 {subGoal.name}<br/>                                
                                 <button onClick={ this.setEdit }>Edit</button>
                                 <button onClick={() => this.handleDelete(subGoal.id) }>Delete</button> 
-                            </div>      
+                            </div>
                         </div>
                     }
                 </div>

@@ -1,3 +1,7 @@
+html {
+    box-sizing: border-box;
+}
+
 .goal {
     display: flex;
     flex-direction: row;
@@ -21,6 +25,7 @@
     justify-content: space-evenly;
     height: calc(100vh - 22rem);
     margin-bottom: 0;
+    padding:none;
 }
 
 /* Decorations */
@@ -61,7 +66,7 @@
 }
 
 .subGoal-container {
-    background:purple;
+    /* background:purple; */
     height: 2rem;
     display: flex;
     /* justify-content: flex-start; */
@@ -80,38 +85,49 @@
     padding: 2rem;
 }
 
-/* 
+
 #subGoals div {
-    min-width: 25rem;
+    max-width: 25rem;
     border-radius: 2rem;
     margin: auto;
     margin-left: 2rem;
     align-items: center;
     font-weight: bold;
-} */
+}
 
 .goalEdit {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
+    height: 3rem;
+    width: 7rem;
+    align-content: space-around;
     justify-content: space-around;
-    align-items: baseline;
+    align-items: flex-start;
 }
 
 .goalDelete {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
+    height: 3rem;
+    width: 7rem;
+    margin-left: 2rem;
+    align-content: space-around;
     justify-content: space-around;
-    align-items: baseline;
+    align-items: flex-start;
 }
 
 .add-subGoal {
     display: inline;
     justify-content: center;
     align-items: center;
+}
+
+.add-subGoal-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 7rem;
 }
 
 .subGoal-complete-box{

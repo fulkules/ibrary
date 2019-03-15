@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { updateData } from '../../ducks/actions';
-import Calendar from 'react-calendar-mobile';
+import getAllUserData from '../../common/getUtils';
 import './Task.css';
 import CalendarHeader from '../Calendar/Calendar';
+import SubTask from './SubTask';
 
 
 class Task extends Component {
@@ -18,7 +19,8 @@ class Task extends Component {
             time: [],
             date: new Date(),
             input: '',
-            taskTime: ''
+            taskTime: '',
+            subTaskName: ''
         }
     }
 
@@ -52,7 +54,13 @@ class Task extends Component {
             try{
                 let res = await axios.delete(`/api/task/${id}`, {name:name[i], time:time[i]});
                 res = res.data;
-                this.props.updateData({goals: this.props.goals, subGoals: this.props.subGoals, tasks: res, subTasks: this.props.subTasks});
+                this.props.updateData({
+                    goals: this.props.goals, 
+                    subGoals: this.props.subGoals, 
+                    tasks: res, 
+                    subTasks: this.props.subTasks});
+                    const allUserData = await getAllUserData()
+                    this.props.updateData(allUserData)
             } catch(err){
                 console.log(err)
             }
@@ -67,6 +75,8 @@ class Task extends Component {
             allTasks = allTasks.data
             this.props.updateData({goals: this.props.goals, subGoals: this.props.subGoals, tasks: allTasks, subTasks: this.props.subTasks})
             this.setState({ editing: false })
+            const allUserData = await getAllUserData()
+            this.props.updateData(allUserData)
         } catch(err){
             console.log(err)
         }
@@ -87,6 +97,24 @@ class Task extends Component {
 
     onChange = date => this.setState({ date })
 
+    addSubTask = async (id) => {
+        const { subTaskName, complete } = this.state;
+        try {
+            let allSubTasks = await axios.post('/api/s_task', { name: subTaskName, complete, t_id: id });
+            allSubTasks = allSubTasks.data
+            this.props.updateData({ 
+                goals: this.props.goals, 
+                subGoals: this.props.subGoals, 
+                tasks: this.props.tasks, 
+                subTasks: allSubTasks })
+            this.setState({ subTaskName: '', complete: false })
+            const allUserData = await getAllUserData()
+            this.props.updateData(allUserData)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     render() {
 // console.log(this.props)
         const { tasks } = this.props;
@@ -96,6 +124,21 @@ class Task extends Component {
                 this.state.name[i] = task.name
                 this.state.time[i] = task.time
             }
+
+            let mappedSubTasks;
+            if(task.sub_task){
+                mappedSubTasks = task.sub_task.map((subTask, i) => {
+                    return (
+                        <div key={i}>
+                            <SubTask 
+                                subTask={subTask}
+                                key={i}
+                            />
+                        </div>
+                    )
+                })
+            }
+
             const { id, name, time } = task;
             // console.log(tasks[i].id)
             return(
@@ -119,8 +162,16 @@ class Task extends Component {
                         <div className="col-xs-4">
                             <h3>{name}</h3>
                             <h4>{time}</h4>
-                            <button onClick={ this.setEdit }>Edit</button>
-                            <button onClick={() => this.handleDelete(id) }>Delete</button>        
+                            <button className="taskEdit" onClick={ this.setEdit }>Edit</button>
+                            <button className="taskDelete" onClick={() => this.handleDelete(id) }>Delete</button>
+                            <input
+                                className="add-subTask"
+                                key={id.toString()}
+                                placeholder="Add a step to your goal"
+                                onChange={e => this.handleInput('subTaskName', e.target.value)}
+                            />
+                            <button className="add-subTask-button" onClick={() => this.addSubTask(id)} >Add</button>
+                            <div id="subList">{mappedSubTasks}</div>        
                         </div>
                     }
                 </div>
