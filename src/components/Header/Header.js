@@ -21,16 +21,6 @@ class Header extends Component {
         this.props.history.push('/')
     }
 
-    componentDidMount(){
-        if(this.props.auth){
-            this.getTaskCount();
-        }
-    }
-
-    getTaskCount = () => {
-        console.log(this.props)
-    }
-
     render() {
         const { username } = this.props.auth;
         // console.log(this.props)
@@ -39,6 +29,7 @@ class Header extends Component {
                     <Nav />
                     <div className="weather-api" ><Weather /></div>
                     <h1>Hello {username}!</h1>
+                    <h3 className="numTasks">{this.props.data.tasks.length} Tasks Today</h3>
                     <button onClick={this.logout}>Logout</button>
                 </div>
         

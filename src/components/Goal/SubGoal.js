@@ -93,10 +93,10 @@ class SubGoal extends Component {
         const { subGoal } = this.props;
         // console.log(this.props.subGoal)
         return (
-            <div className="subGoal-container">
-                <div>
+            <React.Fragment className="subGoal-container">
+                <React.Fragment>
                     {this.state.editing ?
-                        <div>
+                        <React.Fragment>
                             <input
                                 key={subGoal.id}
                                 value={this.state.name}
@@ -104,20 +104,20 @@ class SubGoal extends Component {
                             />
                             <button onClick={() => this.handleSave(this.props.subGoal.id)}>Save</button>
                             <button onClick={this.handleCancel}>Cancel</button>
-                        </div>
+                        </React.Fragment>
                         :
-                        <div>
+                        <React.Fragment>
                             <div className="subGoalArr-container">
                                 <input className="subGoal-complete-box" type="checkbox" key={subGoal.id} value={this.state.complete} onChange={() => { }} />
                                 {subGoal.name}<br />
-                                <button onClick={this.setEdit}>Edit</button>
-                                <button onClick={() => this.handleDelete(subGoal.id)}>Delete</button>
+                                <button className="editSubGoal-button" onClick={this.setEdit}>Edit</button>
+                                <button className="editSubGoal-button" onClick={() => this.handleDelete(subGoal.id)}>Delete</button>
                             </div>
-                        </div>
+                        </React.Fragment>
                     }
-                </div>
+                </React.Fragment>
                 {/* <p>{subGoal.name}</p> */}
-            </div>
+            </React.Fragment>
         );
     }
 }

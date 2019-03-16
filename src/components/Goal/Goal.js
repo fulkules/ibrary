@@ -192,7 +192,7 @@ class Goal extends Component {
             const { id, name, date } = goal;
             // console.log(goal)
             return (
-                <div key={id}>
+                <React.Fragment key={id}>
                     {this.state.editing ?
                         <div className="col-xs-4">
                             <input
@@ -220,6 +220,7 @@ class Goal extends Component {
                                 className="add-subGoal"
                                 key={id.toString()}
                                 placeholder="Add a step to your goal"
+                                value={this.state.subGoalName}
                                 onChange={e => this.handleInput('subGoalName', e.target.value)}
                                 type="text"
                             />
@@ -227,7 +228,7 @@ class Goal extends Component {
                             <div id="subList">{mappedSubGoals}</div>
                         </div>
                     }
-                </div>
+                </React.Fragment>
             )
         })
 

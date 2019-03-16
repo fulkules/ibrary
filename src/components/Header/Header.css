@@ -5,6 +5,7 @@ html{
 .Header {
     color: #FFF;
     background: #00BCBF;
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
     /* height: 12rem; */
@@ -32,4 +33,11 @@ html{
     width: 7rem;
     margin: 1.5rem;
     border-radius: 1.5rem;
+}
+
+.numTasks{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 2rem;
 }

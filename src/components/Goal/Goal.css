@@ -20,9 +20,9 @@ html {
 .goal div {
     min-width: 30rem;
     border-radius: 2rem;
-    margin: 1rem 0 0 2rem;
+    margin: 2rem 0 0 0;
     justify-content: space-evenly;
-    height: calc(100vh - 21rem);
+    height: calc(100vh - 22rem);
     padding:none;
 }
 
@@ -42,7 +42,6 @@ html {
 
 .addGoal-button {
     margin: 1rem 2rem;
-    margin: 1rem;
     height: 3rem;
     width: 7rem;
     border-radius: 1.5rem;
@@ -54,14 +53,16 @@ html {
     font-size: 2rem; 
     font-weight: bold;
     padding: 3rem 2rem 2rem 1rem; 
-    margin-left: 0;
     display: flex;
     flex-direction: column;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;  
+    -moz-box-shadow:    1px 1px 3px 4px #ccc; 
+    box-shadow:         1px 1px 3px 4px #ccc;
 }
 
-.col-xs-4:nth-child(3n+1) { background: #DBF6F4; }
-.col-xs-4:nth-child(3n+2) { background: #00D3C2; }
-.col-xs-4:nth-child(3n+3) { background: #FFF0E7; } 
+.col-xs-4:nth-child(3n+1) { background: #DBF6F4; margin-left: 2rem; }
+.col-xs-4:nth-child(3n+2) { background: #BDFBFE; margin-left: 2rem; }
+.col-xs-4:nth-child(3n+3) { background: #FFEEBA; margin-left: 2rem; } 
 
 #subList {
     display: flex;
@@ -87,22 +88,26 @@ html {
 
 .subGoal-container {
     /* background:purple; */
-    height: 2rem;
     display: flex;
     /* justify-content: flex-start; */
     flex-direction: column;
     align-items: flex-start;
-    border-bottom: 2px solid #ccc;
+
 }
 
 .subGoalArr-container {
     background: #FFE4E5;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-right: 8rem;
+    /* display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center; */
     max-height: 12rem;
     border-radius: 2rem;
     padding: 2rem;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    1px 1px 3px 4px #ccc;  /* Firefox 3.5 - 3.6 */
+    box-shadow:         1px 1px 3px 4px #ccc;
 }
 
 
@@ -116,24 +121,23 @@ html {
 }
 
 .goalEdit {
-    display: flex;
-    flex-direction: row;
-    height: 3rem;
+    float: left;
+    height: 4rem;
     width: 7rem;
-    align-content: space-around;
-    justify-content: space-around;
-    align-items: flex-start;
+    border-radius: 1rem;
+    margin: 1rem;
+    /* align-content: space-evenly; */
+    /* justify-content: space-evenly; */
+    /* align-items: center; */
+    /* align-content: center; */
 }
 
 .goalDelete {
-    display: flex;
-    flex-direction: row;
-    height: 3rem;
+    float: right;
+    height: 4rem;
     width: 7rem;
-    margin-left: 2rem;
-    align-content: space-around;
-    justify-content: space-around;
-    align-items: flex-start;
+    border-radius: 1rem;
+    margin: 1rem;
 }
 
 .add-subGoal {
@@ -143,11 +147,10 @@ html {
 }
 
 .add-subGoal-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
+    height: 4rem;
     width: 7rem;
+    border-radius: 1rem;
+    margin: 1rem;
 }
 
 .subGoal-complete-box{

@@ -1,6 +1,7 @@
 /* The heart of scroll behavior */
 
 .group {
+    height: 25vh;
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
@@ -18,7 +19,7 @@
   
   /* Decorations */
 .col-xs-4 {  color: #004E47; font-size: 2rem; padding: 2.5rem; }
-.col-xs-4:nth-child(3n+1) { background: #FFF0E7; }
+.col-xs-4:nth-child(3n+1) { background: #FFEEBA; }
 .col-xs-4:nth-child(3n+2) { background: #DBF6F4; }
 .col-xs-4:nth-child(3n+3) { background: #00D3C2; } 
 
