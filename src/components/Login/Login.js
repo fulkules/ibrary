@@ -36,7 +36,7 @@ class Login extends Component {
                 console.log(err)
             }
         } else {
-            this.props.history.push('/dashboard');
+            this.props.history.push('/');
         }
     }
 
@@ -77,6 +77,8 @@ class Login extends Component {
         // console.log(this.props)
         return (
             <div className="Login">
+                <h1>iBrary</h1>
+                <p>An app for positive thinking and task/goal management.</p>
                 <h2>Login or Register Below</h2>
                 <input 
                     value={username}

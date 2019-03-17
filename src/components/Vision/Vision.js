@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Nav from '../Nav/Nav';
+import CalendarHeader from '../Calendar/Calendar';
 
 class Vision extends Component {
     render() {
         return (
             <div className="Vision">
-                <Nav />
-                <h1>Vision Component</h1>
+                <CalendarHeader />
+                
             </div>
         );
     }

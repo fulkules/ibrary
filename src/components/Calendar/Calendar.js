@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import dateFns from 'date-fns';
 import Calendar from 'react-calendar-mobile';
+import {withRouter} from 'react-router-dom';
+
 
 class CalendarHeader extends Component {
     constructor(){
@@ -21,9 +23,10 @@ class CalendarHeader extends Component {
     }
 
     logout = async () => {
+        console.log(this.props)
         await axios.post('/auth/logout');
         this.props.clearUser();
-        this.props.auth.history.push('/')
+        this.props.history.push('/')
     }
     
     renderHeader(){ 
@@ -96,7 +99,7 @@ class CalendarHeader extends Component {
                     <button className="logout" onClick={this.logout}>Logout</button> <br/>
                     {this.renderHeader()}
                     {this.renderDays()}
-                    <button onClick={ this.toggle }>Calendar</button>
+                    <button onClick={ this.toggle }>Full Calendar</button>
                     {toggleView && this.renderCells()}
                 </div>
         
@@ -115,4 +118,4 @@ updateUser,
 clearUser
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(CalendarHeader);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CalendarHeader));

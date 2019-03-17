@@ -7,10 +7,10 @@
 .Login{
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
+    justify-content: center;
     align-items: center;
-    height: 40rem;
-    width: 40rem;
+    height: 100vh;
+    width: 100vw;
     background-color: #D9FDFD;
     color: #304D4D;
 }

@@ -90,14 +90,14 @@ class SubTask extends Component {
     }
 
     render() {
-        // console.log(this.props)
+        console.log(this.props)
         const { subTask } = this.props;
         // console.log(this.props.subGoal)
         return (
-            <div className="subTask-container">
+            <React.Fragment className="subTask-container">
                
                     {this.state.editing ?
-                        <div>
+                        <React.Fragment>
                             <input
                                 key={subTask.id}
                                 value={this.state.name}
@@ -105,19 +105,19 @@ class SubTask extends Component {
                             />
                             <button onClick={() => this.handleSave(this.props.subTask.id)}>Save</button>
                             <button onClick={this.handleCancel}>Cancel</button>
-                        </div>
+                        </React.Fragment>
                         :
-                        <div>
+                        <React.Fragment>
                             <div className="subTaskArr-container">
                                 <input className="subTask-complete-box" type="checkbox" key={subTask.id} value={this.state.complete} onChange={() => { }} />
                                 {subTask.name}<br />
                                 <button onClick={this.setEdit}>Edit</button>
                                 <button onClick={() => this.handleDelete(subTask.id)}>Delete</button>
                             </div>
-                        </div>
+                        </React.Fragment>
                     }
                 
-            </div>
+            </React.Fragment>
         );
     }
 }

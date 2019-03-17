@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import TaskList from './taskList/TaskList';
 import GoalList from './goalList/GoalList';
+import {updateUser} from '../../ducks/actions';
 import './Dashboard.css';
 import Quote from '../Quote/Quote';
+import axios from 'axios';
 
 
 class Dashboard extends Component {
@@ -15,8 +17,6 @@ class Dashboard extends Component {
 
         }
     }
-
-
 
     render() {
         // console.log(this.props)

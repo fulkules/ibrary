@@ -125,6 +125,7 @@ main {
 
 .calendar {
   width: 100%;
+  margin-top: 2rem;
   overflow: hidden;
   position: fixed;
   background: #ccc;
@@ -140,18 +141,23 @@ main {
   color: #fff;
   font-weight: bold;
   font-size: 1.4rem;
-  height: 18rem;
   background-image:
     linear-gradient(
       to top right, 
       #00D6C1, #00B9BF
     );
 }
+.main button {
+  width: 9rem;
+  height: 3rem;
+  border-radius: 1rem;
+  margin: 3rem;
+}
 
 .logout {
   float: right;
   border-radius: 1rem;
   margin-top: -4rem;
-  margin-right: 2rem;
-  padding: 0.3rem;
+  margin-right: 1rem;
+  padding: 0rem;
 }

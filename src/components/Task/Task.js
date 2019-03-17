@@ -20,7 +20,8 @@ class Task extends Component {
             date: new Date(),
             input: '',
             complete: false,
-            subTaskName: ''
+            subTaskName: '',
+            completedTasks: []
         }
     }
 
@@ -135,6 +136,7 @@ class Task extends Component {
     toggleComplete = (id) => {
         const { complete } = this.state;
         this.setState({ complete: !complete })
+        
     }
 
     render() {
@@ -164,7 +166,7 @@ class Task extends Component {
             const { id, name, time } = task;
             // console.log(tasks[i].id)
             return (
-                <div key={id}>
+                <React.Fragment key={id}>
                     {this.state.editing ?
                         <div className="col-xs-4">
                             <input
@@ -184,7 +186,7 @@ class Task extends Component {
                         </div>
                         :
                         <div className="col-xs-4">
-                            <input className="subTask-complete-box" type="checkbox" key={task.id} value={this.state.complete} onChange={() => { }} />
+                            <input className="subTask-complete-box" type="checkbox" key={task.id} value={this.state.complete} onChange={() => { this.toggleComplete(task.id) }} />
                             {name}<br />
                             {time}<br />
                             <button className="taskEdit" onClick={this.setEdit}>Edit</button>
@@ -193,13 +195,15 @@ class Task extends Component {
                                 className="add-subTask"
                                 key={id.toString()}
                                 placeholder="Add a step to your task"
+                                value={this.state.subTaskName}
                                 onChange={e => this.handleInput('subTaskName', e.target.value)}
+                                type="text"
                             />
                             <button className="add-subTask-button" onClick={() => this.addSubTask(id)}>Add</button>
                             <div id="subList">{mappedSubTasks}</div>
                         </div>
                     }
-                </div>
+                </React.Fragment>
             )
         })
 
@@ -207,14 +211,15 @@ class Task extends Component {
             <React.Fragment>
                 <CalendarHeader />
                 <input
-                    value={this.state.input || ''}
+                    value={this.state.input}
                     onChange={e => this.handleInput('input', e.target.value)}
                     placeholder="Add new Task"
                     className="addTask-input"
+                    type="text"
                 />
                 <input
                     type="time"
-                    value={this.state.taskTime || ''}
+                    value={this.state.taskTime}
                     onChange={e => this.handleInput('taskTime', e.target.value)}
                     placeholder="Task Time"
                     className="addTime-input"
