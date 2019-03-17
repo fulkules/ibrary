@@ -4,7 +4,7 @@ body {
   }
   
   .app {
-    margin: 1rem 4rem;
+    margin: 2rem;
   }
   
   .app .ql-container {
@@ -21,17 +21,3 @@ body {
     border-top-right-radius: 0.5em;
   }
   
-  /* Bubble Theme */
-  .app .ql-bubble .ql-editor {
-    border: 1px solid #ccc;
-    border-radius: 0.5em;
-  }
-  
-  .app .ql-editor {
-    min-height: 18em;
-  }
-  
-  .themeSwitcher {
-    margin-top: 0.5em;
-    font-size: small;
-  }

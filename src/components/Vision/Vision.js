@@ -38,14 +38,6 @@ class Vision extends Component {
                     bounds={'.app'}
                     placeholder={this.props.placeholder}
                 />
-                <div className="themeSwitcher">
-                    <label>Theme </label>
-                    <select onChange={ (e) => this.handleThemeChange(e.target.value) }>
-                    <option value="snow">Snow</option>
-                    <option value="bubble">Bubble</option>
-                    <option value="core">Core</option>
-                    </select>
-                </div>
             </div>
         );
     }
