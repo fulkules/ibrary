@@ -6,10 +6,9 @@ import getAllUserData from '../../common/getUtils';
 import './Task.css';
 import CalendarHeader from '../Calendar/Calendar';
 import SubTask from './SubTask';
-import TaskCard from './TaskCard';
 
 
-class Task extends Component {
+class ViewTasks extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -54,7 +53,7 @@ class Task extends Component {
         // console.log(this.props)
         if (id) {
             try {
-                let res = await axios.delete(`/api/task/${id}`, { name: name[i], time: time[i] });
+                let res = await axios.delete(`/api/task/${id}`);
                 res = res.data;
                 this.props.updateData({
                     goals: this.props.goals,
@@ -141,29 +140,73 @@ class Task extends Component {
     }
 
     render() {
-        const { tasks } = this.props;
         console.log(this.props)
+        const { tasks } = this.props;
+        // console.log(tasks)
         let taskArr = tasks.map((task, i) => {
             if (this.state.name[i] === undefined) {
                 this.state.name[i] = task.name
                 this.state.time[i] = task.time
             }
 
-            
+            let mappedSubTasks;
+            if (task.sub_task) {
+                mappedSubTasks = task.sub_task.map((subTask, i) => {
+                    return (
+                        <div key={i}>
+                            <SubTask
+                                subTask={subTask}
+                                key={i}
+                            />
+                        </div>
+                    )
+                })
+            }
 
-            // console.log(task.sub_task)  
+            const { id, name, time } = task;
+            // console.log(tasks[i].id)
             return (
-                <React.Fragment key={task.id}>
-                    <TaskCard 
-                        id={task.id}
-                        name={task.name}
-                        SubTask={task.sub_task}
-                        time={task.time}
-                        date={task.date}
-                    />
+                <React.Fragment key={id}>
+                    {this.state.editing ?
+                        <div className="col-xs-4">
+                            <input
+                                key={id}
+                                value={this.state.name[i]}
+                                onChange={(e) => this.handleNameInput(e, i)}
+                                type="text"
+                            />
+                            <input
+                                key={task[i]}
+                                type="time"
+                                value={this.state.time[i]}
+                                onChange={(e) => this.handleTimeInput(e, i)}
+                            />
+                            <button onClick={() => this.handleSave(id, i)}>Save</button>
+                            <button onClick={this.handleCancel}>Cancel</button>
+                        </div>
+                        :
+                        <div className="col-xs-4">
+                            <input className="subTask-complete-box" type="checkbox" key={task.id} value={this.state.complete} onChange={() => { this.toggleComplete(task.id) }} />
+                            {name}<br />
+                            {time}<br />
+                            <button className="taskEdit" onClick={this.setEdit}>Edit</button>
+                            <button className="taskDelete" onClick={() => this.handleDelete(id)}>Delete</button> <br />
+                            <input
+                                className="add-subTask"
+                                key={id.toString()}
+                                placeholder="Add a step to your task"
+                                value={this.state.subTaskName}
+                                onChange={e => this.handleInput('subTaskName', e.target.value)}
+                                type="text"
+                            />
+                            <button className="add-subTask-button" onClick={() => this.addSubTask(id)}>Add</button>
+                            <div id="subList">{mappedSubTasks}</div>
+                        </div>
+                    }
                 </React.Fragment>
             )
         })
+
         return (
             <React.Fragment>
                 <CalendarHeader />
@@ -182,8 +225,7 @@ class Task extends Component {
                     className="addTime-input"
                 />
                 <button className="addTask-button" onClick={this.addTask}>Add Task</button>
-                {/* <div className="task">{taskArr}</div> */}
-                {taskArr}
+                <div className="task">{taskArr}</div>
             </React.Fragment>
         );
     }
@@ -203,4 +245,4 @@ const mapDispatchToProps = {
     updateData
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Task);
+export default connect(mapStateToProps, mapDispatchToProps)(ViewTasks);

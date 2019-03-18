@@ -51,7 +51,6 @@ html {
     font-size: 2rem; 
     font-weight: bold;
     padding: 3rem 2rem 2rem 1rem; 
-    margin-left: 0;
     display: flex;
     flex-direction: column;
     -webkit-box-shadow: 3px 3px 5px 6px #ccc;  
@@ -102,6 +101,12 @@ html {
     box-shadow:         1px 1px 3px 4px #ccc;
 }
 
+.subTaskArr-container button {
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 1.5rem;
+}
+
 
 #subTasks div {
     max-width: 25rem;
@@ -113,32 +118,30 @@ html {
 }
 
 .taskEdit {
-    float: left;
-    height: 7rem;
-    width: 7rem;
     border-radius: 1rem;
     margin: 1rem;
+    padding: .5rem 0 .5rem 0;
 }
 
 .taskDelete {
-    float: right;
-    height: 7rem;
-    width: 7rem;
     border-radius: 1rem;
     margin: 1rem;
+    padding: .5rem 0 .5rem 0;
 }
 
 .add-subTask {
     display: inline;
     justify-content: center;
     align-items: center;
+    
 }
 
 .add-subTask-button{
-    height: 7rem;
+    height: 4rem;
     width: 10rem;
     border-radius: 1rem;
-    margin: 1rem;
+    margin: 1rem auto;
+    padding: .5rem 0 .5rem 0;
 }
 
 .subTask-complete-box{

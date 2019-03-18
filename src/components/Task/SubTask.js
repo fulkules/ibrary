@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { updateData } from '../../ducks/actions';
 import getAllUserData from '../../common/getUtils';
 import axios from 'axios';
-import './Task.css';
+// import './TaskCard.css';
 
 class SubTask extends Component {
     constructor(props) {

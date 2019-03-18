@@ -113,19 +113,15 @@ html {
 }
 
 .goalEdit {
-    float: left;
-    height: 7rem;
-    width: 7rem;
     border-radius: 1rem;
     margin: 1rem;
+    padding: 0.25rem 0 1.25rem 0;
 }
 
 .goalDelete {
-    float: right;
-    height: 7rem;
-    width: 7rem;
     border-radius: 1rem;
     margin: 1rem;
+    padding: 0.25rem 0 1.25rem 0;
 }
 
 .add-subGoal {
@@ -135,8 +131,8 @@ html {
 }
 
 .add-subGoal-button{
-    height: 7rem;
-    width: 7rem;
+    height: 4rem;
+    width: 10rem;
     border-radius: 1rem;
     margin: 1rem;
 }

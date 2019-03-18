@@ -5,7 +5,7 @@ import { updateUser, clearUser } from '../../ducks/actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import dateFns from 'date-fns';
-import Calendar from 'react-calendar-mobile';
+import Calendar from 'react-calendar';
 import {withRouter} from 'react-router-dom';
 
 
@@ -99,7 +99,7 @@ class CalendarHeader extends Component {
                     <button className="logout" onClick={this.logout}>Logout</button> <br/>
                     {this.renderHeader()}
                     {this.renderDays()}
-                    <button onClick={ this.toggle }>Full Calendar</button>
+                    <i className="fas fa-chevron-down" onClick={ this.toggle }></i>
                     {toggleView && this.renderCells()}
                 </div>
         
