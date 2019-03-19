@@ -13,7 +13,7 @@ class SubGoal extends Component {
             editing: false,
             goals: [],
             subGoals: [],
-            name: [],
+            name: this.props.subGoal.name,
             complete: false,
             input: ''
         }
@@ -96,16 +96,18 @@ class SubGoal extends Component {
         return (
             <React.Fragment>
                     {this.state.editing ?
-                        <React.Fragment>
+                        <div>
                             <input
                                 key={subGoal.id}
                                 value={this.state.name}
                                 onChange={(e) => this.handleNameInput(e)}
                                 maxLength="255"
                             />
-                            <button onClick={() => this.handleSave(this.props.subGoal.id)}>Save</button>
-                            <button onClick={this.handleCancel}>Cancel</button>
-                        </React.Fragment>
+                            <div>
+                                <button onClick={() => this.handleSave(this.props.subGoal.id)}>Save</button>
+                                <button onClick={this.handleCancel}>Cancel</button>
+                            </div>
+                        </div>
                         :
                         <div className="subGoal-container">
                             <input 
@@ -114,7 +116,6 @@ class SubGoal extends Component {
                                 key={subGoal.id} 
                                 value={this.state.complete} 
                                 onChange={() => { }} 
-                                style={{}}
                             />
                             {subGoal.name}<br />
                             <button className="editSubGoal-button" onClick={this.setEdit}>Edit</button>

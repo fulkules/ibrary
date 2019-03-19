@@ -7,6 +7,14 @@ import { updateData } from '../../ducks/actions';
 import SubTask from './SubTask';
 import './Task.css';
 
+function newDate(dateFromProps) {
+    if(dateFromProps){return dateFromProps}
+    let date = new Date()
+    let month = (parseInt(date.getMonth()) + 1) > 9 ? (parseInt(date.getMonth()) + 1) : '0' + (parseInt(date.getMonth()) + 1) 
+    let day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate()
+    date = date.getFullYear() + "-" + month + "-" + day
+    return date
+}
 
 class TaskCard extends Component {
     constructor(props) {
@@ -16,9 +24,9 @@ class TaskCard extends Component {
             editing: false,
             // tasks: [],
             // sub_task: [],
-            name: '',
+            name: this.props.name,
             time: '',
-            date: new Date(),
+            date: newDate(this.props.date),
             input: '',
             complete: false,
             subTaskName: '',

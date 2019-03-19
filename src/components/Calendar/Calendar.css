@@ -66,7 +66,7 @@ header {
 header #logo {
   font-size: 1.8rem;
   text-align: center;
-  color: var(--main-color);
+  color: var(#777);
   line-height: 1;
 }
 
@@ -141,8 +141,8 @@ main {
   font-size: 1.4rem;
   background-image:
     linear-gradient(
-      to top right, 
-      #00D6C1, #00B9BF
+      to top left, 
+      #00B9BF, #00D6C1
     );
 }
 .main button {

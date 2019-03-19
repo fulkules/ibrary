@@ -12,7 +12,7 @@ class SubTask extends Component {
             editing: false,
             tasks: [],
             subTasks: [],
-            name: [],
+            name: this.props.subTask.name,
             complete: false,
             input: ''
         }
@@ -102,8 +102,10 @@ class SubTask extends Component {
                             onChange={(e) => this.handleNameInput(e)}
                             maxLength="255"
                         />
-                        <button onClick={() => this.handleSave(this.props.subTask.id)}>Save</button>
-                        <button onClick={this.handleCancel}>Cancel</button>
+                        <div>
+                            <button onClick={() => this.handleSave(this.props.subTask.id)}>Save</button>
+                            <button onClick={this.handleCancel}>Cancel</button>
+                        </div>
                     </React.Fragment>
                     :
                     <div className="subTask-container">
