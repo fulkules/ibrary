@@ -1,4 +1,4 @@
-/*html {
+html {
     box-sizing: border-box;
 }
 
@@ -16,12 +16,9 @@
 
 
 .goal div {
-    min-width: 30rem;
+    min-width: 32rem;
     border-radius: 2rem;
-    margin: 2rem 0 0 0;
-    justify-content: space-evenly;
-    height: calc(100vh - 22rem);
-    padding:none;
+    margin: 1rem 0 0 -0.1rem;
 }
 
 .addGoal-input {
@@ -41,14 +38,14 @@
     height: 3rem;
     width: 7rem;
     border-radius: 1.5rem;
-}*/
+}
 
 /* Decorations */
-/*.col-xs-4 { 
+.col-xs-4 { 
     color: #222; 
     font-size: 2rem; 
     font-weight: bold;
-    padding: 3rem 2rem 2rem 1rem; 
+    padding: 2rem 0 0 0; 
     display: flex;
     flex-direction: column;
     -webkit-box-shadow: 3px 3px 5px 6px #ccc;  
@@ -56,81 +53,70 @@
     box-shadow:         1px 1px 3px 4px #ccc;
 }
 
-.col-xs-4:nth-child(3n+1) { background: #DBF6F4; margin-left: 2rem; }
-.col-xs-4:nth-child(3n+2) { background: #BDFBFE; margin-left: 2rem; }
-.col-xs-4:nth-child(3n+3) { background: #FFEEBA; margin-left: 2rem; } 
+.col-xs-4:nth-child(3n+1) { background: #E0FFFF; margin-left: 2rem; }
+.col-xs-4:nth-child(3n+2) { background: #E4F1FE; margin-left: 2rem; }
+.col-xs-4:nth-child(3n+3) { background: #FFF0E7; margin-left: 2rem; } 
 
-#subList {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width:90%;
-    overflow-y: scroll;
-    flex-wrap: no-wrap;
-    margin-left:-1rem;
-    margin-top:2rem;
-}
-
-#subList p {
-
+.wrapper {
+    width: 32rem;
+    height: calc(100vh - 26rem);
+    border-radius: 2rem;
 }
 
 .subGoal-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
+    background: #FFE4E5;
+    border-radius: 2rem;
+    padding: 1rem;
+    -webkit-box-shadow: 1px 1px 3px 4px #ccc;  /*Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+*/
+    -moz-box-shadow:    1px 1px 2px 3px #ccc;  /*Firefox 3.5 - 3.6*/
+    box-shadow:         1px 1px 2px 3px #ccc;
 }
 
 .subGoalArr-container {
-    background: #FFE4E5;
-    max-height: 12rem;
-    border-radius: 2rem;
-    padding: 2rem;
-    margin-bottom: 20px;
-    -webkit-box-shadow: 3px 3px 5px 6px #ccc; */ /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-    /*-moz-box-shadow:    1px 1px 3px 4px #ccc;  /* Firefox 3.5 - 3.6 */
-   /* box-shadow:         1px 1px 3px 4px #ccc;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 100%;
 }
 
-
-#subGoals div {
-    max-width: 25rem;
-    border-radius: 2rem;
-    margin: auto;
-    margin-left: 2rem;
-    align-items: center;
-    font-weight: bold;
+.subGoalArr-container button {
+    display: inline;
+    width: 6rem;
+    margin: 0 1rem;
+    padding: 0.5rem;
+    border-radius: 1.5rem;
 }
 
 .goalEdit {
+    width: 10rem;
     border-radius: 1rem;
     margin: 1rem;
-    padding: 0.25rem 0 1.25rem 0;
+    padding: .5rem;
 }
 
 .goalDelete {
+    width: 10rem;
     border-radius: 1rem;
     margin: 1rem;
-    padding: 0.25rem 0 1.25rem 0;
+    padding: .5rem;
 }
 
 .add-subGoal {
     display: inline;
     justify-content: center;
     align-items: center;
+    margin: 0 1rem;
 }
 
 .add-subGoal-button{
-    height: 4rem;
     width: 10rem;
     border-radius: 1rem;
-    margin: 1rem;
+    margin: 1rem auto;
+    padding: .5rem 1rem 1rem 1rem;
 }
 
 .subGoal-complete-box{
-    margin-right: 1rem;
+    margin: 0 1rem;
 }
 
 .subGoal-complete {
@@ -138,4 +124,4 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-}*/
+}

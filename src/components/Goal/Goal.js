@@ -4,8 +4,8 @@ import axios from 'axios';
 import { updateData } from '../../ducks/actions';
 import getAllUserData from '../../common/getUtils';
 import CalendarHeader from '../Calendar/Calendar';
-import SubGoal from './SubGoal';
 import './Goal.css';
+import GoalCard from './GoalCard';
 
 
 class Goal extends Component {
@@ -33,6 +33,7 @@ class Goal extends Component {
         name[i] = e.target.value
         this.setState({ name })
     }
+
     handleDateInput(e, i) {
         let date = this.state.date
         date[i] = e.target.value
@@ -128,39 +129,7 @@ class Goal extends Component {
         }
     }
 
-    addSubGoal = async (id) => {
-        // const {name, date} = this.props.goals;
-        // console.log(this.props.goals)
-        const { subGoalName, complete } = this.state;
-        // const { id } = this.props.goals[i];
-        // console.log(id) 
-        try {
-            let allSubGoals = await axios.post('/api/s_goal', { name: subGoalName, complete, g_id: id });
-            allSubGoals = allSubGoals.data
-            this.props.updateData({
-                goals: this.props.goals,
-                subGoals: allSubGoals,
-                tasks: this.props.tasks,
-                subTasks: this.props.subTasks
-            })
-            // this.props.subGoals()
-            this.setState({ 
-                editing: false,
-                goals: [],
-                sub_goal: [],
-                name: [],
-                date: [],
-                input: '',
-                complete: false,
-                goalDate: '',
-                subGoalName: ''
-             })
-            const allUserData = await getAllUserData()
-            this.props.updateData(allUserData)
-        } catch (err) {
-            console.log(err)
-        }
-    }
+
 
     render() {
         // console.log(this.props)
@@ -173,89 +142,45 @@ class Goal extends Component {
             }
 
             // console.log(goal.sub_goal)  
-            let mappedSubGoals;
-            if (goal.sub_goal) {
-                // console.log(this.props)
-                mappedSubGoals = goal.sub_goal.map((subGoal, i) => {
-                    return (
-                        <div key={i}>
-                            <SubGoal
-                                subGoal={subGoal}
-                                key={i}
-                            />
-                        </div>
-
-                    )
-                })
-            }
-
-            const { id, name, date } = goal;
-            // console.log(goal)
             return (
-                <React.Fragment key={id}>
-                    {this.state.editing ?
-                        <div className="col-xs-4">
-                            <input
-                                key={id}
-                                value={this.state.name[i]}
-                                onChange={(e) => this.handleNameInput(e, i)}
-                                type="text"
-                            />
-                            <input
-                                key={goal[i]}
-                                value={this.state.date[i]}
-                                onChange={(e) => this.handleDateInput(e, i)}
-                                type="date"
-                            />
-                            <button onClick={() => this.handleSave(id, i)}>Save</button>
-                            <button onClick={this.handleCancel}>Cancel</button>
-                        </div>
-                        :
-                        <div className="col-xs-4">
-                            {name}<br />
-                            {date}<br />
-                            <button className="goalEdit" onClick={this.setEdit}>Edit</button>
-                            <button className="goalDelete" onClick={() => this.handleDelete(id)}>Delete</button><br />
-                            <input
-                                className="add-subGoal"
-                                key={id.toString()}
-                                placeholder="Add a step to your goal"
-                                value={this.state.subGoalName}
-                                onChange={e => this.handleInput('subGoalName', e.target.value)}
-                                type="text"
-                            />
-                            <button className="add-subGoal-button" onClick={() => this.addSubGoal(id)}>Add</button>
-                            <div id="subList">{mappedSubGoals}</div>
-                        </div>
-                    }
+                <React.Fragment key={goal.id}>
+                    <GoalCard 
+                        id={goal.id}
+                        name={goal.name}
+                        SubGoal={goal.sub_goal}
+                        time={goal.time}
+                        date={goal.date}
+                    />
                 </React.Fragment>
             )
         })
-
+            // console.log(goal)
         return (
-            <>
+            <React.Fragment>
                 <CalendarHeader />
                 <input
                     value={this.state.input}
                     onChange={e => this.handleInput('input', e.target.value)}
-                    placeholder="Add new Goal"
-                    className="addGoal-input"
+                    placeholder="Add new Task"
+                    className="addTask-input"
                     type="text"
+                    maxLength="255"
                 />
                 <input
-                    type="date"
-                    value={this.state.goalDate}
-                    onChange={e => this.handleInput('goalDate', e.target.value)}
-                    placeholder="Goal Deadline"
-                    className="addDate-input"
+                    type="time"
+                    value={this.state.taskTime}
+                    onChange={e => this.handleInput('taskTime', e.target.value)}
+                    placeholder="Task Time"
+                    className="addTime-input"
                 />
-                <button className="addGoal-button" onClick={this.addGoal}>Add Goal</button>
-                <div className="goal">{goalArr}</div>
-            </>
-
+                <button className="addTask-button" onClick={this.addTask}>Add Task</button>
+                <div className="task">{goalArr}</div>
+            </React.Fragment>
         );
     }
 }
+
+
 
 const mapStateToProps = (reduxState) => {
     return {

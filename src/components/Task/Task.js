@@ -5,7 +5,6 @@ import { updateData } from '../../ducks/actions';
 import getAllUserData from '../../common/getUtils';
 import './Task.css';
 import CalendarHeader from '../Calendar/Calendar';
-import SubTask from './SubTask';
 import TaskCard from './TaskCard';
 
 
@@ -145,6 +144,7 @@ class Task extends Component {
                 </React.Fragment>
             )
         })
+
         return (
             <React.Fragment>
                 <CalendarHeader />
@@ -164,7 +164,6 @@ class Task extends Component {
                     className="addTime-input"
                 />
                 <button className="addTask-button" onClick={this.addTask}>Add Task</button>
-                {/* <div className="task">{taskArr}</div> */}
                 <div className="task">{taskArr}</div>
             </React.Fragment>
         );
