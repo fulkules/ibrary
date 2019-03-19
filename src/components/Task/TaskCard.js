@@ -90,8 +90,27 @@ class TaskCard extends Component {
         }
     }
 
+    addSubTask = async (id) => {
+        const { subTaskName, complete } = this.state;
+        try {
+            let allSubTasks = await axios.post('/api/s_task', { name: subTaskName, complete, t_id: id });
+            allSubTasks = allSubTasks.data
+            this.props.updateData({
+                goals: this.props.goals,
+                subGoals: this.props.subGoals,
+                tasks: this.props.tasks,
+                subTasks: allSubTasks
+            })
+            this.setState({ subTaskName: '', complete: false })
+            const allUserData = await getAllUserData()
+            this.props.updateData(allUserData)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     render() {
-        // console.log(this.props)
+        console.log(this.props)
         let mappedSubTasks;
         if(this.props.SubTask){
             mappedSubTasks = this.props.SubTask.map((subTask, i) => {
@@ -114,7 +133,7 @@ class TaskCard extends Component {
                         <div className="col-xs-4 wrapper">
                             <input
                                 // key={this.props.id}
-                                value={this.props.name}
+                                value={this.state.name}
                                 onChange={(e) => this.handleNameInput(e)}
                                 type="text"
                                 maxLength="255"
@@ -122,7 +141,7 @@ class TaskCard extends Component {
                             <input
                                 // key={this.props.id}
                                 type="time"
-                                value={this.props.time}
+                                value={this.state.time}
                                 onChange={(e) => this.handleTimeInput(e)}
                             />
                             <button onClick={() => this.handleSave(this.props.id)}>Save</button>
