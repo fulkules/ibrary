@@ -98,11 +98,11 @@ class TaskCard extends Component {
                 const {task} = this.props;
                 // console.log(subTask)
                 return (
-                    <div key={subTask.id}>
+                    <React.Fragment key={subTask.id}>
                         <SubTask
                             subTask={subTask}
                         />
-                    </div>
+                    </React.Fragment>
                 )
             })
         }
@@ -111,12 +111,13 @@ class TaskCard extends Component {
             <React.Fragment>
                 {
                     this.state.editing ?
-                        <div className="col-xs-4">
+                        <div className="col-xs-4 wrapper">
                             <input
                                 // key={this.props.id}
                                 value={this.props.name}
                                 onChange={(e) => this.handleNameInput(e)}
                                 type="text"
+                                maxLength="255"
                             />
                             <input
                                 // key={this.props.id}
@@ -128,7 +129,7 @@ class TaskCard extends Component {
                             <button onClick={this.handleCancel}>Cancel</button>
                         </div>
                         :
-                        <div className="col-xs-4">
+                        <div className="col-xs-4 wrapper">
                             <input
                                 className="subTask-complete-box"
                                 type="checkbox"
@@ -147,9 +148,10 @@ class TaskCard extends Component {
                                 value={this.state.subTaskName}
                                 onChange={e => this.handleInput('subTaskName', e.target.value)}
                                 type="text"
+                                maxLength="255"
                             />
                             <button className="add-subTask-button" onClick={() => this.addSubTask(this.props.id)}>Add</button>
-                            {mappedSubTasks}
+                            <div className="subTaskArr-container">{mappedSubTasks}</div>
                         </div>
                 }
             </React.Fragment >

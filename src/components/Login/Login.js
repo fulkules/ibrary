@@ -84,15 +84,17 @@ class Login extends Component {
                     value={username}
                     onChange={ e => this.handleChange('username', e.target.value) }
                     placeholder="username"
+                    maxLength="100"
                 />
                 <input 
                     type='password'
                     value={password}
                     onChange={ e => this.handleChange('password', e.target.value) }
                     placeholder="password"
+                    maxLength="100"
                 />
                 <button className="login-button" onClick={ this.login }>Login</button>
-                <button onClick={ this.register }>Register</button>
+                <button className="register-button" onClick={ this.register }>Register</button>
             </div>
         );
     }

@@ -173,6 +173,7 @@ class Task extends Component {
                     placeholder="Add new Task"
                     className="addTask-input"
                     type="text"
+                    maxLength="255"
                 />
                 <input
                     type="time"
@@ -183,7 +184,7 @@ class Task extends Component {
                 />
                 <button className="addTask-button" onClick={this.addTask}>Add Task</button>
                 {/* <div className="task">{taskArr}</div> */}
-                {taskArr}
+                <div className="task">{taskArr}</div>
             </React.Fragment>
         );
     }
