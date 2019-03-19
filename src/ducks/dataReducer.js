@@ -32,7 +32,7 @@ export default function reducer(state = initialState, action){
                 goals: payload.goals, 
                 subTasks: payload.subTasks,
                 subGoals: payload.subGoals,
-                updated: state.updated -- 
+                updated: state.updated ++ 
             }
         case UPDATE_DATA:
             return { 
@@ -50,7 +50,7 @@ export default function reducer(state = initialState, action){
                 goals: payload.goals, 
                 subTasks: payload.subTasks,
                 subGoals: payload.subGoals,
-                updated: state.updated --
+                updated: state.updated ++
             }
         default:
             return state;

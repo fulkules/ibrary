@@ -7,6 +7,14 @@ import { updateData } from '../../ducks/actions';
 import SubGoal from './SubGoal';
 import './Goal.css';
 
+function newDate(dateFromProps) {
+    if(dateFromProps){return dateFromProps}
+    let date = new Date()
+    let month = (parseInt(date.getMonth()) + 1) > 9 ? (parseInt(date.getMonth()) + 1) : '0' + (parseInt(date.getMonth()) + 1) 
+    let day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate()
+    date = date.getFullYear() + "-" + month + "-" + day
+    return date
+}
 
 class GoalCard extends Component {
     constructor(props) {
@@ -14,8 +22,8 @@ class GoalCard extends Component {
 
         this.state = {
             editing: false,
-            name: '',
-            date: new Date(),
+            name: this.props.name,
+            date: newDate(this.props.date),
             input: '',
             complete: false,
             subGoalName: '',
@@ -131,7 +139,7 @@ class GoalCard extends Component {
                             <input
                                 // key={this.props.id}
                                 type="date"
-                                value={this.state.time}
+                                value={this.state.date}
                                 onChange={(e) => this.handleInput('date', e.target.value)}
                             />
                             <button onClick={() => this.handleSave(this.props.id)}>Save</button>

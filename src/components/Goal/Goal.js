@@ -81,17 +81,7 @@ class Goal extends Component {
                 tasks: this.props.tasks,
                 subTasks: this.props.subTasks
             })
-            this.setState({
-                editing: false,
-                goals: [],
-                sub_goal: [],
-                name: [],
-                date: [],
-                input: '',
-                complete: false,
-                goalDate: '',
-                subGoalName: ''
-            })
+            this.setState({ editing: false })
             const allUserData = await getAllUserData()
             this.props.updateData(allUserData)
         } catch (err) {
@@ -111,19 +101,9 @@ class Goal extends Component {
                 tasks: this.props.tasks,
                 subTasks: this.props.subTasks
             })
-            this.setState({ 
-                editing: false,
-                goals: [],
-                sub_goal: [],
-                name: [],
-                date: [],
-                input: '',
-                complete: false,
-                goalDate: '',
-                subGoalName: '' 
-            })
+            this.setState({ input: '', goalDate: '' })
             const allUserData = await getAllUserData()
-            this.props.setUserData(allUserData)
+            this.props.updateData(allUserData)
         } catch (err) {
             console.log(err)
         }
@@ -161,20 +141,20 @@ class Goal extends Component {
                 <input
                     value={this.state.input}
                     onChange={e => this.handleInput('input', e.target.value)}
-                    placeholder="Add new Task"
-                    className="addTask-input"
+                    placeholder="Add new Goal"
+                    className="addGoal-input"
                     type="text"
                     maxLength="255"
                 />
                 <input
-                    type="time"
-                    value={this.state.taskTime}
-                    onChange={e => this.handleInput('taskTime', e.target.value)}
-                    placeholder="Task Time"
-                    className="addTime-input"
+                    type="date"
+                    value={this.state.goalDate}
+                    onChange={e => this.handleInput('goalDate', e.target.value)}
+                    placeholder="Goal Date"
+                    className="addDate-input"
                 />
-                <button className="addTask-button" onClick={this.addTask}>Add Task</button>
-                <div className="task">{goalArr}</div>
+                <button className="addGoal-button" onClick={ this.addGoal }>Add Goal</button>
+                <div className="goal">{goalArr}</div>
             </React.Fragment>
         );
     }

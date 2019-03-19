@@ -79,6 +79,7 @@ class Login extends Component {
             <div className="Login">
                 <h1>iBrary</h1>
                 <p>An app for positive thinking and task/goal management.</p>
+                <p>Disclaimer: by using this site you consent to the use of cookies.</p>
                 <h2>Login or Register Below</h2>
                 <input 
                     value={username}
