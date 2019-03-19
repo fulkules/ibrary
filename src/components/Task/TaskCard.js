@@ -14,10 +14,10 @@ class TaskCard extends Component {
 
         this.state = {
             editing: false,
-            tasks: [],
-            sub_task: [],
-            name: [],
-            time: [],
+            // tasks: [],
+            // sub_task: [],
+            name: '',
+            time: '',
             date: new Date(),
             input: '',
             complete: false,
@@ -30,16 +30,6 @@ class TaskCard extends Component {
         this.setState({ [props]: val })
     }
 
-    handleNameInput(e, i) {
-        let name = this.state.name
-        name[i] = e.target.value
-        this.setState({ name })
-    }
-    handleTimeInput(e, i) {
-        let time = this.state.time
-        time[i] = e.target.value
-        this.setState({ time })
-    }
 
     setEdit = () => {
         this.setState({ editing: true })
@@ -71,10 +61,10 @@ class TaskCard extends Component {
 
     }
 
-    handleSave = async (id, i) => {
+    handleSave = async (id) => {
         const { name, time } = this.state;
         try {
-            let allTasks = await axios.put(`/api/task/${id}`, { name: name[i], time: time[i] });
+            let allTasks = await axios.put(`/api/task/${id}`, { name: name, time: time });
             allTasks = allTasks.data
             this.props.updateData({
                 goals: this.props.goals,
@@ -82,7 +72,10 @@ class TaskCard extends Component {
                 tasks: allTasks, subTasks:
                     this.props.subTasks
             })
-            this.setState({ editing: false })
+            this.setState({ 
+                editing: false,
+
+            })
             const allUserData = await getAllUserData()
             this.props.updateData(allUserData)
         } catch (err) {
@@ -110,7 +103,7 @@ class TaskCard extends Component {
     }
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         let mappedSubTasks;
         if(this.props.SubTask){
             mappedSubTasks = this.props.SubTask.map((subTask, i) => {
@@ -134,7 +127,7 @@ class TaskCard extends Component {
                             <input
                                 // key={this.props.id}
                                 value={this.state.name}
-                                onChange={(e) => this.handleNameInput(e)}
+                                onChange={(e) => this.handleInput('name', e.target.value)}
                                 type="text"
                                 maxLength="255"
                             />
@@ -142,7 +135,7 @@ class TaskCard extends Component {
                                 // key={this.props.id}
                                 type="time"
                                 value={this.state.time}
-                                onChange={(e) => this.handleTimeInput(e)}
+                                onChange={(e) => this.handleInput('time', e.target.value)}
                             />
                             <button onClick={() => this.handleSave(this.props.id)}>Save</button>
                             <button onClick={this.handleCancel}>Cancel</button>

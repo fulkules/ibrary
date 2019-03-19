@@ -115,25 +115,6 @@ class Task extends Component {
 
     setDate = date => this.setState({ date })
 
-    addSubTask = async (id) => {
-        const { subTaskName, complete } = this.state;
-        try {
-            let allSubTasks = await axios.post('/api/s_task', { name: subTaskName, complete, t_id: id });
-            allSubTasks = allSubTasks.data
-            this.props.updateData({
-                goals: this.props.goals,
-                subGoals: this.props.subGoals,
-                tasks: this.props.tasks,
-                subTasks: allSubTasks
-            })
-            this.setState({ subTaskName: '', complete: false })
-            const allUserData = await getAllUserData()
-            this.props.updateData(allUserData)
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
     toggleComplete = (id) => {
         const { complete } = this.state;
         this.setState({ complete: !complete })
@@ -142,7 +123,7 @@ class Task extends Component {
 
     render() {
         const { tasks } = this.props;
-        console.log(this.props)
+        // console.log(this.props)
         let taskArr = tasks.map((task, i) => {
             if (this.state.name[i] === undefined) {
                 this.state.name[i] = task.name
