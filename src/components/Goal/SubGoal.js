@@ -94,13 +94,13 @@ class SubGoal extends Component {
         // console.log(this.props.subGoal)
         return (
             <React.Fragment className="subGoal-container">
+                <React.Fragment>
                     {this.state.editing ?
                         <React.Fragment>
                             <input
                                 key={subGoal.id}
                                 value={this.state.name}
                                 onChange={(e) => this.handleNameInput(e)}
-                                maxLength="255"
                             />
                             <button onClick={() => this.handleSave(this.props.subGoal.id)}>Save</button>
                             <button onClick={this.handleCancel}>Cancel</button>
@@ -108,20 +108,14 @@ class SubGoal extends Component {
                         :
                         <React.Fragment>
                             <div className="subGoalArr-container">
-                                <input 
-                                    className="subGoal-complete-box" 
-                                    type="checkbox" 
-                                    key={subGoal.id} 
-                                    value={this.state.complete} 
-                                    onChange={() => { }} 
-                                    style={{}}
-                                />
+                                <input className="subGoal-complete-box" type="checkbox" key={subGoal.id} value={this.state.complete} onChange={() => { }} />
                                 {subGoal.name}<br />
                                 <button className="editSubGoal-button" onClick={this.setEdit}>Edit</button>
                                 <button className="editSubGoal-button" onClick={() => this.handleDelete(subGoal.id)}>Delete</button>
                             </div>
                         </React.Fragment>
                     }
+                </React.Fragment>
                 {/* <p>{subGoal.name}</p> */}
             </React.Fragment>
         );

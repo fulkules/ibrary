@@ -41,15 +41,3 @@
     border-radius: 2rem;
 }
 
-.register-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem;
-    height: 3rem;
-    width: 10rem;
-    border-radius: 2rem;
-}
-
-
