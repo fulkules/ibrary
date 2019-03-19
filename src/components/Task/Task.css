@@ -66,7 +66,6 @@ html {
     width: 32rem;
     height: calc(100vh - 26rem);
     border-radius: 2rem;
-    /* overflow-x: scroll; */
 
 }
 
@@ -116,7 +115,6 @@ html {
 }
 
 .add-subTask-button{
-    /* height: 4rem; */
     width: 10rem;
     border-radius: 1rem;
     margin: 1rem auto;

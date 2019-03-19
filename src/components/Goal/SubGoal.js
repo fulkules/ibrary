@@ -28,6 +28,7 @@ class SubGoal extends Component {
         name = e.target.value
         this.setState({ name })
     }
+
     handleBoxInput(e) {
         let complete = this.state.complete;
         complete = e.target.value
@@ -93,7 +94,7 @@ class SubGoal extends Component {
         const { subGoal } = this.props;
         // console.log(this.props.subGoal)
         return (
-            <React.Fragment className="subGoal-container">
+            <React.Fragment>
                     {this.state.editing ?
                         <React.Fragment>
                             <input
@@ -106,23 +107,20 @@ class SubGoal extends Component {
                             <button onClick={this.handleCancel}>Cancel</button>
                         </React.Fragment>
                         :
-                        <React.Fragment>
-                            <div className="subGoalArr-container">
-                                <input 
-                                    className="subGoal-complete-box" 
-                                    type="checkbox" 
-                                    key={subGoal.id} 
-                                    value={this.state.complete} 
-                                    onChange={() => { }} 
-                                    style={{}}
-                                />
-                                {subGoal.name}<br />
-                                <button className="editSubGoal-button" onClick={this.setEdit}>Edit</button>
-                                <button className="editSubGoal-button" onClick={() => this.handleDelete(subGoal.id)}>Delete</button>
-                            </div>
-                        </React.Fragment>
+                        <div className="subGoal-container">
+                            <input 
+                                className="subGoal-complete-box" 
+                                type="checkbox" 
+                                key={subGoal.id} 
+                                value={this.state.complete} 
+                                onChange={() => { }} 
+                                style={{}}
+                            />
+                            {subGoal.name}<br />
+                            <button className="editSubGoal-button" onClick={this.setEdit}>Edit</button>
+                            <button className="editSubGoal-button" onClick={() => this.handleDelete(subGoal.id)}>Delete</button>
+                        </div>
                     }
-                {/* <p>{subGoal.name}</p> */}
             </React.Fragment>
         );
     }
