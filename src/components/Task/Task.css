@@ -58,8 +58,8 @@ html {
     box-shadow:         1px 1px 3px 4px #ccc;
 }
 
-.col-xs-4:nth-child(3n+1) { background: #DBF6F4; margin-left: 2rem; }
-.col-xs-4:nth-child(3n+2) { background: #00D3C2; margin-left: 2rem; }
+.col-xs-4:nth-child(3n+1) { background: #E0FFFF; margin-left: 2rem; }
+.col-xs-4:nth-child(3n+2) { background: #E4F1FE; margin-left: 2rem; }
 .col-xs-4:nth-child(3n+3) { background: #FFF0E7; margin-left: 2rem; } 
 
 .wrapper {
@@ -67,27 +67,6 @@ html {
     height: calc(100vh - 26rem);
     border-radius: 2rem;
     /* overflow-x: scroll; */
-
-}
-
-#subList {
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* max-height: 80%; */
-    /* width:90%; */
-    /* overflow-x: hidden; */
-    /* margin: 1rem 0 0 -3rem; */
-    /* flex-wrap: no-wrap; */
-    /* background:white; */
-    /* margin-left:-1rem; */
-    /* margin-top:2rem; */
-    /* padding: */
-}
-
-#subList p {
-    /* background: red; */
 
 }
 
@@ -101,49 +80,29 @@ html {
 }
 
 .subTaskArr-container {
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center; */
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-
-    /* justify-content: flex-start; */
-    /* align-items: center; */
-    /* align-content: center; */
-    margin: 0 0 0 -1rem;
-    /* overflow-y: scroll; */
-
+    height: 100%;
 }
 
 .subTaskArr-container button {
     display: inline;
-    /* flex-direction: row;
-    justify-content: center;
-    align-items: center; */
+    width: 6rem;
     margin: 0 1rem;
     padding: 0.5rem;
     border-radius: 1.5rem;
 }
 
-
-/* #subTasks div {
-    max-width: 25rem;
-    border-radius: 2rem;
-    margin: auto;
-    margin-left: 2rem;
-    align-items: center;
-    font-weight: bold;
-} */
-
 .taskEdit {
+    width: 10rem;
     border-radius: 1rem;
     margin: 1rem;
     padding: .5rem;
 }
 
 .taskDelete {
+    width: 10rem;
     border-radius: 1rem;
     margin: 1rem;
     padding: .5rem;
@@ -157,11 +116,11 @@ html {
 }
 
 .add-subTask-button{
-    height: 4rem;
+    /* height: 4rem; */
     width: 10rem;
     border-radius: 1rem;
     margin: 1rem auto;
-    padding: .5rem 0 .5rem 0;
+    padding: .5rem 1rem 1rem 1rem;
 }
 
 .subTask-complete-box{
