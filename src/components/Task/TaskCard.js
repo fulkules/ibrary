@@ -151,8 +151,10 @@ class TaskCard extends Component {
                             />
                             {this.props.name}<br />
                             {this.props.time}<br />
-                            <button className="taskEdit" onClick={this.setEdit}>Edit</button>
-                            <button className="taskDelete" onClick={() => this.handleDelete(this.props.id)}>Delete</button><br />
+                            <div>
+                                <button className="taskEdit" onClick={this.setEdit}>Edit</button>
+                                <button className="taskDelete" onClick={() => this.handleDelete(this.props.id)}>Delete</button><br />
+                            </div>
                             <input
                                 className="add-subTask"
                                 // key={this.props.id.toString()}
