@@ -94,29 +94,32 @@ class SubTask extends Component {
         const { subTask } = this.props;
         // console.log(this.props.subGoal)
         return (
-            <React.Fragment className="subTask-container">
-               
-                    {this.state.editing ?
-                        <React.Fragment>
-                            <input
-                                key={subTask.id}
-                                value={this.state.name}
-                                onChange={(e) => this.handleNameInput(e)}
-                            />
-                            <button onClick={() => this.handleSave(this.props.subTask.id)}>Save</button>
-                            <button onClick={this.handleCancel}>Cancel</button>
-                        </React.Fragment>
-                        :
-                        <React.Fragment>
-                            <div className="subTaskArr-container">
-                                <input className="subTask-complete-box" type="checkbox" key={subTask.id} value={this.state.complete} onChange={() => { }} />
-                                {subTask.name}<br />
-                                <button onClick={this.setEdit}>Edit</button>
-                                <button onClick={() => this.handleDelete(subTask.id)}>Delete</button>
-                            </div>
-                        </React.Fragment>
-                    }
-                
+            <React.Fragment>
+                {this.state.editing ?
+                    <React.Fragment>
+                        <input
+                            key={subTask.id}
+                            value={this.state.name}
+                            onChange={(e) => this.handleNameInput(e)}
+                            maxLength="255"
+                        />
+                        <button onClick={() => this.handleSave(this.props.subTask.id)}>Save</button>
+                        <button onClick={this.handleCancel}>Cancel</button>
+                    </React.Fragment>
+                    :
+                    <div className="subTask-container">
+                        <input 
+                            className="subTask-complete-box" 
+                            type="checkbox" 
+                            key={subTask.id} 
+                            value={this.state.complete} 
+                            onChange={() => { }} 
+                        />
+                        {subTask.name}<br/>
+                        <button onClick={this.setEdit}>Edit</button>
+                        <button onClick={() => this.handleDelete(subTask.id)}>Delete</button>
+                    </div>
+                }
             </React.Fragment>
         );
     }
