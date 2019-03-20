@@ -103,7 +103,7 @@ class Login extends Component {
 
 const mapStateToProps = (reduxState) => {
     return {
-        id: reduxState.id
+        id: reduxState.auth.id
     }
 }
 

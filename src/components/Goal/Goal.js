@@ -6,6 +6,7 @@ import getAllUserData from '../../common/getUtils';
 import CalendarHeader from '../Calendar/Calendar';
 import './Goal.css';
 import GoalCard from './GoalCard';
+import {Redirect} from 'react-router-dom';
 
 
 class Goal extends Component {
@@ -47,6 +48,24 @@ class Goal extends Component {
     handleCancel = () => {
         this.setState({ editing: false })
     }
+
+    // componentDidMount(){
+    //     this.checkUser();
+    // }
+
+    // checkUser = async () => {
+    //     const { id } = this.props;
+    //     if (!id){
+    //         try {
+    //             let res = await axios.get('/api/current');
+    //             this.props.updateUser(res.data);
+    //         } catch(err) {
+    //             console.log(err)
+    //         }
+    //     } else {
+    //         this.props.history.push('/');
+    //     }
+    // }
 
     handleDelete = async (id, i) => {
         const { name, date } = this.state
@@ -112,6 +131,10 @@ class Goal extends Component {
 
 
     render() {
+        const {id} = this.props;
+        if(!id){
+           return <Redirect to="/" />
+        }
         // console.log(this.props)
         const { goals } = this.props;
         // console.log(goals)
@@ -168,7 +191,8 @@ const mapStateToProps = (reduxState) => {
         subGoals: reduxState.data.subGoals,
         tasks: reduxState.data.tasks,
         subTasks: reduxState.data.subTasks,
-        update: reduxState.data.subTasks
+        update: reduxState.data.subTasks,
+        id: reduxState.auth.id
     }
 }
 

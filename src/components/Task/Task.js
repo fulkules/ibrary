@@ -6,6 +6,8 @@ import getAllUserData from '../../common/getUtils';
 import './Task.css';
 import CalendarHeader from '../Calendar/Calendar';
 import TaskCard from './TaskCard';
+import {Redirect} from 'react-router-dom';
+
 
 
 class Task extends Component {
@@ -47,6 +49,26 @@ class Task extends Component {
     handleCancel = () => {
         this.setState({ editing: false })
     }
+
+    componentDidMount() {
+        this.setDate();
+        // this.checkUser();
+        // console.log(this.state.date)
+    }
+
+    // checkUser = async () => {
+    //     const { id } = this.props;
+    //     if (!id){
+    //         try {
+    //             let res = await axios.get('/api/current');
+    //             this.props.updateUser(res.data);
+    //         } catch(err) {
+    //             console.log(err)
+    //         }
+    //     } else {
+    //         this.props.history.push('/');
+    //     }
+    // }
 
     handleDelete = async (id, i) => {
         const { name, time } = this.state
@@ -107,11 +129,6 @@ class Task extends Component {
         }
     }
 
-    componentDidMount() {
-        this.setDate();
-        // console.log(this.state.date)
-    }
-
     setDate = date => this.setState({ date })
 
     toggleComplete = (id) => {
@@ -121,6 +138,10 @@ class Task extends Component {
     }
 
     render() {
+        const {id} = this.props;
+        if(!id){
+           return <Redirect to="/" />
+        }
         const { tasks } = this.props;
         // console.log(this.props)
         let taskArr = tasks.map((task, i) => {
@@ -176,7 +197,8 @@ const mapStateToProps = (reduxState) => {
         subGoals: reduxState.data.subGoals,
         tasks: reduxState.data.tasks,
         subTasks: reduxState.data.subTasks,
-        update: reduxState.data.subTasks
+        update: reduxState.data.subTasks,
+        id: reduxState.auth.id
     }
 }
 

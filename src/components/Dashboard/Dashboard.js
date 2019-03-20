@@ -4,8 +4,9 @@ import Header from '../Header/Header';
 import TaskList from './taskList/TaskList';
 import GoalList from './goalList/GoalList';
 import {updateUser} from '../../ducks/actions';
+import {Redirect} from 'react-router-dom';
 import './Dashboard.css';
-import Quote from '../Quote/Quote';
+import Quote from './Quote/Quote';
 import axios from 'axios';
 
 
@@ -18,8 +19,30 @@ class Dashboard extends Component {
         }
     }
 
+    // componentDidMount(){
+    //     this.checkUser();
+    // }
+
+    // checkUser = async () => {
+    //     const { id } = this.props;
+    //     if (!id){
+    //         try {
+    //             let res = await axios.get('/api/current');
+    //             this.props.updateUser(res.data);
+    //         } catch(err) {
+    //             console.log(err)
+    //         }
+    //     } else {
+    //         this.props.history.push('/');
+    //     }
+    // }
+
     render() {
-        // console.log(this.props)
+        console.log(this.props.id)
+        const {id} = this.props;
+        if(!id){
+           return <Redirect to="/" />
+        }
         return (
             <div className="Dashboard">
                 <Header />
@@ -34,7 +57,10 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (reduxState) => {
-    return reduxState
+
+    return {
+        id: reduxState.auth.id
+    }
 }
 
-export default connect (mapStateToProps)(Dashboard);
+export default connect (mapStateToProps, {updateUser})(Dashboard);
