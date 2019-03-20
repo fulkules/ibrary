@@ -123,11 +123,11 @@ main {
 
 /* Calendar */
 
-.calendar {
+.react-calendar {
   width: 100vw;
   overflow: hidden;
   position: fixed;
-  background: #999;
+  background: #777;
   transition: height 0.7s;
   z-index: 1;
 }

@@ -32,8 +32,8 @@ FAN_ANGLE = (NUM_CHILDREN - 1) * SEPARATION_ANGLE,
 BASE_ANGLE = (-90 - FAN_ANGLE) / 2; // degrees
 
 // Names of icons for each button retreived from fontAwesome
-var childButtonIcons = ['bolt', 'image', 'bell', 'tasks', 'home'];
-let buttonRoutes = ['/excite', '/vision', '/task', '/goal', '/dashboard']
+var childButtonIcons = ['bolt', 'image', 'tasks', 'bell', 'home'];
+let buttonRoutes = ['/excite', '/vision', '/goal', '/task', '/dashboard']
 
 
 // Utility functions
