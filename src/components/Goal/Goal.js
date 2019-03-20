@@ -113,13 +113,15 @@ class Goal extends Component {
         const { input, goalDate } = this.state;
         try {
             let allGoals = await axios.post('/api/goal', { name: input, date: goalDate });
-            allGoals = allGoals.data
-            this.props.updateData({
-                goals: allGoals,
-                subGoals: this.props.subGoals,
-                tasks: this.props.tasks,
-                subTasks: this.props.subTasks
-            })
+            // console.log(allGoals)
+            // allGoals = allGoals.data
+
+            // this.props.updateData({
+            //     goals: allGoals,
+            //     subGoals: this.props.subGoals,
+            //     tasks: this.props.tasks,
+            //     subTasks: this.props.subTasks
+            // })
             this.setState({ input: '', goalDate: '' })
             const allUserData = await getAllUserData()
             this.props.updateData(allUserData)

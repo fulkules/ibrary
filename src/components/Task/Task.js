@@ -116,14 +116,17 @@ class Task extends Component {
         const { input, taskTime, date } = this.state;
         try {
             let allTasks = await axios.post('/api/task', { name: input, time: taskTime, date });
-            allTasks = allTasks.data
-            this.props.updateData({
-                goals: this.props.goals,
-                subGoals: this.props.subGoals,
-                tasks: allTasks,
-                subTasks: this.props.subTasks
-            })
+            // console.log(allTasks.data)
+            // allTasks = allTasks.data
+            // this.props.updateData({
+            //     goals: this.props.goals,
+            //     subGoals: this.props.subGoals,
+            //     tasks: allTasks,
+            //     subTasks: this.props.subTasks
+            // })
             this.setState({ input: '', taskTime: '' })
+            const allUserData = await getAllUserData()
+            this.props.updateData(allUserData)
         } catch (err) {
             console.log(err)
         }
