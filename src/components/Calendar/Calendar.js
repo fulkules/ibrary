@@ -5,7 +5,7 @@ import { updateUser, clearUser } from '../../ducks/actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import dateFns from 'date-fns';
-import Calendar from 'react-calendar';
+import Calendar from 'react-calendar-mobile';
 import {withRouter} from 'react-router-dom';
 
 

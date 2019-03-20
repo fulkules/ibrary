@@ -25,7 +25,7 @@ class TaskCard extends Component {
             // tasks: [],
             // sub_task: [],
             name: this.props.name,
-            time: '',
+            time: this.props.time,
             date: newDate(this.props.date),
             input: '',
             complete: false,
@@ -145,8 +145,10 @@ class TaskCard extends Component {
                                 value={this.state.time}
                                 onChange={(e) => this.handleInput('time', e.target.value)}
                             />
-                            <button onClick={() => this.handleSave(this.props.id)}>Save</button>
-                            <button onClick={this.handleCancel}>Cancel</button>
+                            <div>
+                                <button onClick={() => this.handleSave(this.props.id)}>Save</button>
+                                <button onClick={this.handleCancel}>Cancel</button>
+                            </div>
                         </div>
                         :
                         <div className="col-xs-4 wrapper">
