@@ -54,11 +54,11 @@ class Vision extends Component {
             <div className="Vision">
                 <CalendarHeader />
                 <div className="vision-icons">
-                    <i className="far fa-file-alt"></i>
-                    <i className="far fa-image"></i>
+                    <i className="far fa-file-alt fa-3x"></i>
+                    <i className="far fa-image fa-3x"></i>
                 </div>
-                <div className="">
-
+                <div className="thumbnail-clipboard">
+                    
                 </div>
                 {/* <ReactQuill 
                     theme={this.state.theme}
