@@ -2,6 +2,19 @@ body {
     background: #f3f1f2;
     font-family: sans-serif;
   }
+
+  .vision-icons{
+    display: flex;
+    margin-left: 1rem;
+  }
+
+  .fa-file-alt{
+    margin: 1rem;
+  }
+
+  .fa-image{
+    margin: 1rem;
+  }
   
   .app {
     margin: 2rem;

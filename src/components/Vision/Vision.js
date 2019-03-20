@@ -53,7 +53,14 @@ class Vision extends Component {
         return (
             <div className="Vision">
                 <CalendarHeader />
-                <ReactQuill 
+                <div className="vision-icons">
+                    <i className="far fa-file-alt"></i>
+                    <i className="far fa-image"></i>
+                </div>
+                <div className="">
+
+                </div>
+                {/* <ReactQuill 
                     theme={this.state.theme}
                     onChange={this.handleChange}
                     value={this.state.editorHtml}
@@ -61,7 +68,7 @@ class Vision extends Component {
                     formats={Vision.formats}
                     bounds={'.app'}
                     placeholder={this.props.placeholder}
-                />
+                /> */}
             </div>
         );
     }

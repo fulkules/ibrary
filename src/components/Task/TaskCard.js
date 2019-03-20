@@ -25,7 +25,7 @@ class TaskCard extends Component {
             // tasks: [],
             // sub_task: [],
             name: this.props.name,
-            time: this.props.time,
+            time: this.props.time || '',
             date: newDate(this.props.date),
             input: '',
             complete: false,
