@@ -21,6 +21,7 @@ class Task extends Component {
             time: [],
             date: new Date(),
             input: '',
+            subTaskTime: '',
             complete: false,
             subTaskName: '',
             completedTasks: []

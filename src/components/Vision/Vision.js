@@ -16,7 +16,9 @@ class Vision extends Component {
         this.state = {
             open: false,
             placeholder: '',
-            text: ''
+            text: '',
+            img: '',
+        
         }
     }
 
