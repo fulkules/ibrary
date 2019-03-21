@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Nav from '../Nav/Nav';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {updateData} from '../../ducks/actions';
+import CalendarHeader from '../Calendar/Calendar';
 
 
 class Excite extends Component {
@@ -32,7 +32,7 @@ class Excite extends Component {
         }
         return (
             <div className="Excite">
-                <Nav />
+                <CalendarHeader />
                 <h1>Excite</h1>
             </div>
         );
