@@ -135,7 +135,7 @@ class TaskCard extends Component {
                             <input
                                 // key={this.props.id}
                                 value={this.state.name}
-                                onChange={(e) => this.handleInput('name', e.target.value)}
+                                onChange={ (e) => this.handleInput('name', e.target.value) }
                                 type="text"
                                 maxLength="255"
                             />

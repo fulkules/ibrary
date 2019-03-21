@@ -38,7 +38,7 @@ class Dashboard extends Component {
     // }
 
     render() {
-        console.log(this.props.id)
+        // console.log(this.props.id)
         const {id} = this.props;
         if(!id){
            return <Redirect to="/" />

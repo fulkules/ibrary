@@ -19,7 +19,7 @@ const qc = require('./controllers/quote_controller');
 const vc = require('./controllers/vision_controller');
 
 // .ENV
-const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, WEATHER_API_KEY } = process.env;
+const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 // MIDDLEWARE
 const app = express();

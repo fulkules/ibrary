@@ -15,7 +15,8 @@ class Vision extends Component {
 
         this.state = {
             open: false,
-            placeholder: ''
+            placeholder: '',
+            text: ''
         }
     }
 
@@ -27,6 +28,9 @@ class Vision extends Component {
         this.setState({ open: false });
     };
 
+    handleChange = (val) => {
+        this.setState({ text: val })
+    }
     // componentDidMount(){
     //     this.checkUser();
     // }
@@ -45,25 +49,29 @@ class Vision extends Component {
     //     }
     // }
 
-    openModal = () => {
+    addQuill = (id) => {
 
+    }
+
+    deleteQuill = (id) => {
+        
     }
 
     render(){
         const { open } = this.state;
-        const {id} = this.props;
-        if(!id){
-           return <Redirect to="/" />
-        }
+        const { id } = this.props;
+        // if(!id){
+        //    return <Redirect to="/" />
+        // }
         return (
             <div className="Vision">
                 <CalendarHeader />
                 <div className="vision-icons">
                     <i className="far fa-file-alt fa-3x" onClick={ this.onOpenModal }></i>
-                    <Modal open={open} onClose={ this.onCloseModal } center>
+                    <Modal open={ open } onClose={ this.onCloseModal } center>
                         <ReactQuill 
                             onChange={this.handleChange}
-                            value={this.state.editorHtml}
+                            value={this.state.text}
                             modules={Vision.modules}
                             formats={Vision.formats}
                             bounds={'.app'}

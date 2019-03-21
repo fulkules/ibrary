@@ -8,9 +8,12 @@ class Quote extends Component {
 
         this.state = {
             quote: '',
-            author: ''
+            author: '',
         }
     }
+    
+    cleanup = null;
+
 
     getQuote = async () => {
         await axios.get('/api/quote').then(res => {
@@ -25,6 +28,12 @@ class Quote extends Component {
         this._isMounted = true;
         this.getQuote();
     }
+
+    componentWillUnmount(){
+        this._isMounted = false;
+    }
+
+
 
     render(){
         return(
