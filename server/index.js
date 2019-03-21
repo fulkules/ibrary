@@ -49,6 +49,8 @@ massive(CONNECTION_STRING).then(db => {
     })
 })
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 //// WEATHER API ENDPOINT ////
 app.get('/api/weather', wc.getWeather);
 
