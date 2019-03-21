@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CalendarHeader from '../Calendar/Calendar';
 import './Vision.css';
+import Modal from 'react-responsive-modal';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { connect } from 'react-redux';
@@ -13,19 +14,18 @@ class Vision extends Component {
         super(props)
 
         this.state = {
-            editorHtml: '',
-            theme: 'snow'
+            open: false,
+            placeholder: ''
         }
     }
 
-    handleChange = (html) => {
-        this.setState({ editorHtml: html })
-    }
-
-    handleThemeChange = (newTheme) => {
-        if(newTheme === "core") newTheme = null;
-        this.setState({ theme: newTheme })
-    }
+    onOpenModal = () => {
+        this.setState({ open: true });
+    };
+    
+    onCloseModal = () => {
+        this.setState({ open: false });
+    };
 
     // componentDidMount(){
     //     this.checkUser();
@@ -45,7 +45,12 @@ class Vision extends Component {
     //     }
     // }
 
+    openModal = () => {
+
+    }
+
     render(){
+        const { open } = this.state;
         const {id} = this.props;
         if(!id){
            return <Redirect to="/" />
@@ -54,21 +59,24 @@ class Vision extends Component {
             <div className="Vision">
                 <CalendarHeader />
                 <div className="vision-icons">
-                    <i className="far fa-file-alt fa-3x"></i>
+                    <i className="far fa-file-alt fa-3x" onClick={ this.onOpenModal }></i>
+                    <Modal open={open} onClose={ this.onCloseModal } center>
+                        <ReactQuill 
+                            onChange={this.handleChange}
+                            value={this.state.editorHtml}
+                            modules={Vision.modules}
+                            formats={Vision.formats}
+                            bounds={'.app'}
+                            placeholder={this.props.placeholder}
+                        />
+                        <button>Submit</button>
+                    </Modal>
                     <i className="far fa-image fa-3x"></i>
                 </div>
                 <div className="thumbnail-clipboard">
-                    
+
                 </div>
-                {/* <ReactQuill 
-                    theme={this.state.theme}
-                    onChange={this.handleChange}
-                    value={this.state.editorHtml}
-                    modules={Vision.modules}
-                    formats={Vision.formats}
-                    bounds={'.app'}
-                    placeholder={this.props.placeholder}
-                /> */}
+                
             </div>
         );
     }
