@@ -162,8 +162,8 @@ class TaskCard extends Component {
                             {this.props.name}<br />
                             {this.props.time}<br />
                             <div>
-                                <button className="taskEdit" onClick={this.setEdit}>Edit</button>
-                                <button className="taskDelete" onClick={() => this.handleDelete(this.props.id)}>Delete</button><br />
+                                <i className="far fa-edit taskEdit" onClick={this.setEdit}></i>
+                                <i className="far fa-trash-alt taskDelete" onClick={ () => this.handleDelete(this.props.id) }></i><br />
                             </div>
                             <input
                                 className="add-subTask"
@@ -174,7 +174,7 @@ class TaskCard extends Component {
                                 type="text"
                                 maxLength="255"
                             />
-                            <button className="add-subTask-button" onClick={() => this.addSubTask(this.props.id)}>Add</button>
+                            <i className="far fa-plus-square fa-2x add-subTask-button" onClick={ () => this.addSubTask(this.props.id) }></i>
                             <div className="subTaskArr-container">{mappedSubTasks}</div>
                         </div>
                 }

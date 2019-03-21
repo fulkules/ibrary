@@ -117,8 +117,8 @@ class SubTask extends Component {
                             onChange={() => { }} 
                         />
                         {subTask.name}<br/>
-                        <button onClick={this.setEdit}>Edit</button>
-                        <button onClick={() => this.handleDelete(subTask.id)}>Delete</button>
+                        <i className="far fa-edit editSubTask-button" onClick={ this.setEdit }></i>
+                        <i className="far fa-trash-alt subTaskDelete" onClick={ () => this.handleDelete(subTask.id) }></i>
                     </div>
                 }
             </React.Fragment>

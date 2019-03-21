@@ -118,8 +118,8 @@ class SubGoal extends Component {
                                 onChange={() => { }} 
                             />
                             {subGoal.name}<br />
-                            <button className="editSubGoal-button" onClick={this.setEdit}>Edit</button>
-                            <button className="editSubGoal-button" onClick={() => this.handleDelete(subGoal.id)}>Delete</button>
+                            <i className="far fa-edit editSubGoal-button" onClick={ this.setEdit }></i>
+                            <i className="far fa-trash-alt subGoalDelete" onClick={ () => this.handleDelete(subGoal.id) }></i>
                         </div>
                     }
             </React.Fragment>

@@ -82,7 +82,7 @@ html {
 .subGoalArr-container button {
     display: inline;
     width: 6rem;
-    margin: 0 1rem;
+    margin: 0 2rem;
     padding: 0.5rem;
     border-radius: 1.5rem;
 }
@@ -117,6 +117,10 @@ html {
 
 .subGoal-complete-box{
     margin: 0 1rem;
+}
+
+.editSubGoal-button{
+    margin: 0 2rem;
 }
 
 .subGoal-complete {

@@ -157,8 +157,8 @@ class GoalCard extends Component {
                             { this.props.name }<br />
                             { this.props.date }<br />
                             <div>
-                                <button className="goalEdit" onClick={ this.setEdit }>Edit</button>
-                                <button className="goalDelete" onClick={ () => this.handleDelete(this.props.id) }>Delete</button><br />
+                                <i className="far fa-edit goalEdit" onClick={ this.setEdit }></i>
+                                <i className="far fa-trash-alt goalDelete" onClick={ () => this.handleDelete(this.props.id) }></i><br />
                             </div>
                             <input
                                 className="add-subGoal"
@@ -169,7 +169,7 @@ class GoalCard extends Component {
                                 type="text"
                                 maxLength="255"
                             />
-                            <button className="add-subGoal-button" onClick={ () => this.addSubGoal(this.props.id) }>Add</button>
+                            <i className="far fa-plus-square fa-2x add-subGoal-button" onClick={ () => this.addSubGoal(this.props.id) }></i>
                             <div className="subGoalArr-container">{mappedSubGoals}</div>
                         </div>
                 }

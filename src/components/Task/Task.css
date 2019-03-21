@@ -120,6 +120,10 @@ html {
     margin: 0 1rem;
 }
 
+.editSubTask-button{
+    margin: 0 2rem;
+}
+
 .subTask-complete {
     font-size: 1.4rem;
     display: flex;

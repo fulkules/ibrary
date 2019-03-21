@@ -16,6 +16,7 @@ const thxc = require('./controllers/thanks_controller');
 const ec = require ('./controllers/excite_controller');
 const wc = require('./controllers/weather_controller');
 const qc = require('./controllers/quote_controller');
+const vc = require('./controllers/vision_controller');
 
 // .ENV
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, WEATHER_API_KEY } = process.env;
@@ -83,6 +84,11 @@ app.post('/api/s_goal', sgc.addSubGoal);
 app.get('/api/s_goals', sgc.getSubGoals);
 app.put('/api/s_goal/:id', sgc.updateSubGoal);
 app.delete('/api/s_goal/:id', sgc.deleteSubGoal);
+
+//// VISION ENDPOINTS ////
+app.post('/api/vision', vc.addVision);
+app.get('/api/visions', vc.getVisions);
+app.delete('/api/vision/:id', vc.deleteVision);
 
 //// THANKS ENDPOINTS ////
 app.post('/api/thank', thxc.addThank);
