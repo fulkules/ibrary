@@ -104,8 +104,8 @@ class SubGoal extends Component {
                                 maxLength="255"
                             />
                             <div>
-                                <button onClick={() => this.handleSave(this.props.subGoal.id)}>Save</button>
-                                <button onClick={this.handleCancel}>Cancel</button>
+                                <i className="far fa-save saveEditButton" onClick={ () => this.handleSave(this.props.subGoal.id) }></i>
+                                <i className="far fa-window-close" onClick={ this.handleCancel }></i>
                             </div>
                         </div>
                         :

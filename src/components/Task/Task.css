@@ -130,3 +130,7 @@ html {
     justify-content: flex-start;
     align-items: flex-start;
 }
+
+.fa-window-close{
+    margin: 0 2rem;
+}

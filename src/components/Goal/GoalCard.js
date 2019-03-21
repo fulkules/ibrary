@@ -142,8 +142,10 @@ class GoalCard extends Component {
                                 value={this.state.date}
                                 onChange={(e) => this.handleInput('date', e.target.value)}
                             />
-                            <button onClick={() => this.handleSave(this.props.id)}>Save</button>
-                            <button onClick={this.handleCancel}>Cancel</button>
+                            <div>
+                                <i className="far fa-save fa-2x saveEditButton" onClick={ () => this.handleSave(this.props.id) }></i>
+                                <i className="far fa-window-close fa-2x" onClick={ this.handleCancel }></i>
+                            </div>
                         </div>
                         :
                         <div className="col-xs-4 wrapper">

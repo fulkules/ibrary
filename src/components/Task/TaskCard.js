@@ -146,8 +146,8 @@ class TaskCard extends Component {
                                 onChange={(e) => this.handleInput('time', e.target.value)}
                             />
                             <div>
-                                <button onClick={() => this.handleSave(this.props.id)}>Save</button>
-                                <button onClick={this.handleCancel}>Cancel</button>
+                                <i className="far fa-save fa-2x saveEditButton" onClick={ () => this.handleSave(this.props.id) }></i>
+                                <i className="far fa-window-close fa-2x" onClick={ this.handleCancel }></i>
                             </div>
                         </div>
                         :
