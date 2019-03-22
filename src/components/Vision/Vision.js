@@ -161,7 +161,7 @@ class Vision extends Component {
                         key={[i]}
                         alt="My Vision Item" 
                     />
-                    {/* <i className="far fa-trash-alt" onClick={this.deleteVision(id)}></i> */}
+                    {/* <i className="far fa-trash-alt" onClick={this.deleteVision(vision.id)}></i> */}
                 </div>
             )
         });
@@ -212,7 +212,7 @@ class Vision extends Component {
                     </Modal>
                 </div>
                 <div className="thumbnail-clipboard">
-
+                    {visionArr}
                 </div>
                 
             </div>
