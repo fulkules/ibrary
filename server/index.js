@@ -5,6 +5,7 @@ const massive = require('massive');
 
 const pg = require('pg');
 const pgSession = require('connect-pg-simple')(session)
+const aws = require('aws-sdk');
 
 // CONTROLLERS
 const ac = require('./controllers/auth_controller');
@@ -19,10 +20,12 @@ const qc = require('./controllers/quote_controller');
 const vc = require('./controllers/vision_controller');
 
 // .ENV
-const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
+const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env;
 
 // MIDDLEWARE
 const app = express();
+
+
 
 const pgPool = new pg.Pool({
     connectionString: CONNECTION_STRING
@@ -50,6 +53,40 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 app.use( express.static( `${__dirname}/../build` ) );
+
+//// AMAZON S3 ENDPOINT ////
+app.get('/api/signs3', (req, res) => {
+
+    aws.config = {
+      region: 'us-west-1',
+      accessKeyId: AWS_ACCESS_KEY_ID,
+      secretAccessKey: AWS_SECRET_ACCESS_KEY
+    }
+    
+    const s3 = new aws.S3();
+    const fileName = req.query['file-name'];
+    const fileType = req.query['file-type'];
+    const s3Params = {
+      Bucket: S3_BUCKET,
+      Key: fileName,
+      Expires: 60,
+      ContentType: fileType,
+      ACL: 'public-read'
+    };
+  
+    s3.getSignedUrl('putObject', s3Params, (err, data) => {
+      if(err){
+        console.log(err);
+        return res.end();
+      }
+      const returnData = {
+        signedRequest: data,
+        url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+      };
+      console.log(returnData)
+      return res.send(returnData)
+    });
+  });
 
 //// WEATHER API ENDPOINT ////
 app.get('/api/weather', wc.getWeather);
