@@ -25,7 +25,7 @@ class Header extends Component {
 
     render() {
         const { username } = this.props.auth;
-        // console.log(this.props)
+        console.log(this.props)
         return (
                 <div className="Header">
                     <Nav />

@@ -34,9 +34,9 @@ class SubTask extends Component {
         this.setState({ name })
     }
 
-    changeBackground = async (id) => {
+    changeBackground = (id) => {
         const { complete } = this.state;
-        console.log(complete)
+        // console.log(complete)
         // console.log({1111: this.props})
         this.handleSave(id, !complete);
         if (!complete) {
@@ -103,8 +103,7 @@ class SubTask extends Component {
     render() {
         // console.log(this.props)
         const { subTask } = this.props;
-        // console.log(this.props.subGoal)
-        console.log(subTask)
+        // console.log(subTask)
         return (
             <React.Fragment>
                 {this.state.editing ?
@@ -121,14 +120,14 @@ class SubTask extends Component {
                         </div>
                     </React.Fragment>
                     :
-                    <div className="subTask-container" style={{background: this.state.background}}>
+                    <div className="subTask-container" style={{ background: this.state.background }}>
                         <input 
-                            checked={this.state.complete ? "true" : ""}
+                            checked={this.state.complete ? true : ""}
                             className="subTask-complete-box" 
                             type="checkbox" 
                             key={subTask.id} 
                             value={this.state.complete} 
-                            onClick={ () => this.changeBackground(subTask.id) } 
+                            onChange={ () => this.changeBackground(subTask.id) } 
                         />
                         {subTask.name}<br/>
                         <i className="far fa-edit editSubTask-button" onClick={ this.setEdit }></i>

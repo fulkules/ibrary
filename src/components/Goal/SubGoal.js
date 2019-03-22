@@ -13,10 +13,16 @@ class SubGoal extends Component {
             editing: false,
             goals: [],
             subGoals: [],
-            name: this.props.subGoal.name,
+            name: '',
             complete: false,
-            input: ''
+            input: '',
+            background: '#FFE4E5'
         }
+    }
+
+    componentDidMount(){
+        const background = this.props.subGoal.complete ? "#DBFFBA" : "#FFE4E5"
+        this.setState({ complete: this.props.subGoal.complete, name: this.props.subGoal.name, background })
     }
 
     handleInput(props, val) {
@@ -29,14 +35,17 @@ class SubGoal extends Component {
         this.setState({ name })
     }
 
-    handleBoxInput(e) {
-        let complete = this.state.complete;
-        complete = e.target.value
-        this.setState({ complete: !complete })
-        if (complete) {
-            //if truthy set background of container-div to a light green
+    changeBackground = (id) => {
+        const { complete } = this.state;
+        // console.log(complete)
+        // console.log({1111: this.props})
+        this.handleSave(id, !complete);
+        if (!complete) {
+            console.log('1')
+            this.setState({ background: '#DBFFBA', complete: true })
         } else {
-            // if falsey set background of container-div to a light red
+            console.log('2')
+            this.setState({ background: '#FFE4E5', complete: false})
         }
     }
 
@@ -69,18 +78,19 @@ class SubGoal extends Component {
 
     }
 
-    handleSave = async (id) => {
-        const { name, complete } = this.state;
+    handleSave = async (id, complete) => {
+        complete = typeof complete === 'boolean' ? complete : this.props.subGoal.complete
+        const { name } = this.state;
         try {
             let allSubGoals = await axios.put(`/api/s_goal/${id}`, { name, complete });
             allSubGoals = allSubGoals.data
-            this.props.updateData({
-                goals: this.props.goals,
-                subGoals: allSubGoals,
-                tasks: this.props.tasks,
-                subTasks: this.props.subTasks
-            })
-            this.setState({ editing: false, goals: [], subGoals: [], name: [], complete: false, input: '' })
+            // this.props.updateData({
+            //     goals: this.props.goals,
+            //     subGoals: allSubGoals,
+            //     tasks: this.props.tasks,
+            //     subTasks: this.props.subTasks
+            // })
+            this.setState({ editing: false })
             const allUserData = await getAllUserData()
             this.props.updateData(allUserData)
         } catch (err) {
@@ -109,13 +119,14 @@ class SubGoal extends Component {
                             </div>
                         </div>
                         :
-                        <div className="subGoal-container">
+                        <div className="subGoal-container" style={{ background: this.state.background }}>
                             <input 
+                                checked={this.state.complete ? true : ""}
                                 className="subGoal-complete-box" 
                                 type="checkbox" 
                                 key={subGoal.id} 
                                 value={this.state.complete} 
-                                onChange={() => { }} 
+                                onChange={ () => this.changeBackground(subGoal.id) } 
                             />
                             {subGoal.name}<br />
                             <i className="far fa-edit editSubGoal-button" onClick={ this.setEdit }></i>
