@@ -12,12 +12,18 @@ class SubTask extends Component {
             editing: false,
             tasks: [],
             subTasks: [],
-            name: this.props.subTask.name,
+            name: '',
             complete: false,
-            input: ''
+            input: '',
+            background: "#FFE4E5"
         }
     }
 
+    componentDidMount(){
+        const background = this.props.subTask.complete ? "#DBFFBA" : "#FFE4E5"
+        this.setState({ complete: this.props.subTask.complete, name: this.props.subTask.name, background})
+    }
+    
     handleInput(props, val) {
         this.setState({ [props]: val })
     }
@@ -28,16 +34,21 @@ class SubTask extends Component {
         this.setState({ name })
     }
 
-    handleBoxInput(e) {
-        let complete = this.state.complete;
-        complete = e.target.value
-        this.setState({ complete: !complete })
-        if (complete) {
-            //if truthy set background of container-div to a light green
+    changeBackground = async (id) => {
+        const { complete } = this.state;
+        console.log(complete)
+        // console.log({1111: this.props})
+        this.handleSave(id, !complete);
+        if (!complete) {
+            console.log('1')
+            this.setState({ background: '#DBFFBA', complete: true })
         } else {
-            // if falsey set background of container-div to a light red
+            console.log('2')
+            this.setState({ background: '#FFE4E5', complete: false})
         }
     }
+
+  
 
     setEdit = () => {
         this.setState({ editing: true })
@@ -68,18 +79,19 @@ class SubTask extends Component {
 
     }
 
-    handleSave = async (id) => {
-        const { name, complete } = this.state;
+    handleSave = async (id, complete) => {
+        complete = typeof complete === 'boolean' ? complete : this.props.subTask.complete
+        const { name } = this.state;
         try {
             let allSubTasks = await axios.put(`/api/s_task/${id}`, { name, complete });
             allSubTasks = allSubTasks.data
-            this.props.updateData({
-                goals: this.props.goals,
-                subGoals: this.props.subGoals,
-                tasks: this.props.tasks,
-                subTasks: allSubTasks
-            })
-            this.setState({ editing: false, tasks: [], subTasks: [], name: [], complete: false, input: '' })
+            // this.props.updateData({
+            //     goals: this.props.goals,
+            //     subGoals: this.props.subGoals,
+            //     tasks: this.props.tasks,
+            //     subTasks: allSubTasks
+            // })
+            this.setState({ editing: false })
             const allUserData = await getAllUserData()
             this.props.updateData(allUserData)
         } catch (err) {
@@ -92,6 +104,7 @@ class SubTask extends Component {
         // console.log(this.props)
         const { subTask } = this.props;
         // console.log(this.props.subGoal)
+        console.log(subTask)
         return (
             <React.Fragment>
                 {this.state.editing ?
@@ -108,13 +121,14 @@ class SubTask extends Component {
                         </div>
                     </React.Fragment>
                     :
-                    <div className="subTask-container">
+                    <div className="subTask-container" style={{background: this.state.background}}>
                         <input 
+                            checked={this.state.complete ? "true" : ""}
                             className="subTask-complete-box" 
                             type="checkbox" 
                             key={subTask.id} 
                             value={this.state.complete} 
-                            onChange={() => { }} 
+                            onClick={ () => this.changeBackground(subTask.id) } 
                         />
                         {subTask.name}<br/>
                         <i className="far fa-edit editSubTask-button" onClick={ this.setEdit }></i>

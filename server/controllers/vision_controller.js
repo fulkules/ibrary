@@ -3,6 +3,7 @@ module.exports = {
         const db = req.app.get('db');
         const { id } = req.session.user;
         const { type, text, img } = req.body;
+        console.log(req.body)
 
         db.vision.add_vision({ u_id: id, type, text, img }).then(resp => {
             res.status(200).send(resp)

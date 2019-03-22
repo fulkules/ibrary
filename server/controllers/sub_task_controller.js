@@ -33,7 +33,7 @@ module.exports = {
         const { id } = req.params;
 
         db.sub_task.update_sub_task({ id, name, complete }).then(resp => {
-            // console.log(resp)
+            console.log(resp)
             res.status(200).send(resp)
         }).catch(err => {
             console.log(err)

@@ -19,23 +19,7 @@ class Dashboard extends Component {
         }
     }
 
-    // componentDidMount(){
-    //     this.checkUser();
-    // }
-
-    // checkUser = async () => {
-    //     const { id } = this.props;
-    //     if (!id){
-    //         try {
-    //             let res = await axios.get('/api/current');
-    //             this.props.updateUser(res.data);
-    //         } catch(err) {
-    //             console.log(err)
-    //         }
-    //     } else {
-    //         this.props.history.push('/');
-    //     }
-    // }
+  
 
     render() {
         // console.log(this.props.id)

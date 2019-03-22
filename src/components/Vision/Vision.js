@@ -7,6 +7,7 @@ import 'react-quill/dist/quill.snow.css';
 import { connect } from 'react-redux';
 import {updateData} from '../../ducks/actions';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 
 class Vision extends Component {
@@ -16,6 +17,7 @@ class Vision extends Component {
         this.state = {
             open: false,
             placeholder: '',
+            type: '',
             text: '',
             img: '',
         
@@ -51,8 +53,13 @@ class Vision extends Component {
     //     }
     // }
 
-    addQuill = (id) => {
+    addVision = async () => {
+        // console.log(this.props)
+        const { type, text, img } = this.state;
 
+        let res = await axios.post(`/api/vision`, { type, text, img });
+        res = res.data;
+        
     }
 
     deleteQuill = (id) => {
@@ -79,7 +86,7 @@ class Vision extends Component {
                             bounds={'.app'}
                             placeholder={this.props.placeholder}
                         />
-                        <button>Submit</button>
+                        <button onClick={ this.addVision }>Submit</button>
                     </Modal>
                     <i className="far fa-image fa-3x"></i>
                 </div>
