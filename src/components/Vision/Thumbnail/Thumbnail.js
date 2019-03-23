@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { maxHeaderSize } from 'http';
+
+
 
 
 class Thumbnail extends Component {
@@ -35,11 +38,12 @@ class Thumbnail extends Component {
     
 
     render() {
+
         // console.log(this.props.id)
         const { id, img, text } = this.props;
         
         return (
-            <div className="Thumbnail">
+            <div className="thumbnail">
                 <img 
                     src={img}
                     alt="My Vision Item"
