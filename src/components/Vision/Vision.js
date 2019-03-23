@@ -10,6 +10,7 @@ import axios from 'axios';
 import { v4 as randomString } from 'uuid';
 import Dropzone from 'react-dropzone';
 import { GridLoader } from 'react-spinners';
+import Thumbnail from './Thumbnail/Thumbnail';
 
 
 class Vision extends Component {
@@ -99,7 +100,7 @@ class Vision extends Component {
           .put(signedRequest, file, options)
           .then(response => {
               console.log(response)
-            this.setState({ isUploading: false, url });
+            this.setState({ isUploading: false, img: url });
             // THEN DO SOMETHING WITH THE URL. SEND TO DB USING POST REQUEST OR SOMETHING
             this.addVision();
           })
@@ -130,24 +131,21 @@ class Vision extends Component {
 
     addVision = async () => {
         // console.log(this.props)
+        const { url } = this.state;
         // this.uploadFile(this.state.file, this.state.signedRequest, this.state.img)
         const { type, text, img } = this.state;
         let vision = {
             type,
             text,
-            img
+            img: url
         }
 
         let res = await axios.post(`/api/vision`, { type, text, img });
         res = res.data;
         console.log(res.data)
+        this.onCloseModalDrop();
+        this.getVisions();
     }
-
-    // deleteVision = (id) => {
-    //     axios.delete(`/api/vision/${id}`).then(res => {
-    //         return this.getVisions()
-    //     })
-    // }
 
     render(){
         const { open1, open2, url, isUploading, img, visions } = this.state;
@@ -156,12 +154,12 @@ class Vision extends Component {
             console.log(vision)
             return(
                 <div>
-                    <img
-                        src={vision.img}
-                        key={[i]}
-                        alt="My Vision Item" 
+                    <Thumbnail
+                        id={vision.id}
+                        img={vision.img}
+                        text={vision.text}
+                        key={i}
                     />
-                    {/* <i className="far fa-trash-alt" onClick={this.deleteVision(vision.id)}></i> */}
                 </div>
             )
         });
@@ -186,7 +184,7 @@ class Vision extends Component {
                     <Modal open={ open2 } onClose={ this.onCloseModalDrop } center>
                         <h1>Upload</h1>
                         <h1 style={{fontSize: "14px"}}>{url}</h1>
-                        <img src={ img ? img : 'http://via.placeholder.com/450x450' } alt="" width="250px" />
+                        <img src={ img ? img : 'http://via.placeholder.com/450x450' } alt="thumbnail" width="250px" />
                         <Dropzone
                             onDropAccepted={this.getSignedRequest}
                             style={{
