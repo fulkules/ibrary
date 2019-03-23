@@ -133,8 +133,8 @@ class Goal extends Component {
 
 
     render() {
-        const {id} = this.props;
-        if(!id){
+        const {user_id} = this.props;
+        if(!user_id){
            return <Redirect to="/" />
         }
         // console.log(this.props)
@@ -194,7 +194,7 @@ const mapStateToProps = (reduxState) => {
         tasks: reduxState.data.tasks,
         subTasks: reduxState.data.subTasks,
         update: reduxState.data.subTasks,
-        id: reduxState.auth.id
+        user_id: reduxState.auth.user_id
     }
 }
 

@@ -23,8 +23,8 @@ class Dashboard extends Component {
 
     render() {
         // console.log(this.props.id)
-        const {id} = this.props;
-        if(!id){
+        const {user_id} = this.props;
+        if(!user_id){
            return <Redirect to="/" />
         }
         return (
@@ -43,7 +43,7 @@ class Dashboard extends Component {
 const mapStateToProps = (reduxState) => {
 
     return {
-        id: reduxState.auth.id
+        user_id: reduxState.auth.user_id
     }
 }
 

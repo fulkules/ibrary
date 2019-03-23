@@ -12,12 +12,27 @@ class Thumbnail extends Component {
         }
     }
 
+    getVisions = async () => {
+        let res = await axios.get('/api/visions').then(res => {
+            console.log(1111111)
+            this.setState({ visions: res.data })
+        })
+    }
+
+    refreshPage = () => {
+        window.location.reload()
+    }
+
     deleteVision = async () => {
-        console.log('hit')
         const { id } = this.props;
-        console.log({deleteVision: 333333})
-        await axios.delete(`/api/vision/${id}`)
+        console.log(id)
+        await axios.delete(`/api/vision/${id}`).then(res => {
+            this.setState({ visions: res.data })
+        });
+        this.refreshPage();
     } 
+
+    
 
     render() {
         // console.log(this.props.id)
@@ -30,7 +45,6 @@ class Thumbnail extends Component {
                     alt="My Vision Item"
                 />
                 <i className="far fa-trash-alt fa-2x" onClick={ this.deleteVision }></i>
-
             </div>
         );
     }
@@ -39,7 +53,7 @@ class Thumbnail extends Component {
 const mapStateToProps = (reduxState) => {
 
     return {
-        id: reduxState.auth.id
+        user_id: reduxState.auth.user_id
     }
 }
 
