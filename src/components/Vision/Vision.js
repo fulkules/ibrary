@@ -73,7 +73,7 @@ class Vision extends Component {
         // We are creating a file name that consists of a random string, and the name of the file that was just uploaded with the spaces removed and hyphens inserted instead. This is done using the .replace function with a specific regular expression. This will ensure that each file uploaded has a unique name which will prevent files from overwriting other files due to duplicate names.
         const fileName = `${randomString()}-${file.name.replace(/\s/g, '-')}`;
     
-       console.log('before axios')
+    //    console.log('before axios')
         // We will now send a request to our server to get a "signed url" from Amazon. We are essentially letting AWS know that we are going to upload a file soon. We are only sending the file-name and file-type as strings. We are not sending the file itself at this point.
         axios
           .get('/api/signs3', {
