@@ -44,10 +44,18 @@ class Thumbnail extends Component {
         
         return (
             <div className="thumbnail">
-                <img 
-                    src={img}
-                    alt="My Vision Item"
-                />
+                {img ? 
+                    <img 
+                        src={img}
+                        alt="My Vision Item"
+                        className="post-content"
+                    />
+                :
+                    <div
+                        dangerouslySetInnerHTML={{ __html: text }}
+                        className="post-content"
+                    />
+                }
                 <i className="far fa-trash-alt fa-2x" onClick={ this.deleteVision }></i>
             </div>
         );

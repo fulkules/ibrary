@@ -140,16 +140,13 @@ class Vision extends Component {
         const { url } = this.state;
         // this.uploadFile(this.state.file, this.state.signedRequest, this.state.img)
         const { type, text, img } = this.state;
-        let vision = {
-            type,
-            text,
-            img: url
-        }
+        let vision = { type, text, img: url }
 
         let res = await axios.post(`/api/vision`, { type, text, img });
         res = res.data;
-        console.log(res.data)
+        // console.log(res.data)
         this.onCloseModalDrop();
+        this.onCloseModalQuill();
         this.getVisions();
     }
 
@@ -182,7 +179,7 @@ class Vision extends Component {
                             modules={Vision.modules}
                             formats={Vision.formats}
                             bounds={'.app'}
-                            placeholder={this.props.placeholder}
+                            placeholder="Type an inspirational idea..."
                         />
                         <button onClick={ this.addVision }>Submit</button>
                     </Modal>
