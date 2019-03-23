@@ -85,7 +85,7 @@ class Vision extends Component {
           .then(response => {
               console.log('in .then')
             const { signedRequest, url } = response.data;
-            console.log(response)
+            // console.log(response)
             this.uploadFile(file, signedRequest, url);
             // this.setState({ img: file.preview, signedRequest, url })
           })
@@ -105,7 +105,7 @@ class Vision extends Component {
         axios
           .put(signedRequest, file, options)
           .then(response => {
-              console.log(response)
+            //   console.log(response)
             this.setState({ isUploading: false, img: url });
             // THEN DO SOMETHING WITH THE URL. SEND TO DB USING POST REQUEST OR SOMETHING
             this.addVision();
@@ -142,13 +142,15 @@ class Vision extends Component {
         const { type, text, img } = this.state;
         let vision = { type, text, img: url }
 
-        let res = await axios.post(`/api/vision`, { type, text, img });
-        res = res.data;
+        let res = await axios.post(`/api/vision`, { type, text, img }).then(resp => {
+            this.setState({ type: '', text: '', img: '' })
+        })
         // console.log(res.data)
         this.onCloseModalDrop();
         this.onCloseModalQuill();
         this.getVisions();
     }
+
 
     render(){
         const { open1, open2, url, isUploading, img, visions } = this.state;

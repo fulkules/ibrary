@@ -31,7 +31,7 @@ class Header extends Component {
                     <Nav />
                     <div className="weather-api" ><Weather /></div>
                     <h1>Hello {username}!</h1>
-                    <h3 className="numTasks">{this.props.data.tasks.length || 0} Tasks Today</h3>
+                    <h3 className="numTasks">{this.props.data.tasks.length || 0} Tasks To Complete</h3>
                     <button onClick={this.logout}>Logout</button>
                 </div>
         
