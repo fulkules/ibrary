@@ -11,22 +11,30 @@ class GoalList extends Component {
         }
     }
 
-
-
     render() {
         const { goals } = this.props;
+        // console.log(this.props.goals)
         let goalArr = goals.map((goal, i) => {
+            let completed = [];
+            // console.log(completed)
+            goal.sub_goal && goal.sub_goal.filter( (subG, i) => {
+                console.log(goal.sub_goal.length)
+                subG.complete && completed.push(subG)
+                // console.log(completed.length)
+            })
             return(
                 <div key={[i]} className="col-xs-4">
                     {goals[i].name}<br/>
                     {goals[i].date}
+                    <h1 className="progress">
+                        {Math.round((completed.length / goals[i].sub_goal.length)*100) + '%'}
+                    </h1>
                 </div>
             )
-            // console.log(goalArr)
         })
         return (
             <div className="group">
-            <h2>Goals</h2>
+                <h2>Goals</h2>
                 {goalArr}
             </div>
         );
