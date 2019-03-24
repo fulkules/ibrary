@@ -8,6 +8,7 @@ export default async function() {
         allUserData.goals = values[1]
         // allUserData.subTasks = values[2]
         // allUserData.subGoals = values[3]
+        // console.log(allUserData)
         return allUserData
     })
 } 
@@ -15,8 +16,8 @@ export default async function() {
 async function getTasks() {
     try {
         let res = await axios.get('/api/tasks');
-        return res.data
         // console.log(res.data)
+        return res.data
     } catch (err) {
         console.log(err)
     }

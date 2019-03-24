@@ -26,8 +26,8 @@ class Login extends Component {
     }
 
     checkUser = async () => {
-        const { id } = this.props;
-        if (!id){
+        const { user_id } = this.props;
+        if (!user_id){
             try {
                 let res = await axios.get('/api/current');
                 this.props.updateUser(res.data);
@@ -47,10 +47,12 @@ class Login extends Component {
         }
         try {
             let res = await axios.post('/auth/register', user);
+            // console.log(res.data)
             this.props.updateUser(res.data);
             this.props.history.push('/dashboard');
         } catch(err) {
             console.log(err)
+            alert('This username is taken');
         }
     }
 
@@ -103,7 +105,7 @@ class Login extends Component {
 
 const mapStateToProps = (reduxState) => {
     return {
-        id: reduxState.auth.id
+        user_id: reduxState.auth.user_id
     }
 }
 

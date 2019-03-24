@@ -43,6 +43,13 @@ CREATE TABLE sub_goal (
     complete boolean
 )
 
+CREATE TABLE vision (
+    id serial PRIMARY KEY,
+    u_id INT REFERENCES users(id),
+    text TEXT,
+    img TEXT
+)
+
 CREATE TABLE excite (
     id serial primary key,
     u_id int REFERENCES users(id),

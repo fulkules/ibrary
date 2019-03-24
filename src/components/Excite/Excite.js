@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Nav from '../Nav/Nav';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {updateData} from '../../ducks/actions';
+import CalendarHeader from '../Calendar/Calendar';
 
 
 class Excite extends Component {
@@ -26,13 +26,13 @@ class Excite extends Component {
     // }
     
     render() {
-        const {id} = this.props;
-        if(!id){
+        const {user_id} = this.props;
+        if(!user_id){
            return <Redirect to="/" />
         }
         return (
             <div className="Excite">
-                <Nav />
+                <CalendarHeader />
                 <h1>Excite</h1>
             </div>
         );
@@ -46,7 +46,7 @@ const mapStateToProps = (reduxState) => {
         tasks: reduxState.data.tasks,
         subTasks: reduxState.data.subTasks,
         update: reduxState.data.subTasks,
-        id: reduxState.auth.id
+        user_id: reduxState.auth.user_id
     }
 }
 

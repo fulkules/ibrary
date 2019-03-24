@@ -152,13 +152,13 @@ class TaskCard extends Component {
                         </div>
                         :
                         <div className="col-xs-4 wrapper">
-                            <input
+                            {/* <input
                                 className="subTask-complete-box"
                                 type="checkbox"
                                 // key={this.props.id}
                                 value={this.state.complete}
                                 onChange={() => { this.toggleComplete(this.props.id) }}
-                            />
+                            /> */}
                             {this.props.name}<br />
                             {this.props.time}<br />
                             <div>
