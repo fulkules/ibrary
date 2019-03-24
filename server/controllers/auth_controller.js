@@ -9,7 +9,7 @@ module.exports = {
     let takenUsername = await db.auth.check_username({ username });
     takenUsername = +takenUsername[0].count;
     if(takenUsername !== 0) {
-        return res.sendStatus(409)
+        return res.sendStatus(409);
     }
     
     let salt = bcrypt.genSaltSync(10);

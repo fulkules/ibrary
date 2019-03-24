@@ -96,7 +96,7 @@ class CalendarHeader extends Component {
         return (
                 <div className="main">
                     <Nav />
-                    <button className="logout" onClick={this.logout}>Logout</button> <br/>
+                    <button className="logout" onClick={ this.logout }>Logout</button> <br/>
                     {this.renderHeader()}
                     {this.renderDays()}
                     <i className="far fa-calendar-alt fa-2x" onClick={ this.toggle }></i>

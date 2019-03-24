@@ -47,10 +47,12 @@ class Login extends Component {
         }
         try {
             let res = await axios.post('/auth/register', user);
+            // console.log(res.data)
             this.props.updateUser(res.data);
             this.props.history.push('/dashboard');
         } catch(err) {
             console.log(err)
+            alert('This username is taken');
         }
     }
 
