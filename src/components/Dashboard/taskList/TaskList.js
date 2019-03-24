@@ -29,7 +29,7 @@ class TaskList extends Component {
                     {tasks[i].name}<br/>
                     {tasks[i].time}<br/>
                     <h1 className="progress">
-                        {Math.round((completed.length / tasks[i].sub_task.length)*100) + '%'}
+                        {completed.length ? Math.round((completed.length / tasks[i].sub_task.length)*100) + '%' : '0%'}
                     </h1>
                 </div>
             )

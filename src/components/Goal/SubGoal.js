@@ -41,10 +41,10 @@ class SubGoal extends Component {
         // console.log({1111: this.props})
         this.handleSave(id, !complete);
         if (!complete) {
-            console.log('1')
+            // console.log('1')
             this.setState({ background: '#DBFFBA', complete: true })
         } else {
-            console.log('2')
+            // console.log('2')
             this.setState({ background: '#FFE4E5', complete: false})
         }
     }

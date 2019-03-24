@@ -27,7 +27,7 @@ class GoalList extends Component {
                     {goals[i].name}<br/>
                     {goals[i].date}
                     <h1 className="progress">
-                        {Math.round((completed.length / goals[i].sub_goal.length)*100) + '%'}
+                        {completed.length ? Math.round((completed.length / goals[i].sub_goal.length)*100) + '%' : '0%'}
                     </h1>
                 </div>
             )
