@@ -17,8 +17,8 @@ class GoalList extends Component {
         let goalArr = goals.map((goal, i) => {
             let completed = [];
             // console.log(completed)
-            goal.sub_goal && goal.sub_goal.filter( (subG, i) => {
-                console.log(goal.sub_goal.length)
+            goal.sub_goal && goal.sub_goal.filter( (subG) => {
+                // console.log(goal.sub_goal.length)
                 subG.complete && completed.push(subG)
                 // console.log(completed.length)
             })

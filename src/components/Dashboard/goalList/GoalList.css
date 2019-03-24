@@ -16,6 +16,10 @@
     font-weight: bold;
 }
 
+.progress {
+    color: #aaa;
+}
+
 /* Decorations */
 .col-xs-4 { color: #004E47; font-size: 2rem; padding: 2.5rem; }
 .col-xs-4:nth-child(3n+1) { background: #FFEEBA; }
