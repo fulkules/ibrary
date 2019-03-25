@@ -17,7 +17,7 @@ class Thumbnail extends Component {
 
     getVisions = async () => {
         let res = await axios.get('/api/visions').then(res => {
-            console.log(1111111)
+            // console.log(1111111)
             this.setState({ visions: res.data })
         })
     }
@@ -28,7 +28,7 @@ class Thumbnail extends Component {
 
     deleteVision = async () => {
         const { id } = this.props;
-        console.log(id)
+        // console.log(id)
         await axios.delete(`/api/vision/${id}`).then(res => {
             this.setState({ visions: res.data })
         });

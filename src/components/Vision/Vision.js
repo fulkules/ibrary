@@ -83,7 +83,7 @@ class Vision extends Component {
             },
           })
           .then(response => {
-              console.log('in .then')
+            //   console.log('in .then')
             const { signedRequest, url } = response.data;
             // console.log(response)
             this.uploadFile(file, signedRequest, url);
