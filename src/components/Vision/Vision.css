@@ -41,6 +41,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 3rem 2rem 2rem 1rem;
+    font-size: 3rem;
   }
   
   .post-content p img {
@@ -82,7 +83,7 @@ body {
     flex-direction: column;
     overflow-y: scroll;
     margin: 3rem 2rem 2rem 1rem;
-    font-size: 3rem;
+    font-size: 2rem;
   }  
 }
 
