@@ -7,7 +7,7 @@
     "aws-sdk": "^2.426.0",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
-    "connect-pg-simple": "^5.0.0",
+    "connect-pg-simple": "^6.0.1",
     "date-fns": "^1.30.1",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
